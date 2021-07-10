@@ -34,8 +34,7 @@ const TransactionSchema = new Schema({
     user_id: Schema.ObjectId,
     item: Schema.ObjectId
   },
-  user1_approved: Boolean,
-  user2_approved: Boolean,
+  isApproved: Boolean,
   { timestamps: true }
 })
 
