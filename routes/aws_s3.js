@@ -1,14 +1,13 @@
 const fs = require('fs');
 const AWS = require('aws-sdk');
-const { ACCESS_KEY_ID, SECRET_ACCESS_KEY, BUCKET_NAME } = require('.env');
-
+require('dotenv').config();
 
 const s3 = new AWS.S3({
-  accessKeyId: ACCESS_KEY_ID,
-  secretAccessKey: SECRET_ACCESS_KEY
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY
 });
 
-const uploadImage = async (req, res) => {
+const uploadImage = async (/*req, res*/) => {
 
   /**
    * @dev Create variable to hold buffer of image upload
@@ -24,7 +23,7 @@ const uploadImage = async (req, res) => {
    * @dev PARAMS object that will be sent to S3 via upload method
    */
   const params = {
-    Bucket: BUCKET_NAME,
+    Bucket: process.env.BUCKET_NAME,
     Key: /* CREATE CUSTOM NAME FOR KEY */,
     Body: imageBuffer,
     ContentType: `image/${type}`
