@@ -94,4 +94,18 @@ db.getCollection("users").aggregate(
         }
     ]
 );
+
+
+TEST UPDATE COMMAND TO ADD RATING/REVIEW WITHOUT AGGREGATION
+> db.users.update({username: "ChristianJ"}, { $push: { ratings_reviews: {rating:4, review:"testing"} } })
+
+db.COLLECTION.update({
+    _id : ID
+    },
+    { $push : {
+    rating: SCORE,
+    review: REVIEW
+    }
+  }
+)
 */
