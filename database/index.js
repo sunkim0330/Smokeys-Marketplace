@@ -43,63 +43,79 @@ module.exports = {
 }
 
 
-let newUser = new Users({
-  username: 'Christian',
-  email: 'ccsailor11@gmail.com',
-  location: 'leverett',
-  phone: 1254236565,
-  ratings_reviews: [],
-  transactions: []
-})
+/**
+ * @dev The code below will create two new users and add to a local mongoDB upon server start
+ * Once server successfully starts kill server and use mongo CLI to iteract with the test data
+ */
+// let newUser = new Users({
+//   username: 'Christian',
+//   email: 'ccsailor11@gmail.com',
+//   location: 'leverett',
+//   phone: 1254236565,
+//   ratings_reviews: [],
+//   transactions: []
+// })
 
-newUser.save();
+// newUser.save();
 
-let newUserToo = new Users({
-  username: 'Matt',
-  email: 'Mattatgmail@gmail.com',
-  location: 'Marshfield',
-  phone: 1254236565,
-  ratings_reviews: [],
-  transactions: []
-})
+// let newUserToo = new Users({
+//   username: 'Matt',
+//   email: 'Mattatgmail@gmail.com',
+//   location: 'Marshfield',
+//   phone: 1254236565,
+//   ratings_reviews: [],
+//   transactions: []
+// })
 
-newUserToo.save();
+// newUserToo.save();
 
-let christianItem = new Item({
-  owner: '60ea018e6a00f038edf9cab4',
-  name: 'Hammer',
-  type: 'goods',
-  availability: true,
-  description: 'This is a hammer',
-  image_link: 'www.aws.com/asdfkqjhwe'
-})
 
-christianItem.save();
+/**
+ * @dev The code below will create two new items and add to a local mongoDB upon server start
+ * Once server successfully starts kill server and use mongo CLI to iteract with the test data
+ *
+ * @dev NOTE : THE OBJECTID HASHES WILL NOT PROPERLY LINE UP WITH YOUR LOCAL DB
+ */
+// let christianItem = new Item({
+//   owner: '60ea018e6a00f038edf9cab4',
+//   name: 'Hammer',
+//   type: 'goods',
+//   availability: true,
+//   description: 'This is a hammer',
+//   image_link: 'www.aws.com/asdfkqjhwe'
+// })
 
-let mattItem = new Item({
-  owner: '60ea018e6a00f038edf9cab3',
-  name: 'Drill',
-  type: 'goods',
-  availability: true,
-  description: 'This is a drill',
-  image_link: 'www.aws.com/asaskqjhwe'
-})
+// christianItem.save();
 
-mattItem.save();
+// let mattItem = new Item({
+//   owner: '60ea018e6a00f038edf9cab3',
+//   name: 'Drill',
+//   type: 'goods',
+//   availability: true,
+//   description: 'This is a drill',
+//   image_link: 'www.aws.com/asaskqjhwe'
+// })
 
-let testTransaction = new Transaction({
-  from: {
-    user_id: '60ea018e6a00f038edf9cab4',
-    item: '60ea024abe629c3947ff89b7'
-  },
-  to: {
-    user_id: '60ea018e6a00f038edf9cab3',
-    item: '60ea024abe629c3947ff89b8'
-  },
-  isApproved: false
-})
+// mattItem.save();
 
-testTransaction.save();
+/**
+ * @dev The code below will add a test transaction to the transactions collection
+ *
+ * @dev NOTE : THE OBJECTID HASHES WILL NOT PROPERLY LINE UP WITH YOUR LOCAL DB
+ */
+// let testTransaction = new Transaction({
+//   from: {
+//     user_id: '60ea018e6a00f038edf9cab4',
+//     item: '60ea024abe629c3947ff89b7'
+//   },
+//   to: {
+//     user_id: '60ea018e6a00f038edf9cab3',
+//     item: '60ea024abe629c3947ff89b8'
+//   },
+//   isApproved: false
+// })
+
+// testTransaction.save();
 
 
 /**
@@ -110,18 +126,30 @@ testTransaction.save();
 //   username: "Christian"
 // },
 //   {
-//     $push:
+//     $push :
 //     {
-//       ratings_reviews:
+//       ratings_reviews :
 //       {
-//         rating: 4,
-//         review: "testing"
+//         rating : 4,
+//         review : "testing"
 //       }
 //     }
 //   });
 
 
-
+/**
+ * @dev This command will find all usernames that match "Christian"
+ * & add a transaction id to the transactions field array
+ */
+// Users.update({
+//   username : "Christian"
+// },
+//   {
+//     $push :
+//     {
+//       transactions : "60ea03a1f5d4fc39d3449d76"
+//     }
+//   });
 
 
 
