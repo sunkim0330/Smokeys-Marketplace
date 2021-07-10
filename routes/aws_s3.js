@@ -10,13 +10,19 @@ const s3 = new AWS.S3({
 
 const uploadImage = async (req, res) => {
 
-  // Create variable to hold buffer of image upload
+  /**
+   * @dev Create variable to hold buffer of image upload
+   */
   let imageBuffer = new Buffer.from(/* IMAGE DATA GOES HERE */);
 
-  // Create variable to store the type of the uploaded image
+  /**
+   * @dev Create variable to store the type of the uploaded image
+   */
   let type = /* Parse the type from the end of the image file name */;
 
-  // PARAMS object that will be sent to S3 via upload method
+  /**
+   * @dev PARAMS object that will be sent to S3 via upload method
+   */
   const params = {
     Bucket: BUCKET_NAME,
     Key: /* CREATE CUSTOM NAME FOR KEY */,
@@ -24,7 +30,9 @@ const uploadImage = async (req, res) => {
     ContentType: `image/${type}`
   }
 
-  // Upload method - Should return a data object with property of .Location of where file is stored
+  /**
+   * @dev Upload method - Should return a data object with property of .Location of where file is stored
+   */
   s3.upload(params, (err, data) => {
     if (err) throw err;
     console.log(`File uploaded successfully at ${data.Location}`);

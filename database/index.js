@@ -18,7 +18,9 @@ const ItemSchema = new Schema({
   availability: Boolean,
   description: String,
   image_link: String,
-  time_span: Number
+  { timestamps: true }
+  /* NEED DATE POSTED */
+  /* NEED DATE UNAVAILABLE */
 })
 
 const Item = mongoose.model('Item', ItemSchema)
@@ -31,7 +33,10 @@ const TransactionSchema = new Schema({
   user2: {
     user_id: Schema.ObjectId,
     item: Schema.ObjectId
-  }
+  },
+  user1_approved: Boolean,
+  user2_approved: Boolean,
+  { timestamps: true }
 })
 
 const Transaction = mongoose.model('Transaction', TransactionSchema);
@@ -41,3 +46,53 @@ module.exports = {
   Item,
   Transaction
 }
+
+
+/*
+
+User: "60e9ee4fe250d31ac10ff243"
+Item: "60e9eee9e250d31ac10ff244"
+
+User: "60e9edb6e250d31ac10ff240"
+Item: "60e9ef25e250d31ac10ff245"
+
+
+TEST AGGREGATION FOR ADDING RATING/REVIEW
+
+db = db.getSiblingDB("smokey_test");
+db.getCollection("users").aggregate(
+    [
+        {
+            "$match" : {
+                "username" : "ChristianJ"
+            }
+        },
+        {
+            "$group" : {
+                "_id" : "60e9ee4fe250d31ac10ff243",
+                "username" : {
+                    "$first" : "$username"
+                },
+                "email" : {
+                    "$first" : "$email"
+                },
+                "location" : {
+                    "$first" : "$location"
+                },
+                "phone" : {
+                    "$first" : "$phone"
+                },
+                "ratings_reviews" : {
+                    "$push" : {
+                        "rating" : 3.0,
+                        "review" : "this was a good trade"
+                    }
+                },
+                "transactions" : {
+                    "$first" : "$transactions"
+                }
+            }
+        }
+    ]
+);
+*/
