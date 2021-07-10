@@ -122,7 +122,7 @@ module.exports = {
  * @dev This command will find all usernames that match "Christian"
  * & add a rating/review object to the ratings_reviews field
  */
-// Users.update({
+// db.users.update({
 //   username: "Christian"
 // },
 //   {
@@ -141,7 +141,7 @@ module.exports = {
  * @dev This command will find all usernames that match "Christian"
  * & add a transaction id to the transactions field array
  */
-// Users.update({
+// db.users.update({
 //   username : "Christian"
 // },
 //   {
