@@ -6,7 +6,8 @@ const UserSchema = new Schema({
   location: String,
   phone: Number,
   ratings_reviews: [Schema.Types.Mixed],
-  transactions: [Schema.ObjectId]
+  transactions: [Schema.ObjectId],
+  { timestamps: true }
 })
 
 const Users = mongoose.model('Users', UserSchema);
@@ -19,8 +20,6 @@ const ItemSchema = new Schema({
   description: String,
   image_link: String,
   { timestamps: true }
-  /* NEED DATE POSTED */
-  /* NEED DATE UNAVAILABLE */
 })
 
 const Item = mongoose.model('Item', ItemSchema)
