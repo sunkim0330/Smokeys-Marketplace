@@ -7,7 +7,7 @@ const s3 = new AWS.S3({
   secretAccessKey: process.env.SECRET_ACCESS_KEY
 });
 
-const uploadImage = async (/*req, res*/) => {
+const uploadImage = async (req, res) => {
 
   /**
    * @dev Create variable to hold buffer of image upload
