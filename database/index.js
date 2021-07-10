@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+/**
+ * Schema for each user - Should be called each time we add a new user
+ */
 const UserSchema = new mongoose.Schema({
   username: String,
   email: String,
@@ -11,6 +14,9 @@ const UserSchema = new mongoose.Schema({
 
 const Users = mongoose.model('Users', UserSchema);
 
+/**
+ * Schema for individual items - Should be called each time we add a new item
+ */
 const ItemSchema = new mongoose.Schema({
   owner: mongoose.Schema.ObjectId,
   name: String,
@@ -22,6 +28,9 @@ const ItemSchema = new mongoose.Schema({
 
 const Item = mongoose.model('Item', ItemSchema)
 
+/**
+ * Schema for transactions - Should be called each time a new transaction is triggered
+ */
 const TransactionSchema = new mongoose.Schema({
   from: {
     user_id: mongoose.Schema.ObjectId,
