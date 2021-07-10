@@ -1,41 +1,38 @@
-const mongoose, { Schema } = require('mongoose');
+const mongoose = require('mongoose');
 
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
   username: String,
   email: String,
   location: String,
   phone: Number,
-  ratings_reviews: [Schema.Types.Mixed],
-  transactions: [Schema.ObjectId],
-  { timestamps: true }
-})
+  ratings_reviews: [mongoose.Schema.Types.Mixed],
+  transactions: [mongoose.Schema.ObjectId]
+}, { timestamps: true })
 
 const Users = mongoose.model('Users', UserSchema);
 
-const ItemSchema = new Schema({
-  owner: Schema.ObjectId,
+const ItemSchema = new mongoose.Schema({
+  owner: mongoose.Schema.ObjectId,
   name: String,
   type: String,
   availability: Boolean,
   description: String,
-  image_link: String,
-  { timestamps: true }
-})
+  image_link: String
+}, { timestamps: true })
 
 const Item = mongoose.model('Item', ItemSchema)
 
-const TransactionSchema = new Schema({
-  user1: {
-    user_id: Schema.ObjectId,
-    item: Schema.ObjectId
+const TransactionSchema = new mongoose.Schema({
+  from: {
+    user_id: mongoose.Schema.ObjectId,
+    item: mongoose.Schema.ObjectId
   },
-  user2: {
-    user_id: Schema.ObjectId,
-    item: Schema.ObjectId
+  to: {
+    user_id: mongoose.Schema.ObjectId,
+    item: mongoose.Schema.ObjectId
   },
-  isApproved: Boolean,
-  { timestamps: true }
-})
+  isApproved: Boolean
+}, { timestamps: true })
 
 const Transaction = mongoose.model('Transaction', TransactionSchema);
 
@@ -46,8 +43,90 @@ module.exports = {
 }
 
 
-/*
+let newUser = new Users({
+  username: 'Christian',
+  email: 'ccsailor11@gmail.com',
+  location: 'leverett',
+  phone: 1254236565,
+  ratings_reviews: [],
+  transactions: []
+})
 
+newUser.save();
+
+let newUserToo = new Users({
+  username: 'Matt',
+  email: 'Mattatgmail@gmail.com',
+  location: 'Marshfield',
+  phone: 1254236565,
+  ratings_reviews: [],
+  transactions: []
+})
+
+newUserToo.save();
+
+let christianItem = new Item({
+  owner: '60ea018e6a00f038edf9cab4',
+  name: 'Hammer',
+  type: 'goods',
+  availability: true,
+  description: 'This is a hammer',
+  image_link: 'www.aws.com/asdfkqjhwe'
+})
+
+christianItem.save();
+
+let mattItem = new Item({
+  owner: '60ea018e6a00f038edf9cab3',
+  name: 'Drill',
+  type: 'goods',
+  availability: true,
+  description: 'This is a drill',
+  image_link: 'www.aws.com/asaskqjhwe'
+})
+
+mattItem.save();
+
+let testTransaction = new Transaction({
+  from: {
+    user_id: '60ea018e6a00f038edf9cab4',
+    item: '60ea024abe629c3947ff89b7'
+  },
+  to: {
+    user_id: '60ea018e6a00f038edf9cab3',
+    item: '60ea024abe629c3947ff89b8'
+  },
+  isApproved: false
+})
+
+testTransaction.save();
+
+
+/**
+ * @dev This command will find all usernames that match "Christian"
+ * & add a rating/review object to the ratings_reviews field
+ */
+// Users.update({
+//   username: "Christian"
+// },
+//   {
+//     $push:
+//     {
+//       ratings_reviews:
+//       {
+//         rating: 4,
+//         review: "testing"
+//       }
+//     }
+//   });
+
+
+
+
+
+
+
+/*
 User: "60e9ee4fe250d31ac10ff243"
 Item: "60e9eee9e250d31ac10ff244"
 
