@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { Users, Items, Transactions } = require('../database');
-const { getTransactions } = require('../routes');
+const { getTransactions, addTransaction } = require('../routes');
 
 mongoose.connect('mongodb://localhost/smokeys', {
   useNewUrlParser : true,
@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 
 app.route('/transactions/')
   .get(getTransactions)
+  .post(addTransaction)
 
 app.listen(port, function() {
   console.log(`listening on port ${port}`)

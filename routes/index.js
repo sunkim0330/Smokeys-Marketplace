@@ -11,7 +11,7 @@ const getTransactions = async (req, res) => {
   let page = Number(req.query.page) || 0;
   let sort = { updatedAt : -1 };
 
-  let response = {
+  const response = {
     user : user,
     page : page,
     count : count,
@@ -32,8 +32,29 @@ const getTransactions = async (req, res) => {
 
 }
 
+const addTransaction = async (req, res) => {
+
+  console.log(req.query)
+  const newTransaction = new Transactions({
+    from : {
+      user_id : new Types.ObjectId(req.query.from_user_id),
+      item_id : new Types.ObjectId(req.query.from_item_id),
+    },
+    to : {
+      user_id : new Types.ObjectId(req.query.to_user_id),
+      item_id : new Types.ObjectId(req.query.to_item_id),
+    }
+  })
+
+  newTransaction.save()
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(422))
+
+}
+
 module.exports = {
-  getTransactions
+  getTransactions,
+  addTransaction
 }
 
 /*
