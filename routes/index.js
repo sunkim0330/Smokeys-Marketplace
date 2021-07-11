@@ -1,4 +1,40 @@
+/**
+ * Importing database schemas from ./database/index.js
+ */
+const { Users, Items, Transactions } = require('../database');
+const { Types } = require('mongoose');
 
+const getTransactions = async (req, res) => {
+
+  let user = req.query.user_id;
+  let count = Number(req.query.count) || 5;
+  let page = Number(req.query.page) || 0;
+  let sort = { updatedAt : -1 };
+
+  let response = {
+    user : user,
+    page : page,
+    count : count,
+    results : [],
+  }
+  let fetchTransactions = await Transactions.find({ $or : [
+    { 'from.user_id' : new Types.ObjectId(req.query.user_id) },
+    { 'to.user_id' : new Types.ObjectId(req.query.user_id) }
+  ] })
+    .limit(count)
+    .skip(page * count)
+    .sort(sort)
+
+
+  response.results = fetchTransactions;
+
+  res.status(200).send(response);
+
+}
+
+module.exports = {
+  getTransactions
+}
 
 /*
 const getUserInfo, GET
@@ -22,7 +58,20 @@ const saveItem, POST
 
 const saveTransaction, POST
 -- save new Transaction Schema
+Test query to update transactions array on user --
+let test = await Transactions.find({status:'pending', 'from.user_id': new mongoose.Types.ObjectId("60eac1d6a0e0293f05e414cf")})
+
+let update = await Users.updateOne({_id: new mongoose.Types.ObjectId("60eac1d6a0e0293f05e414cf")}, {
+  $push: {
+    transactions: test[0]
+  }
+})
 
 const updateReview, PUT
 -- upsert(update or insert) or findOneAndUpdate rating_reviews in Users
+
+const confirmTransaction, PUT
+const cancelTransaction, PUT
+Test query to update data on transaction:
+db.transactions.update({_id:ObjectId("60ead757d22b214406d4c741")}, {$set: {status:"completed"}})
 */
