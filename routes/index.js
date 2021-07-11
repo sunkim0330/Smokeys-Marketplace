@@ -34,7 +34,6 @@ const getTransactions = async (req, res) => {
 
 const addTransaction = async (req, res) => {
 
-  console.log(req.query)
   const newTransaction = new Transactions({
     from : {
       user_id : new Types.ObjectId(req.query.from_user_id),
@@ -52,9 +51,19 @@ const addTransaction = async (req, res) => {
 
 }
 
+const completeTransaction = async (req, res) => {
+
+}
+
+const cancelTransaction = async (req, res) => {
+
+}
+
 module.exports = {
   getTransactions,
-  addTransaction
+  addTransaction,
+  completeTransaction,
+  cancelTransaction
 }
 
 /*
