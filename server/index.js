@@ -1,6 +1,5 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { Users, Items, Transactions } = require('../database');
 const {
@@ -9,19 +8,20 @@ const {
   completeTransaction,
   cancelTransaction } = require('../routes');
 
-mongoose.connect('mongodb://localhost/smokeys', {
-  useNewUrlParser : true,
-  useUnifiedTopology : true
+mongoose.connect("mongodb://localhost/smokeys", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
-db.on('error', err => console.log(err.message));
-db.on('open', () => console.log(`Connected to Smokey's DB`));
+db.on("error", (err) => console.log(err.message));
+db.on("open", () => console.log(`Connected to Smokey's DB`));
 
 let port = process.env.PORT || 4000;
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.static(__dirname + "/../dist"));
 
 // app.route(/* ... */);
 //   //.get()
