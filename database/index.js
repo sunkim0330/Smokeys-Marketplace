@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
  * Schema for each user - Should be called each time we add a new user
  */
 const UserSchema = new mongoose.Schema({
-  username: String,
+  firstName: String,
+  lastName: String,
   email: String,
   location: String,
   phone: Number,
