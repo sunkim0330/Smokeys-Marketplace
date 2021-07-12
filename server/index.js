@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
-const { Users, Item, Transaction } = require("../database");
-const mongoose = require("mongoose");
 const { Users, Items, Transactions } = require("../database");
 const {
   getTransactions,
