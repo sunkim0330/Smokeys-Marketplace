@@ -35,6 +35,7 @@ const UserPage = () => {
         {currentTab === "overview" && <Overview />}
         {currentTab === "current-trades" && <CurrentTrades />}
         {currentTab === "past-trades" && <PastTrades />}
+
       </section>
     </div>
   );
