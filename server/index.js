@@ -2,13 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
-const { Users, Item, Transaction } = require("../database");
+const { Users, Items, Transactions } = require("../database");
 const { transactions, users } = require("../routes");
-
-const {
-  getUserInfo,
-  createNewUser,
-  updateUserInfo } = require('../routes/users.js');
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -29,10 +24,7 @@ app.use(express.static(__dirname + "/../dist"));
 app.listen(port, function () {
   console.log(`listening on port ${port}`);
 });
-// app.route(/* ... */);
-//   //.get()
-//   //.post()
-//   //...
+
 
 app.route('/user/')
   .post(users.createNewUser)
@@ -41,6 +33,7 @@ app.route('/user/:id')
   .get(users.getUserInfo)
   .put(users.updateUserInfo)
 
+app
   .route("/transactions/")
   .get(transactions.getTransactions)
   .post(transactions.addTransaction);
