@@ -3,8 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const { Users, Item, Transaction } = require("../database");
-const {
-  transactions } = require("../routes");
+const { transactions } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -29,16 +28,18 @@ app.listen(port, function () {
 //   //.post()
 //   //...
 
-app.route("/transactions/")
+app
+  .route("/transactions/")
   .get(transactions.getTransactions)
   .post(transactions.addTransaction);
 
-app.route("/transactions/:transaction_id/complete")
+app
+  .route("/transactions/:transaction_id/complete")
   .put(transactions.completeTransaction);
 
-app.route("/transactions/:transaction_id/cancel")
+app
+  .route("/transactions/:transaction_id/cancel")
   .put(transactions.cancelTransaction);
-
 
 // This needs to be last route!
 app.get("*", (req, res) => {
