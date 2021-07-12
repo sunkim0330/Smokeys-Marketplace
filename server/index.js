@@ -4,11 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const { Users, Item, Transaction } = require("../database");
 const {
-  getTransactions,
-  addTransaction,
-  completeTransaction,
-  cancelTransaction,
-} = require("../routes");
+  transactions } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -34,14 +30,14 @@ app.listen(port, function () {
 //   //...
 
 app.route("/transactions/")
-  .get(getTransactions)
-  .post(addTransaction);
+  .get(transactions.getTransactions)
+  .post(transactions.addTransaction);
 
 app.route("/transactions/:transaction_id/complete")
-  .put(completeTransaction);
+  .put(transactions.completeTransaction);
 
 app.route("/transactions/:transaction_id/cancel")
-  .put(cancelTransaction);
+  .put(transactions.cancelTransaction);
 
 
 // This needs to be last route!
