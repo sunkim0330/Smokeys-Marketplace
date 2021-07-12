@@ -145,3 +145,61 @@
   border-radius: 12px;
 }
 
+/* TRANSACTION MODAL CSS */
+
+.transaction-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.transaction-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background: rgb(255, 255, 255);
+  height: 70%;
+  width: 30%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.transaction-item-title {
+  width: 50%;
+}
+
+.transaction-user-rating {
+  width: 50%;
+}
+
+.image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.transaction-image {
+  width: 60%;
+}
+
+.transaction-item-desc {
+  width: 100%;
+  text-align: center;
+}
+
+.proposed-item-wrapper {
+
+}
+
+.transaction-proposed-item {
+  width: 100%;
+}
