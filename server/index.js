@@ -2,15 +2,8 @@ const express = require("express");
 const app = express();
 
 const path = require("path");
-
-const mongoose = require("mongoose");
-const { Users, Items, Transactions } = require("../database");
-const {
-  getTransactions,
-  addTransaction,
-  completeTransaction,
-  cancelTransaction,
-} = require("../routes");
+const { Users, Item, Transaction } = require("../database");
+const { transactions } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -27,22 +20,31 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(__dirname + "/../dist"));
 
+app.listen(port, function () {
+  console.log(`listening on port ${port}`);
+});
 // app.route(/* ... */);
 //   //.get()
 //   //.post()
 //   //...
 
-app.route("/transactions/").get(getTransactions).post(addTransaction);
+app
+  .route("/transactions/")
+  .get(transactions.getTransactions)
+  .post(transactions.addTransaction);
 
-app.route("/transactions/:transaction_id/complete").put(completeTransaction);
+app
+  .route("/transactions/:transaction_id/complete")
+  .put(transactions.completeTransaction);
 
-app.route("/transactions/:transaction_id/cancel").put(cancelTransaction);
+<<<<<<< HEAD
+=======
+app
+  .route("/transactions/:transaction_id/cancel")
+  .put(transactions.cancelTransaction);
 
+>>>>>>> 092f6766d3e5c07eebb8c95f19bdf47c472d2b2b
 // This needs to be last route!
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
-});
-
-app.listen(port, function () {
-  console.log(`listening on port ${port}`);
 });
