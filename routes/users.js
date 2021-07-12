@@ -16,7 +16,8 @@ module.exports.getUserInfo = async (req, res) => {
 module.exports.createNewUser = async (req, res) => {
 
   let newUser = new Users({
-    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     phone: req.body.phone,
     location: req.body.location,
@@ -32,7 +33,8 @@ module.exports.createNewUser = async (req, res) => {
 module.exports.updateUserInfo = async (req, res) => {
   let filter = { _id: req.params.id};
   let update = {
-    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     phone: req.body.phone,
     location: req.body.location
