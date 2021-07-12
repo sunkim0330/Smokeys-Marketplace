@@ -40,9 +40,6 @@ module.exports.updateUserInfo = async (req, res) => {
     location: req.body.location
   }
 
-    // const updateInfo = await Users.updateOne(filter, update, {new: true});
-    // return res.status(200).send(updateInfo);
-
   const updateInfo = await Users.updateOne(filter, update, {new: true}, (err, result) => {
     if (err) {
       res.status(500).send(err);
