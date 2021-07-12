@@ -8,9 +8,15 @@ const {
   completeTransaction,
   cancelTransaction } = require('../routes');
 
+const {
+  getUserInfo,
+  createNewUser,
+  updateUserInfo } = require('../routes/users.js');
+
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 const db = mongoose.connection;
@@ -27,6 +33,13 @@ app.use(express.static(__dirname + "/../dist"));
 //   //.get()
 //   //.post()
 //   //...
+
+app.route('/user/')
+  .post(createNewUser)
+
+app.route('/user/:id')
+  .get(getUserInfo)
+  .put(updateUserInfo)
 
 app.route('/transactions/')
   .get(getTransactions)
