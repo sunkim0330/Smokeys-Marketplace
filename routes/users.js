@@ -26,7 +26,7 @@ module.exports.createNewUser = async (req, res) => {
   })
 
   newUser.save()
-  .then(() => res.sendStatus(201))
+  .then((result) => res.status(201).send(result))
   .catch(() => res.sendStatus(400))
 }
 
@@ -49,3 +49,4 @@ module.exports.updateUserInfo = async (req, res) => {
   });
 
 }
+
