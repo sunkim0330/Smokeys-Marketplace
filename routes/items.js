@@ -92,3 +92,10 @@ const updateAvailability = async (req, res) => {
     .then(() => res.sendStatus(204))
     .catch(() => res.sendStatus(422))
 }
+
+module.exports = {
+    getItems,
+    getUserItems,
+    addItem,
+    updateAvailability
+}
