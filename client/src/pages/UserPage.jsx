@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import AddNewItem from "../components/AddNewItem/AddNewItem.jsx";
 import CurrentTrades from "../components/CurrentTrades/CurrentTrades.jsx";
 import Overview from "../components/Overview/Overview.jsx";
 import PastTrades from "../components/PastTrades/PastTrades.jsx";
 
 const UserPage = () => {
-  const [currentTab, setCurrentTab] = useState("overview");
+  const [currentTab, setCurrentTab] = useState("add-new-item");
 
   const handleTabClick = (event) => {
     event.preventDefault();
@@ -35,7 +36,7 @@ const UserPage = () => {
         {currentTab === "overview" && <Overview />}
         {currentTab === "current-trades" && <CurrentTrades />}
         {currentTab === "past-trades" && <PastTrades />}
-
+        {currentTab === "add-new-item" && <AddNewItem />}
       </section>
     </div>
   );
