@@ -110,4 +110,4 @@ package-lock.json
 bundle.js
 
 # vscode settings
-.vscode
+.vscode/
