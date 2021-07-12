@@ -5,6 +5,38 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.header {
+  background-color: orange;
+  height: 75px;
+}
+
+.navbar-container {
+  width: 85%;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.title {
+  font-size: 35px;
+}
+
+.navigation {
+  display: flex;
+  margin-left: 85px;
+  width: 400px;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 25px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+}
+
 .user-page-container {
   width: 85%;
   margin: auto;
@@ -32,7 +64,8 @@
 
 .overview-container,
 .current-trades-container,
-.past-trades-container {
+.past-trades-container,
+.add-new-item-container {
   border: 1px solid black;
   border-radius: 12px;
   margin: 10px auto;
@@ -55,7 +88,8 @@
   justify-content: space-around;
 }
 
-.overview-edit-user-btn {
+.overview-edit-user-btn,
+.add-item-btn {
   font-size: 18px;
   background-color: orange;
   color: white;
@@ -145,6 +179,40 @@
   border-radius: 12px;
 }
 
+.add-new-item-container > * {
+  padding-left: 45px;
+}
+
+.add-new-item-form {
+  border-top: 1px solid black;
+}
+
+.new-item-photo {
+  border: 1px solid black;
+  border-radius: 12px;
+  width: 125px;
+  height: 175px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.new-item-photo-add {
+  font-size: 75px;
+  margin-top: 25px;
+}
+
+.add-item-btn {
+  padding: 5px 15px;
+  margin: 20px 45px;
+}
+
+.add-new-item-container h3,
+.add-new-item-container h4 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
 /* TRANSACTION MODAL CSS */
 
 .transaction-modal-wrapper {
@@ -219,4 +287,8 @@
 
 .transaction-button {
   width: 40%;
+}
+.add-new-item-container {
+  padding-left: 0;
+  padding-right: 0;
 }
