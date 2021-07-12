@@ -2,20 +2,19 @@ const { Users, Items, Transactions, RatingsReviews } = require('../database');
 const { Types } = require('mongoose');
 
 const getReviews = async (req, res) => {
-  let user = req.query.user_id;
+  let user = req.params.user_id;
   let count = Number(req.query.count) || 5;
   let page = Number(req.query.page) || 0;
 
   const response = {
-    ratings: ratings,
-    reviews: reviews,
+    user: user,
     results: []
   }
 
-  let fetchRatingsReviews = await RatingsReviews.find({_id: user})
+  let fetchRatingsReviews = await RatingsReviews.find({reviewed_id : new Types.ObjectId(user)})
     .limit(count)
     .skip(page * count)
-  console.log(fetchRatingsReviews);
+
     response.results = fetchRatingsReviews;
 
     res.status(200).send(response);
