@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 const { Users, Item, Transaction } = require("../database");
 const {
-  transactions } = require("../routes");
+  transactions,
+  ratingsReviews } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -39,6 +40,9 @@ app.route("/transactions/:transaction_id/complete")
 app.route("/transactions/:transaction_id/cancel")
   .put(transactions.cancelTransaction);
 
+app.route("/reviews/:id")
+  .get(ratingsReviews.getReviews)
+  .post(ratingsReviews.addReview);
 
 // This needs to be last route!
 app.get("*", (req, res) => {
