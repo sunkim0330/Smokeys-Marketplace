@@ -7,11 +7,14 @@ const cookieSession = require('cookie-session')
 require('./passport.js');
 const { Users, Item, Transaction } = require("../database");
 const {
-  transactions } = require("../routes");
+  transactions,
+  users } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
+
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 const db = mongoose.connection;
@@ -21,9 +24,9 @@ db.on("open", () => console.log(`Connected to Smokey's DB`));
 // Auth middleware that checks if the user is logged in
 const isLoggedIn = (req, res, next) => {
   if (req.user) {
-      next();
+    next();
   } else {
-      res.sendStatus(401);
+    res.sendStatus(401);
   }
 }
 
@@ -45,19 +48,26 @@ app.use(cookieSession({
 app.listen(port, function () {
   console.log(`listening on port ${port}`);
 });
-// app.route(/* ... */);
-//   //.get()
-//   //.post()
-//   //...
 
-app.route("/transactions/")
+
+app.route('/user/')
+  .post(users.createNewUser)
+
+app.route('/user/:id')
+  .get(users.getUserInfo)
+  .put(users.updateUserInfo)
+
+app
+  .route("/transactions/")
   .get(transactions.getTransactions)
   .post(transactions.addTransaction);
 
-app.route("/transactions/:transaction_id/complete")
+app
+  .route("/transactions/:transaction_id/complete")
   .put(transactions.completeTransaction);
 
-app.route("/transactions/:transaction_id/cancel")
+app
+  .route("/transactions/:transaction_id/cancel")
   .put(transactions.cancelTransaction);
 
 // Route to send client when user is not recognized in DB

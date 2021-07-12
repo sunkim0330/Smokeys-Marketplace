@@ -56,7 +56,6 @@ module.exports = {
   Transactions
 }
 
-
 /**
  * @dev The code below will create two new users and add to a local mongoDB upon server start
  * Once server successfully starts kill server and use mongo CLI to iteract with the test data
