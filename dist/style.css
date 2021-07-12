@@ -30,7 +30,8 @@
   cursor: pointer;
 }
 
-.overview-container {
+.overview-container,
+.current-trades-container {
   border: 1px solid black;
   margin: 10px auto;
   padding: 35px 25px;
@@ -112,4 +113,23 @@
 .accept:hover,
 .decline:hover {
   cursor: pointer;
+}
+
+.current-trades-container {
+  height: 650px;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.current-trade-card {
+  margin: 0 auto;
+  width: 200px;
+  height: 250px;
+  border: 1px solid black;
+}
+
+.current-trade-card img {
+  width: 85px;
 }
