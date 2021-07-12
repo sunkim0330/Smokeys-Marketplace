@@ -175,10 +175,12 @@
 
 .transaction-item-title {
   width: 50%;
+  text-align: center;
 }
 
 .transaction-user-rating {
   width: 50%;
+  text-align: center;
 }
 
 .image-wrapper {
@@ -193,13 +195,28 @@
 
 .transaction-item-desc {
   width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+.transaction-proposed-title {
+  width: 100%;
+  height: 30px;
   text-align: center;
 }
 
 .proposed-item-wrapper {
-
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: center;
+  width: 65%;
 }
 
 .transaction-proposed-item {
   width: 100%;
+}
+
+.transaction-button {
+  width: 40%;
 }
