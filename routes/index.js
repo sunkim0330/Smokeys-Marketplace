@@ -1,9 +1,15 @@
+const url = require('url');
 /**
  * Importing database schemas from ./database/index.js
  */
 const { Users, Items, Transactions } = require('../database');
 const { Types } = require('mongoose');
 
+/**
+ * @dev This function will GET and return all transactions associated with the given user_id
+ * @param {user_id} req user_id is the user from which you want to retrieve transaction data for
+ * @param {*} res On successful GET a 200 status code will be sent
+ */
 const getTransactions = async (req, res) => {
 
   let user = req.query.user_id;
@@ -25,13 +31,20 @@ const getTransactions = async (req, res) => {
     .skip(page * count)
     .sort(sort)
 
-
   response.results = fetchTransactions;
 
   res.status(200).send(response);
 
 }
 
+/**
+ * @dev This function will add a new transaction to the database
+ * @param {from_user_id} req from_user_id is the ID for the user initiating the transaction
+ * @param {from_item_id} req from_item_id is the ID for the item that from_user_id is offering
+ * @param {to_user_id} req to_user_id is the ID for the user that from_user_id is initiating the transaction with
+ * @param {to_item_id} req to_item_id is the ID for the item that to_user_id is offering in the transaction
+ * @param {*} res on successful POST a 201 status code will be sent. On error a 422 code will be sent
+ */
 const addTransaction = async (req, res) => {
 
   const newTransaction = new Transactions({
@@ -51,11 +64,39 @@ const addTransaction = async (req, res) => {
 
 }
 
+/**
+ * @dev This function will mark the given transactiion_id a "complete"
+ * @param {transaction_id} req this is the ID for the transaction that will be marked "complete"
+ * @param {*} res on successful update a status code of 204 will be returned. On error code 422 will be sent
+ */
 const completeTransaction = async (req, res) => {
+
+  let trxID = req.url.split('/')[2]
+
+  Transactions.updateOne({ _id: new Types.ObjectId(trxID) },
+  { $set :
+    { status : "completed" }
+  })
+    .then(() => res.sendStatus(204))
+    .catch(() => res.sendStatus(422))
 
 }
 
+/**
+ * @dev This function will mark the given transactiion_id a "cancelled"
+ * @param {transaction_id} req this is the ID for the transaction that will be marked "cancelled"
+ * @param {*} res on successful update a status code of 204 will be returned. On error code 422 will be sent
+ */
 const cancelTransaction = async (req, res) => {
+
+  let trxID = req.url.split('/')[2]
+
+  Transactions.updateOne({ _id: new Types.ObjectId(trxID) },
+  { $set :
+    { status : "cancelled" }
+  })
+    .then(() => res.sendStatus(204))
+    .catch(() => res.sendStatus(422))
 
 }
 
