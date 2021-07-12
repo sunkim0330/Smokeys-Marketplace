@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CurrentTrades from "../components/CurrentTrades/CurrentTrades.jsx";
 import Overview from "../components/Overview/Overview.jsx";
+import PastTrades from "../components/PastTrades/PastTrades.jsx";
 
 const UserPage = () => {
   const [currentTab, setCurrentTab] = useState("overview");
@@ -33,6 +34,8 @@ const UserPage = () => {
         </ul>
         {currentTab === "overview" && <Overview />}
         {currentTab === "current-trades" && <CurrentTrades />}
+        {currentTab === "past-trades" && <PastTrades />}
+
       </section>
     </div>
   );
