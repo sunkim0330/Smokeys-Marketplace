@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
  * Schema for each user - Should be called each time we add a new user
  */
 const UserSchema = new mongoose.Schema({
-  username: String,
+  firstName: String,
+  lastName: String,
   email: String,
   location: String,
   phone: Number,
@@ -65,7 +66,6 @@ module.exports = {
   Transactions,
   RatingsReviews
 }
-
 
 /**
  * @dev The code below will create two new users and add to a local mongoDB upon server start

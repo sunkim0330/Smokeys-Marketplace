@@ -9,6 +9,11 @@ const {
     addReview
   } = require("./reviews.js")
 
+const {
+  getUserInfo,
+  createNewUser,
+  updateUserInfo } = require("./users.js");
+
 module.exports = {
   transactions: {
     getTransactions,
@@ -19,5 +24,10 @@ module.exports = {
   ratingsReviews: {
     getReviews,
     addReview
+  }
+  users: {
+    getUserInfo,
+    createNewUser,
+    updateUserInfo
   }
 }
