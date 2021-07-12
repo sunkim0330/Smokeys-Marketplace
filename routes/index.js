@@ -4,6 +4,11 @@ const {
   completeTransaction,
   cancelTransaction } = require("./transactions.js");
 
+  const {
+    getReviews,
+    addReview
+  } = require("./reviews.js")
+
 const {
   getUserInfo,
   createNewUser,
@@ -16,6 +21,10 @@ module.exports = {
     completeTransaction,
     cancelTransaction
   },
+  ratingsReviews: {
+    getReviews,
+    addReview
+  }
   users: {
     getUserInfo,
     createNewUser,
