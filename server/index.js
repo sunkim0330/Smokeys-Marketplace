@@ -2,12 +2,13 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
-const { Users, Item, Transaction } = require("../database");
-const { transactions } = require("../routes");
+const { Users, Items, Transactions } = require("../database");
+const { transactions, users } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 const db = mongoose.connection;
@@ -23,10 +24,14 @@ app.use(express.static(__dirname + "/../dist"));
 app.listen(port, function () {
   console.log(`listening on port ${port}`);
 });
-// app.route(/* ... */);
-//   //.get()
-//   //.post()
-//   //...
+
+
+app.route('/user/')
+  .post(users.createNewUser)
+
+app.route('/user/:id')
+  .get(users.getUserInfo)
+  .put(users.updateUserInfo)
 
 app
   .route("/transactions/")
