@@ -30,8 +30,11 @@
   cursor: pointer;
 }
 
-.overview-container {
+.overview-container,
+.current-trades-container,
+.past-trades-container {
   border: 1px solid black;
+  border-radius: 12px;
   margin: 10px auto;
   padding: 35px 25px;
 }
@@ -90,14 +93,16 @@
   border-radius: 12px;
 }
 
-.overview-cur-trade-offer-header {
+.overview-cur-trade-offer-header,
+.past-trades-list-container-header {
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
   border-bottom: 1px solid black;
 }
 
-.overview-current-trade-item {
+.overview-current-trade-item,
+.past-trade-item-container {
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
@@ -113,3 +118,30 @@
 .decline:hover {
   cursor: pointer;
 }
+
+.current-trades-container {
+  height: 650px;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.current-trade-card {
+  margin: 0 auto;
+  width: 200px;
+  height: 250px;
+  border: 1px solid black;
+}
+
+.current-trade-card img {
+  width: 85px;
+}
+
+.past-trades-list-container {
+  padding: 25px 0;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 12px;
+}
+
