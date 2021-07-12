@@ -3,6 +3,14 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const { Users, Item, Transaction } = require("../database");
+const mongoose = require("mongoose");
+const { Users, Items, Transactions } = require("../database");
+const {
+  getTransactions,
+  addTransaction,
+  completeTransaction,
+  cancelTransaction,
+} = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -23,6 +31,16 @@ app.use(express.static(__dirname + "/../dist"));
 //   //.get()
 //   //.post()
 //   //...
+
+app.route("/transactions/").get(getTransactions).post(addTransaction);
+
+app.route("/transactions/:transaction_id/complete").put(completeTransaction);
+
+app.route("/transactions/:transaction_id/cancel").put(cancelTransaction);
+
+app.listen(port, function () {
+  console.log(`listening on port ${port}`);
+});
 
 // This needs to be last route!
 app.get("*", (req, res) => {

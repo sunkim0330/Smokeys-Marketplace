@@ -109,5 +109,5 @@ package-lock.json
 # bundle
 bundle.js
 
-# .vscode settings
+# vscode settings
 .vscode/
