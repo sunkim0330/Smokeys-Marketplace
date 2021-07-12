@@ -34,11 +34,11 @@ const Items = mongoose.model('Items', ItemSchema)
 const TransactionSchema = new mongoose.Schema({
   from: {
     user_id: mongoose.Schema.ObjectId,
-    item: mongoose.Schema.ObjectId
+    item_id: mongoose.Schema.ObjectId
   },
   to: {
     user_id: mongoose.Schema.ObjectId,
-    item: mongoose.Schema.ObjectId
+    item_id: mongoose.Schema.ObjectId
   },
   status: {
     type: String,
