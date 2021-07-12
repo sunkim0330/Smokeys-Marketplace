@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.user-page-container {
+  width: 85%;
+  margin: auto;
+}
+
+.user-page-container h1 {
+  padding: 25px;
+}
+
+.tab-list {
+  display: flex;
+  font-size: 20px;
+  justify-content: space-around;
+  align-items: center;
+  width: 75%;
+}
+
+.tab {
+  list-style-type: none;
+}
+
+.tab:hover {
+  cursor: pointer;
+}
+
+.overview-container,
+.current-trades-container {
+  border: 1px solid black;
+  margin: 10px auto;
+  padding: 35px 25px;
+}
+
+.overview-container-top-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.basic-info {
+  width: 235px;
+  height: 235px;
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.overview-edit-user-btn {
+  font-size: 18px;
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 50px;
+}
+
+.overview-edit-user-btn:hover {
+  cursor: pointer;
+}
+
+.overview-metadata {
+  border: 1px solid black;
+  border-radius: 12px;
+  width: 800px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.overview-name,
+.overview-address {
+  margin-bottom: 3px;
+}
+
+.overview-cur-trade-title {
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+.overview-cur-trade-offer-container {
+  border: 1px solid black;
+  border-radius: 12px;
+}
+
+.overview-cur-trade-offer-header {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+
+.overview-current-trade-item {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.accept,
+.decline {
+  margin: 0 10px;
+  padding: 2px 5px;
+}
+
+.accept:hover,
+.decline:hover {
+  cursor: pointer;
+}
+
+.current-trades-container {
+  height: 650px;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.current-trade-card {
+  margin: 0 auto;
+  width: 200px;
+  height: 250px;
+  border: 1px solid black;
+}
+
+.current-trade-card img {
+  width: 85px;
+}
