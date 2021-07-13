@@ -25,12 +25,12 @@ const newRatingReview = async (_id1, _id2) => {
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err.message));
 db.on("open", async () => {
-  console.log(`Connected to Smokey's DB to add test User data`)
+  console.log(`Connected to Smokey's DB to add test Review data`)
   let userIds = [];
   let allUsers = await Users.find();
   allUsers.forEach(user => userIds.push(user._id));
   for (let i = 0; i < 20; i++) {
     newRatingReview(userIds[Math.floor(Math.random() * userIds.length)], userIds[Math.floor(Math.random() * userIds.length)])
   }
-  console.log(`Finished adding 20 fake reviews to Smokey's DB`)
+  console.log(`Finished adding 20 fake reviews to Smokey's DB`);
 });
