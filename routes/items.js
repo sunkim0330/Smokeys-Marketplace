@@ -21,7 +21,7 @@ const getItems = async (req, res) => {
   await function getZipcodes(location, memo) {
     memo = memo || {}
     if (memo[location]) return memo[location];
-    return memo[location] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY || 'zxBBSN4fVFJckRcBFwnPmkUKr6hTFFuXUEOmuRq4kY8BRvgw7f3lwYbXYfBi7hhb'}/radius.json/${location}/5/miles?minimal`);
+    return memo[location] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/radius.json/${location}/5/miles?minimal`);
   }
 
   let page = Number(req.body.page) || 0;
