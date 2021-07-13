@@ -108,7 +108,8 @@ app.get('/google', passport.authenticate('google', { scope: ['profile', 'email']
 
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
   function (req, res) {
-    req.user.isUser ? res.redirect('/user') : res.redirect('/user')
+    req.user.isUser ? res.redirect('/marketplace') : res.redirect('/signup')
+
   }
 );
 

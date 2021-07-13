@@ -28,8 +28,15 @@ passport.use(new GoogleStrategy({
         ...userAccount
       }
     } else {
+      let newUser = await new Users({
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        email: profile.emails[0].value
+      }).save()
+      console.log(newUser)
       userData = {
         isUser: false,
+        userId: newUser._id,
         firstName: profile.name.givenName,
         lastName: profile.name.familyName
       }
