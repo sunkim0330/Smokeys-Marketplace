@@ -7,14 +7,10 @@ const cookieSession = require('cookie-session')
 require('./passport.js');
 const { Users, Item, Transaction } = require("../database");
 const {
+  ratingsReviews,
   transactions,
-<<<<<<< HEAD
   users } = require("../routes");
 const cors =require("cors");
-=======
-  users,
-  ratingsReviews } = require("../routes");
->>>>>>> dd658877d9a6f7019bdb062a03e117fb7ded3bb8
 
 mongoose.connect("mongodb://localhost/smokeys", {
 
@@ -91,7 +87,7 @@ app.get('/google', passport.authenticate('google', { scope: ['profile', 'email']
 
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
   function (req, res) {
-    req.user.isUser ? res.send(req.user) : res.redirect('/failed')
+    req.user.isUser ? res.redirect('/marketplace') : res.redirect('/signup')
   }
 );
 
