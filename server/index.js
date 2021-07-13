@@ -7,11 +7,11 @@ const cookieSession = require('cookie-session')
 require('./passport.js');
 const {
   transactions,
+  items,
   users,
   ratingsReviews } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
-
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
@@ -49,13 +49,22 @@ app.listen(port, function () {
   console.log(`listening on port ${port}`);
 });
 
-
 app.route('/user/')
   .post(users.createNewUser)
 
 app.route('/user/:id')
   .get(users.getUserInfo)
   .put(users.updateUserInfo)
+
+app.route('/items/')
+  .get(items.getItems)
+
+app.route('/items/:user_object_id')
+  .get(items.getUserItems)
+  .post(items.addItem)
+
+app.route('/items/:user_object_id')
+  .put(items.updateAvailability)
 
 app
   .route("/transactions/")
@@ -84,7 +93,7 @@ app.get('/google', passport.authenticate('google', { scope: ['profile', 'email']
 
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
   function (req, res) {
-    req.user.isUser ? res.send(req.user) : res.redirect('/failed')
+    req.user.isUser ? res.redirect('/') : res.redirect('/failed')
   }
 );
 
