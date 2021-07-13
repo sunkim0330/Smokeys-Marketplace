@@ -8,6 +8,7 @@ require('./passport.js');
 const { Users, Item, Transaction } = require("../database");
 const {
   transactions,
+  items,
   users,
   ratingsReviews } = require("../routes");
 
@@ -57,6 +58,16 @@ app.route('/user/')
 app.route('/user/:id')
   .get(users.getUserInfo)
   .put(users.updateUserInfo)
+
+app.route('/items/')
+  .get(items.getItems)
+
+app.route('/items/:user_object_id')
+  .get(items.getUserItems)
+  .post(items.addItem)
+
+app.route('/items/:user_object_id')
+  .put(items.updateAvailability)
 
 app
   .route("/transactions/")

@@ -17,18 +17,18 @@ const _memo = {}; // used to memoize zipcode API call for efficiency of requests
  * @param {*} res On successful GET a 200 status code will be sent
  */
 const getItems = async (req, res) => {
-    
-  await function getZipcodes(location, memo) {
-    memo = memo || {}
-    if (memo[location]) return memo[location];
-    return memo[location] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/radius.json/${location}/5/miles?minimal`);
-  }
 
   let page = Number(req.body.page) || 0;
   let count = Number(req.body.count) || 10;
   let email = req.body.email;
   let location = req.body.location;
   let sort = { updatedAt : -1 };
+    
+  await function getZipcodes(location, memo) {
+    memo = memo || {}
+    if (memo[location]) return memo[location];
+    return memo[location] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/radius.json/${location}/5/miles?minimal`);
+  }
 
   let zipcodes = getZipcodes(location, _memo)
 
@@ -45,16 +45,16 @@ const getItems = async (req, res) => {
 
 /**
  * @dev This function will GET and return all items associated with the given user_id
- * @param { email } req.params email: Selects the page of results to return.
+ * @param { user_object_id } req.params email: Selects the page of results to return.
  * @param {*} res On successful GET a 200 status code will be sent
  */
 const getUserItems = async (req, res) => {
 
-  let email = req.params.email;
+  let user_object_id = req.params.user_object_id;
   let sort = { updatedAt : -1 };
 
   let fetchUserItems = await Items.find({
-    _id: async(Items.find({ owner: email }))
+    _id: async(Items.find({ owner: user_object_id }))
     })
     .sort(sort);
 
@@ -64,22 +64,22 @@ const getUserItems = async (req, res) => {
 
 /**
  * @dev This function will POST a new item to a given user
- * @param { email } req.params email: Selects the user onto which the item will be added.
+ * @param { user_object_id } req.params email: Selects the user onto which the item will be added.
  * @param { name, type, description, image_link } req.body required: name; relevant item details. 
  * @param {*} res On successful GET a 201 status code will be sent. On error, 422.
  */
 const addItem = async (req, res) => {
   response = fetchUserItems;
   
-  let { name, type, description, image_link } = req.body;
+  // let { name, type, description, image_link } = req.body;
 
   const newItem = new Items({
-    owner: new Types.ObjectId(req.body.name),
-    name: name,
-    type: type,
+    owner: req.params.user_object_id,
+    name: req.body.name,
+    type: req.body.type,
     availability: true,
-    description: description,
-    image_link: image_link
+    description: req.body.description,
+    image_link: req.body.image_link
   })
 
   newItem.save()
@@ -89,7 +89,7 @@ const addItem = async (req, res) => {
 
 /**
  * @dev This function will PUT an updated availability on a given item.
- * @param { object_id } req.params Required. Selects item to update.
+ * @param { item_object_id } req.params Required. Selects item to update.
  * @param { availability } req.body Required. New availability of selected item.
  * @param {*} res On successful POST a 204 status code will be sent. On error, 422.
  */
@@ -97,7 +97,7 @@ const updateAvailability = async (req, res) => {
   
   let availability = req.body.availability;
 
-  Items.updateOne({ _id: new Types.ObjectId(req.params.object_id) },
+  Items.updateOne({ _id: new Types.ObjectId(req.params.item_object_id) },
     { $set:
       { availability: availability }
     })
