@@ -5,7 +5,6 @@ const path = require("path");
 const passport = require('passport');
 const cookieSession = require('cookie-session')
 require('./passport.js');
-const { Users, Item, Transaction } = require("../database");
 const {
   transactions,
   items,

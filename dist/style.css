@@ -65,6 +65,7 @@
 .overview-container,
 .current-trades-container,
 .past-trades-container,
+.ratings-reviews-container,
 .add-new-item-container {
   border: 1px solid black;
   border-radius: 12px;
@@ -128,6 +129,7 @@
 }
 
 .overview-cur-trade-offer-header,
+.ratings-reviews-list-container-header,
 .past-trades-list-container-header {
   display: flex;
   justify-content: space-evenly;
@@ -172,7 +174,8 @@
   width: 85px;
 }
 
-.past-trades-list-container {
+.past-trades-list-container,
+.ratings-reviews-list-container {
   padding: 25px 0;
   margin: 10px;
   border: 1px solid black;
