@@ -25,7 +25,7 @@ const SplashPage = ({ getUserInfo, isLoggedIn, currentUser }) => {
     {!isLoggedIn && (
         <div>
           <h2>Please Login</h2>
-          <button onClick={getUserInfo}>Login Using Google</button>
+          <a href="/google">Login Using Google</a>
         </div>
       )
     }
