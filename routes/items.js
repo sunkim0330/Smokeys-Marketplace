@@ -23,7 +23,7 @@ const getItems = async (req, res) => {
   let email = req.body.email;
   let location = req.body.location;
   let sort = { updatedAt : -1 };
-    
+
   await function getZipcodes(location, memo) {
     memo = memo || {}
     if (memo[location]) return memo[location];

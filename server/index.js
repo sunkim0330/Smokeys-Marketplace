@@ -50,7 +50,6 @@ app.listen(port, function () {
   console.log(`listening on port ${port}`);
 });
 
-
 app.route('/user/')
   .post(users.createNewUser)
 
