@@ -5,8 +5,8 @@ import Marketplace from "../components/Marketplace/Marketplace.jsx";
 const MarketplacePage = () => {
 
   return (
-    <div>
-      <h1>MarketPlace</h1>
+    <div className="marketplace-page-container">
+      <h1 className="marketplace-title">MarketPlace</h1>
       <Marketplace />
     </div>
   )

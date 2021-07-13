@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 
 const path = require("path");
+
+const mongoose = require("mongoose");
+
 const { Users, Item, Transaction } = require("../database");
 const { transactions } = require("../routes");
 
@@ -37,13 +40,10 @@ app
   .route("/transactions/:transaction_id/complete")
   .put(transactions.completeTransaction);
 
-<<<<<<< HEAD
-=======
 app
   .route("/transactions/:transaction_id/cancel")
   .put(transactions.cancelTransaction);
 
->>>>>>> 092f6766d3e5c07eebb8c95f19bdf47c472d2b2b
 // This needs to be last route!
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
