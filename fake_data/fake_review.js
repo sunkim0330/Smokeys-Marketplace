@@ -13,7 +13,7 @@ const newRatingReview = async (_id1, _id2) => {
   const newReview = new RatingsReviews({
     reviewer_id: _id1,
     reviewed_id: _id2,
-    transaction_id: _id2,
+    transaction_id: mongoose.Types.ObjectId(),
     ratings: Math.floor(Math.random() * 5),
     reviews: faker.lorem.paragraph()
   });
@@ -32,4 +32,5 @@ db.on("open", async () => {
   for (let i = 0; i < 20; i++) {
     newRatingReview(userIds[Math.floor(Math.random() * userIds.length)], userIds[Math.floor(Math.random() * userIds.length)])
   }
+  console.log(`Finished adding 20 fake reviews to Smokey's DB`)
 });
