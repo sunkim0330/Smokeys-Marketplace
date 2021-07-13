@@ -1,7 +1,7 @@
 const { Users } = require('../database');
 const { Types } = require('mongoose');
 
-module.exports.getUserInfo = async (req, res) => {
+const getUserInfo = async (req, res) => {
   const response = {
     user_id: req.params.id,
     results: []
@@ -13,7 +13,7 @@ module.exports.getUserInfo = async (req, res) => {
   res.status(200).send(response);
 }
 
-module.exports.createNewUser = async (req, res) => {
+const createNewUser = async (req, res) => {
 
   let newUser = new Users({
     firstName: req.body.firstName,
@@ -26,11 +26,11 @@ module.exports.createNewUser = async (req, res) => {
   })
 
   newUser.save()
-  .then(() => res.sendStatus(201))
+  .then((result) => res.status(201).send(result))
   .catch(() => res.sendStatus(400))
 }
 
-module.exports.updateUserInfo = async (req, res) => {
+const updateUserInfo = async (req, res) => {
   let filter = { _id: req.params.id};
   let update = {
     firstName: req.body.firstName,
@@ -49,3 +49,8 @@ module.exports.updateUserInfo = async (req, res) => {
   });
 
 }
+
+module.exports = {
+  getUserInfo,
+  createNewUser,
+  updateUserInfo }
