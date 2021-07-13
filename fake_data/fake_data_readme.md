@@ -1,4 +1,8 @@
-To user fake_data functions...
+To use fake_data functions...
+
+Verify you ran NPM install after merge to add NPM Package - Faker
+
+----------------------
 
 cd into ./fake_data
 
