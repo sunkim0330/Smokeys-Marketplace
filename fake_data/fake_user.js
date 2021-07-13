@@ -25,9 +25,11 @@ const db = mongoose.connection;
 db.on("error", (err) => console.log(err.message));
 db.on("open", () => {
   console.log(`Connected to Smokey's DB to add test User data`)
+
   for (let i = 0; i < 20; i++) {
     addNewUser()
   }
+
   console.log(`Finished adding 20 new users to Smokey's DB`);
 });
 

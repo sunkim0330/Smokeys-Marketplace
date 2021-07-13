@@ -26,11 +26,27 @@ const db = mongoose.connection;
 db.on("error", (err) => console.log(err.message));
 db.on("open", async () => {
   console.log(`Connected to Smokey's DB to add test Review data`)
+
   let userIds = [];
+
   let allUsers = await Users.find();
+
   allUsers.forEach(user => userIds.push(user._id));
+
+
   for (let i = 0; i < 20; i++) {
-    newRatingReview(userIds[Math.floor(Math.random() * userIds.length)], userIds[Math.floor(Math.random() * userIds.length)])
+
+    let userId1 = userIds[Math.floor(Math.random() * userIds.length)];
+    let userId2 = userIds[Math.floor(Math.random() * userIds.length)];
+
+    if (userId1 === userId2) {
+      while (userId1 === userId2) {
+        userId2 = userIds[Math.floor(Math.random() * userIds.length)];
+      }
+    }
+
+    newRatingReview(userId1, userId2)
   }
+
   console.log(`Finished adding 20 fake reviews to Smokey's DB`);
 });
