@@ -8,8 +8,13 @@ require('./passport.js');
 const { Users, Item, Transaction } = require("../database");
 const {
   transactions,
+<<<<<<< HEAD
   users } = require("../routes");
 const cors =require("cors");
+=======
+  users,
+  ratingsReviews } = require("../routes");
+>>>>>>> dd658877d9a6f7019bdb062a03e117fb7ded3bb8
 
 mongoose.connect("mongodb://localhost/smokeys", {
 
@@ -71,6 +76,10 @@ app
 app
   .route("/transactions/:transaction_id/cancel")
   .put(transactions.cancelTransaction);
+
+app.route("/reviews/:user_id")
+  .get(ratingsReviews.getReviews)
+  .post(ratingsReviews.addReview);
 
 // Route to send client when user is not recognized in DB
 app.get('/failed', (req, res) => res.send('You Failed to log in!'))

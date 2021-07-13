@@ -179,11 +179,6 @@
   border-radius: 12px;
 }
 
-.add-new-item-container {
-  padding-left: 0;
-  padding-right: 0;
-}
-
 .add-new-item-container > * {
   padding-left: 45px;
 }
@@ -216,4 +211,84 @@
 .add-new-item-container h4 {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+/* TRANSACTION MODAL CSS */
+
+.transaction-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.transaction-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background: rgb(255, 255, 255);
+  height: 70%;
+  width: 30%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.transaction-item-title {
+  width: 50%;
+  text-align: center;
+}
+
+.transaction-user-rating {
+  width: 50%;
+  text-align: center;
+}
+
+.image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.transaction-image {
+  width: 60%;
+}
+
+.transaction-item-desc {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+.transaction-proposed-title {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+}
+
+.proposed-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: center;
+  width: 65%;
+}
+
+.transaction-proposed-item {
+  width: 100%;
+}
+
+.transaction-button {
+  width: 40%;
+}
+.add-new-item-container {
+  padding-left: 0;
+  padding-right: 0;
 }
