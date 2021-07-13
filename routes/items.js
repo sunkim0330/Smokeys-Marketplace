@@ -34,7 +34,7 @@ const getItems = async (req, res) => {
 
   const response = [];
 
-  let fetchItems = await Items.find({ location: { $in: zipcodes } }, { owner: { $ne: owner } }) // CHECK ON THIS, SEEMS WRONG
+  let fetchItems = await Items.find({ location: { $in: zipcodes } }, { owner: { $ne: owner } }, { availability: true}) // CHECK ON THIS, SEEMS WRONG
     .limit(count)
     .skip(page * count)
     .sort(sort);
