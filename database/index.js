@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
   lastName: String,
   email: String,
   location: String,
-  phone: Number,
+  phone: String,
   ratings_reviews: [mongoose.Schema.Types.Mixed],
   transactions: [mongoose.Schema.ObjectId]
 }, { timestamps: true })

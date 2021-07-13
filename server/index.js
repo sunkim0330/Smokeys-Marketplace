@@ -12,7 +12,6 @@ const {
   ratingsReviews } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
-
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
