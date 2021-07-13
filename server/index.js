@@ -5,9 +5,10 @@ const path = require("path");
 const passport = require('passport');
 var session = require('express-session');
 require('./passport.js');
-const { Users, Item, Transaction } = require("../database");
+const { Users, Items, Transactions } = require("../database");
 const {
   transactions,
+  items,
   users,
   ratingsReviews } = require("../routes");
 
@@ -52,13 +53,22 @@ app.listen(port, function () {
   console.log(`listening on port ${port}`);
 });
 
-
 app.route('/user/')
   .post(users.createNewUser)
 
 app.route('/user/:id')
   .get(users.getUserInfo)
   .put(users.updateUserInfo)
+
+app.route('/items/')
+  .get(items.getItems)
+
+app.route('/items/:user_object_id')
+  .get(items.getUserItems)
+  .post(items.addItem)
+
+app.route('/items/:user_object_id')
+  .put(items.updateAvailability)
 
 app
   .route("/transactions/")
@@ -77,6 +87,18 @@ app.route("/reviews/:user_id")
   .get(ratingsReviews.getReviews)
   .post(ratingsReviews.addReview);
 
+
+/**
+ * DELETE ONCE ITEM ROUTE IS BACK UP
+ */
+const getAllItems = async (req, res) => {
+  let allItems = await Items.find({/*owner : '60edd8afb06574b61c2fcb22'*/})
+  res.send(allItems);
+}
+
+app
+  .route('/allItems')
+  .get(getAllItems)
 
 //Route to send client when user is found in the DB
 // app.get('http://localhost:4000/good', isLoggedIn, (req, res) => res.redirect('http://localhost:4000/user'))

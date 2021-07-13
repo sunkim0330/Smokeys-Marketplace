@@ -158,18 +158,37 @@
   overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .current-trade-card {
-  margin: 0 auto;
-  width: 200px;
-  height: 250px;
+  margin: 20px;
+  width: 17%;
+  height: 65%;
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
 }
 
 .current-trade-card img {
-  width: 85px;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.trade-card-name {
+  width: 100%;
+  margin: 20px 20px 5px;
+}
+
+.trade-card-type {
+  width: 100%;
+  margin: 5px 20px 20px;
+}
+
+.trade-card-description {
+  margin: 5px 20px 10px;
 }
 
 .past-trades-list-container {
@@ -178,6 +197,70 @@
   border: 1px solid black;
   border-radius: 12px;
 }
+
+
+
+
+
+
+
+
+/******************* MARKETPLACE STYLES *******************/
+.marketplace-page-container {
+  width: 90%;
+  height: 100%;
+  margin: auto;
+}
+.marketplace-container {
+  height: 100%;
+  margin: auto;
+}
+
+
+.marketplace-list-container {
+  width: 100%;
+  height: 850px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border: 1px solid black;
+  border-radius: 12px;
+  margin: 10px auto;
+
+}
+
+.marketplace-card-row {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.marketplace-card {
+  border: 1px solid black;
+  border-radius: 12px;
+  margin: 0 auto;
+  width: 175px;
+  height: 225px;
+
+}
+
+.marketplace-card img {
+  width: 90%;
+  padding-left: 20px;
+}
+
+.search-container {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+}
+/* End of Marketplace */
+
 
 .add-new-item-container > * {
   padding-left: 45px;

@@ -1,13 +1,13 @@
 import React from "react";
 
-const ItemCard = () => {
+const ItemCard = ({ item }) => {
   return (
     <div className="current-trade-card">
-      <img src="https://i.imgur.com/z9sMhfE.jpg" alt="image placeholder" />
-      <div>
-        <div>Placeholder text</div>
-        <div>Placeholder text</div>
-        <div>Placeholder text</div>
+      <img src={item.image_link} alt={item.name} />
+      <div className="trade-card-details">
+        <div className="trade-card-name">{item.name}</div>
+        <div className="trade-card-type">{item.type.toLocaleUpperCase()}</div>
+        <div className="trade-card-description">{item.description}</div>
       </div>
     </div>
   );

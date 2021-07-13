@@ -4,38 +4,29 @@ import ItemCard from "./ItemCard.jsx";
 import axios from 'axios';
 
 const CurrentTrades = () => {
-  const [useItems, setUserItems] = useState([]);
+  const [userItems, setUserItems] = useState([]);
 
   const getItems = () => {
-    axios.get
+    axios.get('/allItems')
+      .then(data => {
+        setUserItems(data.data)
+      })
   }
 
   useEffect(() => {
-    axios.get('/getUser', { withCredentials: true })
-      .then(data => {
-        console.log(data)
-      })
+    // axios.get('/getUser', { withCredentials: true })
+    //   .then(data => {
+    //     console.log(data)
+    //   });
+    getItems();
   }, [])
 
   return (
     <div className="current-trades-container">
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
-      <ItemCard />
+      {console.log(userItems)}
+      {userItems.map(item => {
+        return <ItemCard key={item._id} item={item} />
+      })}
     </div>
   );
 };
