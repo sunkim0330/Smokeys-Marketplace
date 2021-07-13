@@ -70,9 +70,7 @@ const addTransaction = async (req, res) => {
  */
 const completeTransaction = async (req, res) => {
 
-  let trxID = req.url.split('/')[2]
-
-  Transactions.updateOne({ _id: new Types.ObjectId(trxID) },
+  Transactions.updateOne({ _id: new Types.ObjectId(req.params.transaction_id) },
   { $set :
     { status : "completed" }
   })
@@ -88,9 +86,7 @@ const completeTransaction = async (req, res) => {
  */
 const cancelTransaction = async (req, res) => {
 
-  let trxID = req.url.split('/')[2]
-
-  Transactions.updateOne({ _id: new Types.ObjectId(trxID) },
+  Transactions.updateOne({ _id: new Types.ObjectId(req.params.transaction_id) },
   { $set :
     { status : "cancelled" }
   })

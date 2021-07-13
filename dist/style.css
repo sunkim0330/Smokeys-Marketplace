@@ -5,6 +5,38 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.header {
+  background-color: orange;
+  height: 75px;
+}
+
+.navbar-container {
+  width: 85%;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.title {
+  font-size: 35px;
+}
+
+.navigation {
+  display: flex;
+  margin-left: 85px;
+  width: 400px;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 25px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+}
+
 .user-page-container {
   width: 85%;
   margin: auto;
@@ -32,7 +64,8 @@
 
 .overview-container,
 .current-trades-container,
-.past-trades-container {
+.past-trades-container,
+.add-new-item-container {
   border: 1px solid black;
   border-radius: 12px;
   margin: 10px auto;
@@ -55,7 +88,8 @@
   justify-content: space-around;
 }
 
-.overview-edit-user-btn {
+.overview-edit-user-btn,
+.add-item-btn {
   font-size: 18px;
   background-color: orange;
   color: white;
@@ -202,7 +236,123 @@
 }
 
 .search-container {
-  width 95%;
+  width: 95%;
   display: flex;
   flex-direction: row;
+}
+/* End of Marketplace */
+
+
+.add-new-item-container > * {
+  padding-left: 45px;
+}
+
+.add-new-item-form {
+  border-top: 1px solid black;
+}
+
+.new-item-photo {
+  border: 1px solid black;
+  border-radius: 12px;
+  width: 125px;
+  height: 175px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.new-item-photo-add {
+  font-size: 75px;
+  margin-top: 25px;
+}
+
+.add-item-btn {
+  padding: 5px 15px;
+  margin: 20px 45px;
+}
+
+.add-new-item-container h3,
+.add-new-item-container h4 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+/* TRANSACTION MODAL CSS */
+
+.transaction-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.transaction-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background: rgb(255, 255, 255);
+  height: 70%;
+  width: 30%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.transaction-item-title {
+  width: 50%;
+  text-align: center;
+}
+
+.transaction-user-rating {
+  width: 50%;
+  text-align: center;
+}
+
+.image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.transaction-image {
+  width: 60%;
+}
+
+.transaction-item-desc {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+.transaction-proposed-title {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+}
+
+.proposed-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: center;
+  width: 65%;
+}
+
+.transaction-proposed-item {
+  width: 100%;
+}
+
+.transaction-button {
+  width: 40%;
+}
+.add-new-item-container {
+  padding-left: 0;
+  padding-right: 0;
 }
