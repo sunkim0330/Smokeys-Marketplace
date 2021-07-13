@@ -50,10 +50,21 @@ const TransactionSchema = new mongoose.Schema({
 
 const Transactions = mongoose.model('Transactions', TransactionSchema);
 
+const RatingsReviewsSchema = new mongoose.Schema({
+  reviewer_id: mongoose.Schema.ObjectId,
+  reviewed_id: mongoose.Schema.ObjectId,
+  transaction_id: mongoose.Schema.ObjectId,
+  ratings: Number,
+  reviews: String
+}, { timestamps: true })
+
+const RatingsReviews = mongoose.model('RatingsReviews', RatingsReviewsSchema);
+
 module.exports = {
   Users,
   Items,
-  Transactions
+  Transactions,
+  RatingsReviews
 }
 
 /**
@@ -135,7 +146,7 @@ module.exports = {
  * & add a rating/review object to the ratings_reviews field
  */
 // db.users.update({
-//   username: "Christian"
+//   user: "Christian"
 // },
 //   {
 //     $push :
@@ -143,7 +154,8 @@ module.exports = {
 //       ratings_reviews :
 //       {
 //         rating : 4,
-//         review : "testing"
+//         review : "testing",
+//         left_by : "60eac1d6a0e0293f05e414d0"
 //       }
 //     }
 //   });
