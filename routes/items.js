@@ -3,6 +3,10 @@
  */
 const { Users, Items, Transactions } = require('../database');
 const { Types } = require('mongoose');
+const axios = require('axios');
+require('dotenv').config();
+
+const _memo = {}; // used to memoize zipcode API call for efficiency of requests in quantity and res time
 
 /**
  * @dev This function will GET and return all items in a paginated format.
@@ -14,15 +18,23 @@ const { Types } = require('mongoose');
  */
 const getItems = async (req, res) => {
     
+  await function getZipcodes(location, memo) {
+    memo = memo || {}
+    if (memo[location]) return memo[location];
+    return memo[location] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY || 'zxBBSN4fVFJckRcBFwnPmkUKr6hTFFuXUEOmuRq4kY8BRvgw7f3lwYbXYfBi7hhb'}/radius.json/${location}/5/miles?minimal`);
+  }
+
   let page = Number(req.body.page) || 0;
   let count = Number(req.body.count) || 10;
   let email = req.body.email;
   let location = req.body.location;
   let sort = { updatedAt : -1 };
 
+  let zipcodes = getZipcodes(location, _memo)
+
   const response = [];
 
-  let fetchItems = await Items.find({email: !email, location: location}) // CHECK ON THIS, SEEMS WRONG
+  let fetchItems = await Items.find({ location: { $in: zipcodes } }, { owner: { $ne: owner } }) // CHECK ON THIS, SEEMS WRONG
     .limit(count)
     .skip(page * count)
     .sort(sort);
