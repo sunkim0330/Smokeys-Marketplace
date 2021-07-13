@@ -8,11 +8,11 @@ require('./passport.js');
 const { Users, Item, Transaction } = require("../database");
 const {
   transactions,
+  items,
   users,
   ratingsReviews } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
-
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
@@ -58,6 +58,16 @@ app.route('/user/:id')
   .get(users.getUserInfo)
   .put(users.updateUserInfo)
 
+app.route('/items/')
+  .get(items.getItems)
+
+app.route('/items/:user_object_id')
+  .get(items.getUserItems)
+  .post(items.addItem)
+
+app.route('/items/:user_object_id')
+  .put(items.updateAvailability)
+
 app
   .route("/transactions/")
   .get(transactions.getTransactions)
@@ -85,7 +95,7 @@ app.get('/google', passport.authenticate('google', { scope: ['profile', 'email']
 
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
   function (req, res) {
-    req.user.isUser ? res.send(req.user) : res.redirect('/failed')
+    req.user.isUser ? res.redirect('/') : res.redirect('/failed')
   }
 );
 

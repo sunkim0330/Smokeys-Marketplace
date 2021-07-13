@@ -10,17 +10,17 @@ const App = () => {
     <Router>
       <NavBar />
       <Switch>
-        <Route exact path="/">
-          <SplashPage />
-        </Route>
-        <Route path="/user">
-          <UserPage />
-        </Route>
-        <Route path="/marketplace">
-          <MarketplacePage />
-        </Route>
+      <Route exact path="/">
+        <SplashPage />
+      </Route>
+      <Route path="/user">
+        <UserPage />
+      </Route>
+      <Route path="/marketplace">
+        <MarketplacePage />
+      </Route>
       </Switch>
-    </Router>
+    </Router >
   );
 };
 
