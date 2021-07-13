@@ -12,7 +12,6 @@ const {
   ratingsReviews } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
-
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
@@ -85,7 +84,7 @@ app.get('/google', passport.authenticate('google', { scope: ['profile', 'email']
 
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
   function (req, res) {
-    req.user.isUser ? res.send(req.user) : res.redirect('/failed')
+    req.user.isUser ? res.redirect('/') : res.redirect('/failed')
   }
 );
 
