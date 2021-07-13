@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const passport = require('passport');
-const cookieSession = require('cookie-session')
+var session = require('express-session');
 require('./passport.js');
 const { Users, Item, Transaction } = require("../database");
 const {
@@ -20,6 +20,14 @@ mongoose.connect("mongodb://localhost/smokeys", {
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err.message));
 db.on("open", () => console.log(`Connected to Smokey's DB`));
+
+app.use(
+  session({
+    secret: 'password',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 // Auth middleware that checks if the user is logged in
 const isLoggedIn = (req, res, next) => {
@@ -39,11 +47,6 @@ app.use(express.static(__dirname + "/../dist"));
 // Initializes passport and passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(cookieSession({
-  name: 'smokeys-session',
-  keys: ['key1', 'key2']
-}))
 
 app.listen(port, function () {
   console.log(`listening on port ${port}`);
@@ -74,19 +77,22 @@ app.route("/reviews/:user_id")
   .get(ratingsReviews.getReviews)
   .post(ratingsReviews.addReview);
 
-// Route to send client when user is not recognized in DB
-app.get('/failed', (req, res) => res.send('You Failed to log in!'))
+
 //Route to send client when user is found in the DB
-app.get('/good', isLoggedIn, (req, res) => res.send(`Welcome mr ${req.user.displayName}!`))
+// app.get('http://localhost:4000/good', isLoggedIn, (req, res) => res.redirect('http://localhost:4000/user'))
 
 // Auth Routes
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
+app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
   function (req, res) {
-    req.user.isUser ? res.redirect('/') : res.redirect('/failed')
+    req.user.isUser ? res.redirect('/user') : res.redirect('/user')
   }
 );
+
+app.get('/getUser', isLoggedIn, (req, res) => {
+  res.send(req.user)
+})
 
 app.get('/logout', (req, res) => {
   req.session = null;
