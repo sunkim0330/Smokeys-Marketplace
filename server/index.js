@@ -5,9 +5,10 @@ const path = require("path");
 const passport = require('passport');
 const cookieSession = require('cookie-session')
 require('./passport.js');
-const { Users, Item, Transaction } = require("../database");
 const {
+  ratingsReviews,
   transactions,
+  items,
   users,
   ratingsReviews } = require("../routes");
 
@@ -35,6 +36,7 @@ let port = process.env.PORT || 4000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(__dirname + "/../dist"));
+app.use(cors());
 
 // Initializes passport and passport sessions
 app.use(passport.initialize());
@@ -49,13 +51,22 @@ app.listen(port, function () {
   console.log(`listening on port ${port}`);
 });
 
-
 app.route('/user/')
   .post(users.createNewUser)
 
 app.route('/user/:id')
   .get(users.getUserInfo)
   .put(users.updateUserInfo)
+
+app.route('/items/')
+  .get(items.getItems)
+
+app.route('/items/:user_object_id')
+  .get(items.getUserItems)
+  .post(items.addItem)
+
+app.route('/items/:user_object_id')
+  .put(items.updateAvailability)
 
 app
   .route("/transactions/")
@@ -84,7 +95,8 @@ app.get('/google', passport.authenticate('google', { scope: ['profile', 'email']
 
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
   function (req, res) {
-    req.user.isUser ? res.redirect('/') : res.redirect('/failed')
+    req.user.isUser ? res.redirect('/marketplace') : res.redirect('/signup')
+
   }
 );
 
