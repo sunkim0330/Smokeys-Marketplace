@@ -24,7 +24,7 @@ module.exports = {
   ratingsReviews: {
     getReviews,
     addReview
-  }
+  },
   users: {
     getUserInfo,
     createNewUser,
