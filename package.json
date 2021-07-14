@@ -21,7 +21,6 @@
   "dependencies": {
     "aws-sdk": "^2.943.0",
     "axios": "^0.21.1",
-    "cookie-session": "^1.4.0",
     "chai": "^4.3.4",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
