@@ -9,7 +9,7 @@ const RatingReviewsList = () => {
   const id = '60eac1d6a0e0293f05e414cf';
   const getReviews = (id) => {
     axios.get(`/reviews/${id}`)
-      .then(({data}) => {
+      .then(({ data }) => {
         setReviews(data);
       })
   }
@@ -19,16 +19,16 @@ const RatingReviewsList = () => {
 
   return (
     <div>
-      { reviews && reviews.results.map((review) => {
-          return <RatingReviewsItem
+      {reviews && reviews.results.map((review) => {
+        return <RatingReviewsItem
           key={review.transaction_id}
           date={review.createdAt}
           transaction_id={review.transaction_id}
           rating={review.ratings}
-          review={review.reviews}
-          />
-        })
+          review={review.reviews} />
+      })
       }
+    </div>
   );
 };
 
