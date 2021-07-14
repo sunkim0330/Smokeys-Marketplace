@@ -1,9 +1,14 @@
 import React from "react";
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item, setItemAvailability }) => {
   return (
     <div className="current-trade-card">
-      <img src={item.image_link} alt={item.name} />
+      <button
+        className="current-trade-availablility"
+        onClick={() => setItemAvailability(item._id)} >Remove</button>
+      <img
+        src={item.image_link}
+        alt={item.name} />
       <div className="trade-card-details">
         <div className="trade-card-name">{item.name}</div>
         <div className="trade-card-type">{item.type.toLocaleUpperCase()}</div>

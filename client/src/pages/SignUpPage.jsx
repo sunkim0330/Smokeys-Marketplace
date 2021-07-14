@@ -7,8 +7,6 @@ const SignUp = ( {currentUser, getUser} ) => {
   const [location, setLocation] = useState('');
   const [success, setSuccess] = useState(false);
 
-  console.log(currentUser)
-
   const putNewUser = (e) => {
     e.preventDefault();
     axios.put(`/user/${currentUser.userId}`, {
@@ -30,9 +28,9 @@ const SignUp = ( {currentUser, getUser} ) => {
 
 
   return (
-  <div>SignUp
+  <div><h1 className='signUp'>SignUp</h1>
     <div>We just need a little bit more info before you can start trading...</div>
-    <form onSubmit={putNewUser}>
+    <form className='newUserForm' onSubmit={putNewUser}>
         <label>
           Phone Number:
           <input type='tel' placeholder='ex: 123-456-7890' pattern='[0-9]{3}[0-9]{3}[0-9]{4}' required onChange={(e) => {setPhone(e.target.value)}}/>

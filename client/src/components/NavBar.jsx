@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const NavBar = ( {logout, isLoggedIn} ) => {
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navbar = !isLoggedIn ? (
     <></>
@@ -12,7 +12,7 @@ const NavBar = () => {
       <div className="navigation">
         <Link to="/user">User Page</Link>
         <Link to="/marketplace">Marketplace</Link>
-        <div>Logout</div>
+        <div onClick={logout}><a href="/logout">Logout</a></div>
       </div>
     </div>
   );

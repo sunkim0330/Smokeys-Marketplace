@@ -10,6 +10,7 @@ import NavBar from "./components/NavBar.jsx";
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const getLoggedInUser = () => {
 
@@ -32,10 +33,20 @@ const App = () => {
     })
   }
 
+  const logout = () => {
+    setCurrentUser(null);
+    setIsLoggedIn(false);
+    // axios.get('/logout')
+    // .then(() => {
+    //   console.log('Success logout')
+    // })
+    // .catch(err => console.log(err))
+  }
+// console.log(currentUser)
 
   return (
     <Router>
-      <NavBar />
+      <NavBar logout={logout} isLoggedIn={isLoggedIn}/>
       <Switch>
 
         <Route exact path="/">
@@ -45,10 +56,10 @@ const App = () => {
           <SignUp currentUser={currentUser} getUser={getUser}/>
         </Route>
         <Route path="/user">
-          <UserPage />
+          <UserPage currentUser={currentUser} />
         </Route>
         <Route path="/marketplace">
-          <MarketplacePage currentUser={currentUser} getLoggedInUser={getLoggedInUser} getUser={getUser}/>
+          <MarketplacePage currentUser={currentUser} getLoggedInUser={getLoggedInUser} getUser={getUser} setIsLoggedIn={setIsLoggedIn}/>
         </Route>
 
       </Switch>
