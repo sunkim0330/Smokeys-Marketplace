@@ -285,7 +285,7 @@
   border: 1px solid black;
   border-radius: 12px;
   margin: 10px auto;
-  background-color: rgb(252, 246, 238);
+  background-color: rgb(250, 245, 239);
 
 }
 
@@ -525,6 +525,20 @@
   left: 50%;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   color:papayawhip
+}
+
+.splash .signUpForm {
+  transform: translate(-50% , -50%);
+  width: 700px;
+  height: 100px;
+  display: flex;
+  top: 63%;
+  left: 50%;
+  border: 1px solid black;
+  border-radius: 12px;
+  margin: 10px auto;
+  background-color: rgb(250, 245, 239);
+  position: absolute;
 }
 
 .reviews-no-reviews {
