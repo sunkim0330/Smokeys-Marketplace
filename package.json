@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/GreatWhite-BlueOcean/smokeys#readme",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "aws-sdk": "^2.943.0",
     "axios": "^0.21.1",
     "chai": "^4.3.4",
@@ -35,7 +36,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
-    "session": "^0.1.0"
+    "session": "^0.1.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

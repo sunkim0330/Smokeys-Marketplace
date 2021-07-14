@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const passport = require('passport');
 const session = require('express-session');
+const { uploadImage } = require('../routes/aws_s3.js');
 require('./passport.js');
 const {
   transactions,
@@ -89,6 +90,9 @@ app.route('/transactions/user')
 app.route("/reviews/:user_id")
   .get(ratingsReviews.getReviews)
   .post(ratingsReviews.addReview);
+
+app.route('/imageupload')
+  .post(uploadImage)
 
 // Auth Routes
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));

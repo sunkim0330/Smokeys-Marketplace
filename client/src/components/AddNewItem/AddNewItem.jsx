@@ -1,22 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid';
+
+
 const AddNewItem = ({ currentUser }) => {
   const [name, setName] = useState('')
   const [type, setType] = useState('goods')
   const [description, setDescription] = useState('')
   const [photos, setPhotos] = useState(null)
 
-  const submitItem = () => {
-    // let body = ({
-    //   name: name,
-    //   type: type,
-    //   description: description
-    // })
-    // axios.post(`/items/${currentUser._id}`, body)
-    // .then(res => console.log(res))
-    const reader = new FileReader()
-    var dataEntry = reader.readAsDataURL(photos)
-    console.log({photos, dataEntry})
+  const submitItem = async () => {
+
+    const reader = new FileReader();
+
+    reader.addEventListener('load', () => {
+      let data = {
+        data: reader.result,
+        name: uuidv4()
+      }
+      console.log(data)
+      axios.post('/imageupload', data)
+        .then(res => {
+          let body = ({
+            owner: `${currentUser._id}`,
+            name: name,
+            type: type,
+            description: description,
+            image_link: res.data
+          })
+          axios.post(`/items/${currentUser._id}`, body)
+            .then(res => console.log(res))
+        })
+        .catch(err => console.log(err.message))
+    })
+
+    const file = document.querySelector('input[type=file]').files[0];
+    reader.readAsDataURL(file);
   }
 
   return (
@@ -35,7 +54,7 @@ const AddNewItem = ({ currentUser }) => {
         <h4>Add Photos</h4>
         <div className="new-item-photo">
           <div className="new-item-photo-add">+</div>
-          <input type="file" name="filename" onChange={e => setPhotos(e.target.files[0])}/>
+          <input type="file" name="filename" onChange={e => setPhotos(e.target.files[0])} />
           <div>Upload Photo</div>
         </div>
       </div>
