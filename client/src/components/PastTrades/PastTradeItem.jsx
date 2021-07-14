@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import AddReviewModal from './AddReviewModal.jsx'
 
 const PastTradeItem = ({transactions}) => {
   const [showModal, setShowModal] = useState(false)
@@ -11,10 +12,11 @@ const PastTradeItem = ({transactions}) => {
         <div className="past-trade-item">{trx.fromItem.name}</div>
         <div className="past-trade-item">{trx.toItem.name}</div>
         <div className="past-trade-contact">{trx.fromUser.email}</div>
-        <div type="button" className="past-trade-rating"
+        <button type="button" className="past-trade-rating"
           onClick={() => setShowModal(true)}>
             Add Review
-        </div>
+        </button>
+        <AddReviewModal showModal={showModal} onClose={() => setShowModal(false)}/>
       </div>
     )
   })
