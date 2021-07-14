@@ -27,8 +27,9 @@ const RatingReviewsList = ({ currentUser }) => {
           rating={review.ratings}
           review={review.reviews}
           />
-        }) : <div className="reviews-no-reviews">You have no reviews 😔</div>
+        }) : <div className="reviews-no-reviews"> You have no reviews 😔</div>
       }
+      </div>
   );
 };
 
