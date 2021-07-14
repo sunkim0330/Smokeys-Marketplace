@@ -36,13 +36,7 @@ const App = () => {
   const logout = () => {
     setCurrentUser(null);
     setIsLoggedIn(false);
-    // axios.get('/logout')
-    // .then(() => {
-    //   console.log('Success logout')
-    // })
-    // .catch(err => console.log(err))
   }
-console.log(currentUser)
 
   return (
     <Router>
