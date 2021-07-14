@@ -42,7 +42,7 @@ const App = () => {
     // })
     // .catch(err => console.log(err))
   }
-console.log(currentUser)
+// console.log(currentUser)
 
   return (
     <Router>
@@ -56,7 +56,7 @@ console.log(currentUser)
           <SignUp currentUser={currentUser} getUser={getUser}/>
         </Route>
         <Route path="/user">
-          <UserPage />
+          <UserPage currentUser={currentUser} />
         </Route>
         <Route path="/marketplace">
           <MarketplacePage currentUser={currentUser} getLoggedInUser={getLoggedInUser} getUser={getUser} setIsLoggedIn={setIsLoggedIn}/>
