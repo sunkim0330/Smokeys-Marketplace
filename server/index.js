@@ -5,12 +5,12 @@ const path = require("path");
 const passport = require('passport');
 const session = require('express-session');
 require('./passport.js');
+const { Users, Items, Transactions } = require("../database");
 const {
-  ratingsReviews,
   transactions,
   items,
-  users
-} = require("../routes");
+  users,
+  ratingsReviews } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -21,6 +21,14 @@ mongoose.connect("mongodb://localhost/smokeys", {
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err.message));
 db.on("open", () => console.log(`Connected to Smokey's DB`));
+app.use(
+  session({
+    secret: 'password',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
 app.use(
   session({
     secret: 'password',
@@ -82,22 +90,35 @@ app
   .route("/transactions/:transaction_id/cancel")
   .put(transactions.cancelTransaction);
 
+app.route('/transactions/user')
+  .get(transactions.getUserTransactions)
+
 app.route("/reviews/:user_id")
   .get(ratingsReviews.getReviews)
   .post(ratingsReviews.addReview);
 
-// Route to send client when user is not recognized in DB
-app.get('/failed', (req, res) => res.send('You Failed to log in!'))
+
+/**
+ * DELETE ONCE ITEM ROUTE IS BACK UP
+ */
+const getAllItems = async (req, res) => {
+  let allItems = await Items.find({/*owner : '60edd8afb06574b61c2fcb22'*/})
+  res.send(allItems);
+}
+
+app
+  .route('/allItems')
+  .get(getAllItems)
+
 //Route to send client when user is found in the DB
-app.get('/good', isLoggedIn, (req, res) => res.send(`Welcome mr ${req.user.displayName}!`))
+// app.get('http://localhost:4000/good', isLoggedIn, (req, res) => res.redirect('http://localhost:4000/user'))
 
 // Auth Routes
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
+app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
   function (req, res) {
     req.user.isUser ? res.redirect('/marketplace') : res.redirect('/signup')
-
   }
 );
 
