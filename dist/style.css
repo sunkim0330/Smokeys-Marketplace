@@ -6,6 +6,9 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
+/* body {
+  background-color: papayawhip;
+} */
 
 .header {
   background-color: orange;
@@ -22,7 +25,13 @@
 }
 
 .title {
-  font-size: 35px;
+  font-size: 40pt;
+  font-family: 'Zen Loop', cursive;
+  text-transform: uppercase;
+  font-weight:bolder;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color:papayawhip;
+  letter-spacing: 3px;
 }
 
 .navigation {
@@ -37,6 +46,10 @@
 .navigation a {
   text-decoration: none;
   color: white;
+}
+
+.logout {
+  cursor: pointer;
 }
 
 .user-page-container {
@@ -386,6 +399,7 @@
 .splash {
   text-align: center;
   align-items: center;
+  background-color: papayawhip;
 }
 
 #loadImage {

@@ -21,7 +21,6 @@ const getReviews = async (req, res) => {
 }
 
 const addReview = async (req, res) => {
-  console.log(req.body);
   const newReview = new RatingsReviews({
     reviewed_id : req.body.reviewer,
     reviewer_id : req.body.reviewed,
