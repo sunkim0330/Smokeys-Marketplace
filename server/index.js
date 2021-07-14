@@ -7,7 +7,6 @@ const passport = require('passport');
 const session = require('express-session');
 require('./passport.js');
 const {
-  ratingsReviews,
   transactions,
   items,
   users,
