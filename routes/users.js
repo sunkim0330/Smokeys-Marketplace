@@ -42,6 +42,7 @@ const updateUserInfo = async (req, res) => {
 
   const updateInfo = await Users.updateOne(filter, update, {new: true}, (err, result) => {
     if (err) {
+      console.log(err);
       res.status(500).send(err);
     } else {
       res.status(200).send(result);

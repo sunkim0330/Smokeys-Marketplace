@@ -11,19 +11,26 @@ const App = () => {
 
   const [currentUser, setCurrentUser] = useState(null);
 
-  const getUser = () => {
-    axios.get('/getUser')
+  const getLoggedInUser = () => {
+
+    axios.get(`/user/${currentUser.userId}`)
     .then(data => {
-      setCurrentUser(data.user);
+      setCurrentUser(data.data.results[0]);
     })
     .catch(err => {
       console.log(err);
     })
   }
 
-  useEffect(() => {
-    getUser();
-  })
+  const getUser = () => {
+    axios.get('/getUser')
+    .then(data => { console.log(data)
+      setCurrentUser(data.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
 
 
   return (
@@ -35,13 +42,13 @@ const App = () => {
           <SplashPage/>
         </Route>
         <Route path="/signup">
-          <SignUp currentUser={currentUser}/>
+          <SignUp currentUser={currentUser} getUser={getUser}/>
         </Route>
         <Route path="/user">
           <UserPage />
         </Route>
         <Route path="/marketplace">
-          <MarketplacePage />
+          <MarketplacePage currentUser={currentUser} getLoggedInUser={getLoggedInUser} getUser={getUser}/>
         </Route>
 
       </Switch>

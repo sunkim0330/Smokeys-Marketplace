@@ -26,14 +26,28 @@ passport.use(new GoogleStrategy({
     let userData;
     if (userAccount.length) {
       userData = {
+        _id: userAccount._id,
         isUser: true,
-        ...userAccount
+        firstName: userAccount.firstName,
+        lastName: userAccount.lastName,
+        email: userAccount.email,
+        location: userAccount.location,
+        createdAt: userAccount.createdAt,
+        updatedAt: userAccount.updatedAt
       }
     } else {
+      let newUser = await new Users({
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        email: profile.emails[0].value
+      }).save()
+
       userData = {
         isUser: false,
+        userId: newUser._id,
         firstName: profile.name.givenName,
-        lastName: profile.name.familyName
+        lastName: profile.name.familyName,
+        email: profile.emails[0].value
       }
     }
     return done(null, userData);
