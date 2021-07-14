@@ -28,8 +28,8 @@ const UserPage = ({ currentUser }) => {
           <li value="past-trades" className="tab" onClick={handleTabClick}>
             Past Trades
           </li>
-          <li value="reviews-ratings" className="tab" onClick={handleTabClick}>
-            Reviews/Ratings
+          <li value="ratings-reviews" className="tab" onClick={handleTabClick}>
+            Ratings/Reviews
           </li>
           <li value="add-new-item" className="tab" onClick={handleTabClick}>
             Add New Item
@@ -39,7 +39,7 @@ const UserPage = ({ currentUser }) => {
         {currentTab === "current-trades" && <CurrentTrades currentUser={currentUser} />}
         {currentTab === "past-trades" && <PastTrades />}
         {currentTab === "add-new-item" && <AddNewItem />}
-        {currentTab === "reviews-ratings" && <RatingsReviews />}
+        {currentTab === "ratings-reviews" && <RatingsReviews currentUser={ currentUser }/>}
       </section>
     </div>
   );

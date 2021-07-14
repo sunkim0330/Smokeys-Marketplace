@@ -1,7 +1,7 @@
 import React from "react";
 import RatingsReviewsList from "./RatingsReviewsList.jsx";
 
-const RatingsReviews = () => {
+const RatingsReviews = ({ currentUser }) => {
 
   return (
     <div className="ratings-reviews-container">
@@ -13,7 +13,7 @@ const RatingsReviews = () => {
           <div>Rating</div>
           <div>Review</div>
         </div>
-        <RatingsReviewsList />
+        <RatingsReviewsList currentUser={ currentUser }/>
       </div>
     </div>
   );
