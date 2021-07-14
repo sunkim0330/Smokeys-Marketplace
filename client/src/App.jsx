@@ -14,7 +14,7 @@ const App = () => {
 
   const getLoggedInUser = () => {
 
-    axios.get(`/user/${currentUser.userId}`)
+    axios.get(`/user/${currentUser._id}`)
     .then(data => {
       setCurrentUser(data.data.results[0]);
     })
@@ -25,7 +25,7 @@ const App = () => {
 
   const getUser = () => {
     axios.get('/getUser')
-    .then(data => { console.log(data)
+    .then(data => {
       setCurrentUser(data.data);
     })
     .catch(err => {

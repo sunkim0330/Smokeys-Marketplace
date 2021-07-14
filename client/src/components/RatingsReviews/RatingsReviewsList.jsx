@@ -21,6 +21,7 @@ const RatingReviewsList = ({ currentUser }) => {
     <div>
       { reviews ? reviews.results.map((review) => {
           return <RatingReviewsItem
+
           key={review.transaction_id}
           date={review.createdAt}
           transaction_id={review.transaction_id}
