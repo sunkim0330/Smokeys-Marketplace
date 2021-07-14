@@ -4,15 +4,19 @@ const AddNewItem = ({ currentUser }) => {
   const [name, setName] = useState('')
   const [type, setType] = useState('goods')
   const [description, setDescription] = useState('')
+  const [photos, setPhotos] = useState(null)
 
   const submitItem = () => {
-    let body = ({
-      name: name,
-      type: type,
-      description: description
-    })
-    axios.post(`/items/${currentUser._id}`, body)
-    .then(res => console.log(res))
+    // let body = ({
+    //   name: name,
+    //   type: type,
+    //   description: description
+    // })
+    // axios.post(`/items/${currentUser._id}`, body)
+    // .then(res => console.log(res))
+    const reader = new FileReader()
+    var dataEntry = reader.readAsDataURL(photos)
+    console.log({photos, dataEntry})
   }
 
   return (
@@ -31,6 +35,7 @@ const AddNewItem = ({ currentUser }) => {
         <h4>Add Photos</h4>
         <div className="new-item-photo">
           <div className="new-item-photo-add">+</div>
+          <input type="file" name="filename" onChange={e => setPhotos(e.target.files[0])}/>
           <div>Upload Photo</div>
         </div>
       </div>
