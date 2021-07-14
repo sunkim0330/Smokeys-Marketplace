@@ -5,7 +5,6 @@ const MarketplacePage = ( { currentUser, getLoggedInUser, getUser, setIsLoggedIn
 
   useEffect(() => {
     setIsLoggedIn(true);
-    console.log(' off', currentUser)
     !currentUser ? getUser() : getLoggedInUser();
   }, []);
 
