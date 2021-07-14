@@ -1,3 +1,4 @@
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -9,8 +10,7 @@ const { Users, Items, Transactions } = require("../database");
 const {
   transactions,
   items,
-  users,
-  ratingsReviews } = require("../routes");
+  users } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -74,7 +74,7 @@ app.route('/items/:user_object_id')
   .get(items.getUserItems)
   .post(items.addItem)
 
-app.route('/items/:user_object_id')
+app.route('/items/availability/:item_object_id')
   .put(items.updateAvailability)
 
 app
@@ -129,12 +129,13 @@ app.get('/getUser', isLoggedIn, (req, res) => {
 app.get('/successfulSignup', isLoggedIn, (req, res) => res.redirect('/marketplace'));
 
 app.get('/logout', (req, res) => {
-  req.session = null;
+  req.session.destroy();
   req.logout();
   res.redirect('/');
 })
 
 // This needs to be last route!
 app.get("*", isLoggedIn, (req, res) => {
+  console.log('in get all', req.user)
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
