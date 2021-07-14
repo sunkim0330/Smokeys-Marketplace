@@ -1,3 +1,4 @@
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -9,8 +10,7 @@ const { Users, Items, Transactions } = require("../database");
 const {
   transactions,
   items,
-  users,
-  ratingsReviews } = require("../routes");
+  users } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -74,7 +74,7 @@ app.route('/items/:user_object_id')
   .get(items.getUserItems)
   .post(items.addItem)
 
-app.route('/items/:user_object_id')
+app.route('/items/availability/:item_object_id')
   .put(items.updateAvailability)
 
 app

@@ -1,6 +1,7 @@
 const faker = require('faker');
 const { Users } = require('../database');
 const mongoose = require("mongoose");
+const fakeZips = ["08723", "08701", "08742", "08724", "08730", "08736", "08750", "08720"]
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -14,7 +15,7 @@ const addNewUser = async () => {
     firstName : faker.name.firstName(),
     lastName : faker.name.lastName(),
     email : faker.internet.email(),
-    location : faker.address.zipCode(),
+    location : fakeZips[Math.floor(Math.random()*fakeZips.length)],
     phone : faker.phone.phoneNumberFormat()
   })
 
