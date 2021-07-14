@@ -14,6 +14,7 @@ const _memo = {}; // used to memoize zipcode API call for efficiency of requests
  * @param { count } req.body Specifies how many results per page to return. Default 10
  * @param { user_object_id } req.body Specifies the current user. Prevents one's own items from rendering.
  * @param { location } req.body Specifies geographic locale for which to render items.
+ * @param { radius } req.body Specifies geographic radius from which to grab zip codes (in miles).
  * @param {*} res On successful GET a 200 status code will be sent
  */
 const getItems = async (req, res) => {
@@ -22,11 +23,12 @@ const getItems = async (req, res) => {
   let count = Number(req.body.count) || 10;
   let owner = req.body.user_object_id;
   let location = req.body.location;
+  let radius = req.body.radius;
   let sort = { updatedAt : -1 };
 
   function getZipcodes(location) {
     if (_memo[location]) return _memo[location]
-    return _memo[location] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/radius.json/${location}/5/miles?minimal`);
+    return _memo[location] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/radius.json/${location}/${radius}/miles?minimal`);
   }
 
   let zipcodes = await getZipcodes(location)
@@ -53,9 +55,7 @@ const getUserItems = async (req, res) => {
   let user_object_id = req.params.user_object_id;
   let sort = { updatedAt : -1 };
 
-  let fetchUserItems = await Items.find({
-    _id: await Items.find({ owner: user_object_id })
-    })
+  let fetchUserItems = await Items.find({ owner: user_object_id })
     .sort(sort);
 
   response = fetchUserItems;
