@@ -84,15 +84,6 @@
 
 }
 
-.logout {
-  cursor: pointer;
-}
-
-/* .navigation .logout:hover {
-  padding-bottom: 4px;
-  border-bottom: 5px solid papayawhip;
-} */
-
 .user-page-container {
   width: 85%;
   margin: auto;
