@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
 import Marketplace from "../components/Marketplace/Marketplace.jsx";
 
+const MarketplacePage = ( { currentUser, getLoggedInUser, getUser, setIsLoggedIn }) => {
 
-const MarketplacePage = () => {
+  useEffect(() => {
+    setIsLoggedIn(true);
+    !currentUser ? getUser() : getLoggedInUser();
+  }, []);
 
   return (
     <div className="marketplace-page-container">

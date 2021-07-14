@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import RatingReviewsItem from "./RatingsReviewsItem.jsx";
 import axios from 'axios';
@@ -28,7 +29,6 @@ const RatingReviewsList = () => {
           />
         })
       }
-    </div>
   );
 };
 

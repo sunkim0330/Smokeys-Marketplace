@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddNewItem from "../components/AddNewItem/AddNewItem.jsx";
 import CurrentTrades from "../components/CurrentTrades/CurrentTrades.jsx";
 import Overview from "../components/Overview/Overview.jsx";
 import PastTrades from "../components/PastTrades/PastTrades.jsx";
+import axios from 'axios';
 import RatingsReviews from "../components/RatingsReviews/RatingsReviews.jsx"
 
 const UserPage = () => {
@@ -13,6 +14,13 @@ const UserPage = () => {
     setCurrentTab(event.target.getAttribute("value"));
   };
 
+  useEffect(() => {
+    axios.get('/getUser', { withCredentials: true })
+      .then(data => {
+        console.log(data)
+      })
+  }, [])
+
   return (
     <div className="user-page-container">
       <h1>Welcome, Scott!</h1>
@@ -22,7 +30,7 @@ const UserPage = () => {
             Overview
           </li>
           <li value="current-trades" className="tab" onClick={handleTabClick}>
-            Current Trades
+            Current Items
           </li>
           <li value="past-trades" className="tab" onClick={handleTabClick}>
             Past Trades

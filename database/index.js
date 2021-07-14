@@ -9,8 +9,8 @@ const UserSchema = new mongoose.Schema({
   email: String,
   location: String,
   phone: String,
-  ratings_reviews: [mongoose.Schema.Types.Mixed],
-  transactions: [mongoose.Schema.ObjectId]
+  // ratings_reviews: [mongoose.Schema.Types.Mixed],
+  // transactions: [mongoose.Schema.ObjectId]
 }, { timestamps: true })
 
 const Users = mongoose.model('Users', UserSchema);
