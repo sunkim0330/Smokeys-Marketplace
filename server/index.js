@@ -6,11 +6,11 @@ const path = require("path");
 const passport = require('passport');
 const session = require('express-session');
 require('./passport.js');
-const { Users, Items, Transactions } = require("../database");
 const {
   transactions,
   items,
-  users, ratingsReviews } = require("../routes");
+  users,
+  ratingsReviews } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -21,13 +21,6 @@ mongoose.connect("mongodb://localhost/smokeys", {
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err.message));
 db.on("open", () => console.log(`Connected to Smokey's DB`));
-app.use(
-  session({
-    secret: 'password',
-    resave: true,
-    saveUninitialized: true,
-  })
-);
 
 app.use(
   session({
@@ -96,22 +89,6 @@ app.route('/transactions/user')
 app.route("/reviews/:user_id")
   .get(ratingsReviews.getReviews)
   .post(ratingsReviews.addReview);
-
-
-/**
- * DELETE ONCE ITEM ROUTE IS BACK UP
- */
-const getAllItems = async (req, res) => {
-  let allItems = await Items.find({/*owner : '60edd8afb06574b61c2fcb22'*/})
-  res.send(allItems);
-}
-
-app
-  .route('/allItems')
-  .get(getAllItems)
-
-//Route to send client when user is found in the DB
-// app.get('http://localhost:4000/good', isLoggedIn, (req, res) => res.redirect('http://localhost:4000/user'))
 
 // Auth Routes
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));

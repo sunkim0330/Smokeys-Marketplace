@@ -6,20 +6,13 @@ import PastTrades from "../components/PastTrades/PastTrades.jsx";
 import axios from 'axios';
 import RatingsReviews from "../components/RatingsReviews/RatingsReviews.jsx"
 
-const UserPage = () => {
+const UserPage = ({ currentUser }) => {
   const [currentTab, setCurrentTab] = useState("add-new-item");
 
   const handleTabClick = (event) => {
     event.preventDefault();
     setCurrentTab(event.target.getAttribute("value"));
   };
-
-  useEffect(() => {
-    axios.get('/getUser', { withCredentials: true })
-      .then(data => {
-        console.log(data)
-      })
-  }, [])
 
   return (
     <div className="user-page-container">
@@ -43,7 +36,7 @@ const UserPage = () => {
           </li>
         </ul>
         {currentTab === "overview" && <Overview />}
-        {currentTab === "current-trades" && <CurrentTrades />}
+        {currentTab === "current-trades" && <CurrentTrades currentUser={currentUser} />}
         {currentTab === "past-trades" && <PastTrades />}
         {currentTab === "add-new-item" && <AddNewItem />}
         {currentTab === "reviews-ratings" && <RatingsReviews />}

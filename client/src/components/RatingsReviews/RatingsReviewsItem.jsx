@@ -1,13 +1,16 @@
 import React from "react";
 
-const RatingsReviewsItem = () => {
+const RatingsReviewsItem = (props) => {
+  const {date, transaction_id, review, rating} = props;
   return (
+    // null
     <div className="past-trade-item-container">
-      <div>12-2-2021</div>
-      <div className="ratings-reviews-item">Screwdriver</div>
-      <div className="ratings-reviews-item">Hammer</div>
-      <div className="rating">★★★★★</div>
-      <div className="review">ZIP ZOP ZIBBITY BOP BOOP LOOP BABADOOP</div>
+      <div>{date.slice(0,10)}</div>
+      <div>{transaction_id}</div>
+      <div className="rating">
+        {'★★★★★'.slice(0,rating)}
+      </div>
+      <div className="review">{review}</div>
     </div>
   );
 };
