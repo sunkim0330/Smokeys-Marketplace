@@ -30,7 +30,7 @@ const UserPage = () => {
             Overview
           </li>
           <li value="current-trades" className="tab" onClick={handleTabClick}>
-            Current Trades
+            Current Items
           </li>
           <li value="past-trades" className="tab" onClick={handleTabClick}>
             Past Trades
