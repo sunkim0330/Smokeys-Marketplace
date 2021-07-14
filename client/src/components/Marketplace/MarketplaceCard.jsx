@@ -5,8 +5,7 @@ const MarketplaceCard = () => {
   return (
     <div className="marketplace-card">
       <img src="https://placekitten.com/640/360" alt="img placeholder"/>
-      <div>
-        <div>Image</div>
+      <div className='cardItems'>
         <div>Item Name</div>
         <div>Description</div>
         <div>User Name</div>
