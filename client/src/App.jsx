@@ -24,7 +24,8 @@ const App = () => {
 
   const getUser = () => {
     axios.get('/getUser')
-    .then(data => { console.log(data)
+    .then(data => {
+      // console.log(data)
       setCurrentUser(data.data);
     })
     .catch(err => {

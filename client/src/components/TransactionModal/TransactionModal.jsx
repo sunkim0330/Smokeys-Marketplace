@@ -1,6 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 const TransactionModal = () => {
+  // const [userItems, setUserItems] = useState([])
+
+  // const getItems = () => {
+  //   axios.get('/items/${currentUser._id}')
+  //     .then(data => {
+  //       setUserItems(data.data)
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+
+  // useEffect(()=> {
+  //   getItems()
+  // }, [])
+
   return (
     <div className="transaction-modal-wrapper">
       <div className="transaction-modal">
