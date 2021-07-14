@@ -5,12 +5,10 @@ require('dotenv').config();
 
 
 passport.serializeUser(function (user, done) {
-
   done(null, user);
 });
 
 passport.deserializeUser(function (user, done) {
-
   done(null, user);
 });
 
@@ -50,6 +48,7 @@ passport.use(new GoogleStrategy({
         email: profile.emails[0].value
       }
     }
+
     return done(null, userData);
   }
 
