@@ -42,8 +42,8 @@ const isLoggedIn = (req, res, next) => {
 
 let port = process.env.PORT || 4000;
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.urlencoded({ limit: "5mb", extended: false }));
+app.use(express.json({ limit: "5mb" }));
 app.use(express.static(__dirname + "/../dist"));
 
 // Initializes passport and passport sessions

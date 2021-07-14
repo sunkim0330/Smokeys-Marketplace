@@ -13,12 +13,16 @@ const AddNewItem = ({ currentUser }) => {
 
     const reader = new FileReader();
 
+    if (photos) {
+      const file = document.querySelector('input[type=file]').files[0];
+      reader.readAsDataURL(file);
+    }
+
     reader.addEventListener('load', () => {
       let data = {
         data: reader.result,
         name: uuidv4()
       }
-      console.log(data)
       axios.post('/imageupload', data)
         .then(res => {
           let body = ({
@@ -34,8 +38,8 @@ const AddNewItem = ({ currentUser }) => {
         .catch(err => console.log(err.message))
     })
 
-    const file = document.querySelector('input[type=file]').files[0];
-    reader.readAsDataURL(file);
+    // const file = document.querySelector('input[type=file]').files[0];
+    // reader.readAsDataURL(file);
   }
 
   return (
