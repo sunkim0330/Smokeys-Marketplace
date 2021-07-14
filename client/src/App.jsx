@@ -12,6 +12,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   const getLoggedInUser = () => {
+
     axios.get(`/user/${currentUser.userId}`)
     .then(data => {
       setCurrentUser(data.data.results[0]);
@@ -23,7 +24,7 @@ const App = () => {
 
   const getUser = () => {
     axios.get('/getUser')
-    .then(data => {
+    .then(data => { console.log(data)
       setCurrentUser(data.data);
     })
     .catch(err => {
@@ -47,7 +48,7 @@ const App = () => {
           <UserPage />
         </Route>
         <Route path="/marketplace">
-          <MarketplacePage getLoggedInUser={getLoggedInUser}/>
+          <MarketplacePage currentUser={currentUser} getLoggedInUser={getLoggedInUser} getUser={getUser}/>
         </Route>
 
       </Switch>

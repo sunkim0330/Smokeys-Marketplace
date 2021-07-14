@@ -9,8 +9,8 @@ const {
   ratingsReviews,
   transactions,
   items,
-  users,
-  ratingsReviews } = require("../routes");
+  users
+} = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
