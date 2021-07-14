@@ -12,7 +12,7 @@ const _memo = {}; // used to memoize zipcode API call for efficiency of requests
  * @dev This function will GET and return all items in a paginated format.
  * @param { page } req.body Selects the page of results to return. Default 0
  * @param { count } req.body Specifies how many results per page to return. Default 10
- * @param { email } req.body Specifies the current user. Prevents one's own items from rendering.
+ * @param { user_object_id } req.body Specifies the current user. Prevents one's own items from rendering.
  * @param { location } req.body Specifies geographic locale for which to render items.
  * @param {*} res On successful GET a 200 status code will be sent
  */
@@ -20,26 +20,26 @@ const getItems = async (req, res) => {
 
   let page = Number(req.body.page) || 0;
   let count = Number(req.body.count) || 10;
-  let email = req.body.email;
+  let owner = req.body.user_object_id;
   let location = req.body.location;
   let sort = { updatedAt : -1 };
 
-  await function getZipcodes(location, memo) {
-    memo = memo || {}
-    if (memo[location]) return memo[location];
-    return memo[location] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/radius.json/${location}/5/miles?minimal`);
+  function getZipcodes(location) {
+    if (_memo[location]) return _memo[location]
+    return _memo[location] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/radius.json/${location}/5/miles?minimal`);
   }
 
-  let zipcodes = getZipcodes(location, _memo)
+  let zipcodes = await getZipcodes(location)
 
-  const response = [];
-
-  let fetchItems = await Items.find({ location: { $in: zipcodes } }, { owner: { $ne: owner } }, { availability: true}) // CHECK ON THIS, SEEMS WRONG
+  let data_objects = await Items.aggregate( [ { $lookup: { from: "users", localField: "owner", foreignField: "_id", as: "user_docs" } } ] )
     .limit(count)
     .skip(page * count)
     .sort(sort);
 
-  response = fetchItems;
+  let response = data_objects.filter(datums => {
+    return (datums.owner !== owner) && (datums.availability === true) && (zipcodes.data.zip_codes.includes(datums.user_docs[0].location))
+  })
+
   res.status(200).send(response);
 }
 
@@ -54,7 +54,7 @@ const getUserItems = async (req, res) => {
   let sort = { updatedAt : -1 };
 
   let fetchUserItems = await Items.find({
-    _id: async(Items.find({ owner: user_object_id }))
+    _id: await Items.find({ owner: user_object_id })
     })
     .sort(sort);
 
@@ -69,7 +69,6 @@ const getUserItems = async (req, res) => {
  * @param {*} res On successful GET a 201 status code will be sent. On error, 422.
  */
 const addItem = async (req, res) => {
-  response = fetchUserItems;
   
   // let { name, type, description, image_link } = req.body;
 
