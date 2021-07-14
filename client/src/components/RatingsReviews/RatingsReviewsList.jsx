@@ -6,10 +6,10 @@ import axios from 'axios';
 const RatingReviewsList = ({ currentUser }) => {
   const [reviews, setReviews] = useState(null);
 
-  const id = currentUser.id;
+  const id = '60edd8afb06574b61c2fcb21';
   const getReviews = (id) => {
     axios.get(`/reviews/${id}`)
-      .then(({data}) => {
+      .then(({ data }) => {
         setReviews(data);
       })
   }
