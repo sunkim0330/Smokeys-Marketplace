@@ -91,22 +91,6 @@ app.route("/reviews/:user_id")
   .get(ratingsReviews.getReviews)
   .post(ratingsReviews.addReview);
 
-
-/**
- * DELETE ONCE ITEM ROUTE IS BACK UP
- */
-const getAllItems = async (req, res) => {
-  let allItems = await Items.find({/*owner : '60edd8afb06574b61c2fcb22'*/})
-  res.send(allItems);
-}
-
-app
-  .route('/allItems')
-  .get(getAllItems)
-
-//Route to send client when user is found in the DB
-// app.get('http://localhost:4000/good', isLoggedIn, (req, res) => res.redirect('http://localhost:4000/user'))
-
 // Auth Routes
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
