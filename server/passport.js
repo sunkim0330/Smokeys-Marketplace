@@ -24,6 +24,7 @@ passport.use(new GoogleStrategy({
     let userData;
     if (userAccount.length) {
       userData = {
+        _id: userAccount._id,
         isUser: true,
         firstName: userAccount.firstName,
         lastName: userAccount.lastName,

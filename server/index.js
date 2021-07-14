@@ -21,6 +21,13 @@ mongoose.connect("mongodb://localhost/smokeys", {
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err.message));
 db.on("open", () => console.log(`Connected to Smokey's DB`));
+app.use(
+  session({
+    secret: 'password',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 app.use(
   session({
@@ -35,7 +42,7 @@ const isLoggedIn = (req, res, next) => {
   if (req.user) {
     next();
   } else {
-    res.sendStatus(401);
+    res.redirect('/');
   }
 }
 
@@ -119,6 +126,8 @@ app.get('/getUser', isLoggedIn, (req, res) => {
   res.send(req.user)
 })
 
+app.get('/successfulSignup', isLoggedIn, (req, res) => res.redirect('/marketplace'));
+
 app.get('/logout', (req, res) => {
   req.session = null;
   req.logout();
@@ -126,6 +135,6 @@ app.get('/logout', (req, res) => {
 })
 
 // This needs to be last route!
-app.get("*", (req, res) => {
+app.get("*", isLoggedIn, (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
