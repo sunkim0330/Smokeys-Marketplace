@@ -5,8 +5,8 @@ const path = require("path");
 const passport = require('passport');
 const cookieSession = require('cookie-session')
 require('./passport.js');
-const { Users, Item, Transaction } = require("../database");
 const {
+  ratingsReviews,
   transactions,
   items,
   users,
@@ -36,6 +36,7 @@ let port = process.env.PORT || 4000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(__dirname + "/../dist"));
+app.use(cors());
 
 // Initializes passport and passport sessions
 app.use(passport.initialize());
@@ -94,7 +95,8 @@ app.get('/google', passport.authenticate('google', { scope: ['profile', 'email']
 
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
   function (req, res) {
-    req.user.isUser ? res.redirect('/') : res.redirect('/failed')
+    req.user.isUser ? res.redirect('/marketplace') : res.redirect('/signup')
+
   }
 );
 
