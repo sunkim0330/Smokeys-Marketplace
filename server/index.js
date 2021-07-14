@@ -8,6 +8,7 @@ const session = require('express-session');
 require('./passport.js');
 const { Users, Items, Transactions } = require("../database");
 const {
+  ratingsReviews,
   transactions,
   items,
   users } = require("../routes");

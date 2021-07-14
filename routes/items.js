@@ -23,7 +23,7 @@ const getItems = async (req, res) => {
   let count = Number(req.body.count) || 10;
   let owner = req.body.user_object_id;
   let location = req.body.location;
-  let radius = req.body.radius;
+  let radius = req.body.radius || 5;
   let sort = { updatedAt : -1 };
 
   function getZipcodes(location) {
@@ -32,6 +32,7 @@ const getItems = async (req, res) => {
   }
 
   let zipcodes = await getZipcodes(location)
+  // let zipcodes = await axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/radius.json/${location}/${radius}/miles?minimal`)
 
   let data_objects = await Items.aggregate( [ { $lookup: { from: "users", localField: "owner", foreignField: "_id", as: "user_docs" } } ] )
     .limit(count)
