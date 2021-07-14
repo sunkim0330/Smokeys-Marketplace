@@ -16,7 +16,7 @@ const PastTradeItem = ({transactions}) => {
           onClick={() => setShowModal(true)}>
             Add Review
         </button>
-        <AddReviewModal showModal={showModal} onClose={() => setShowModal(false)}/>
+        <AddReviewModal transaction={trx} showModal={showModal} onClose={() => setShowModal(false)}/>
       </div>
     )
   })
