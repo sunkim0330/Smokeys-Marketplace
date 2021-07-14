@@ -26,7 +26,7 @@ const AddNewItem = ({ currentUser }) => {
       reader.readAsDataURL(file);
     } else {
       axios.post(`/items/${currentUser._id}`, body)
-      .then(res => console.log(res))
+      .then(res => console.log('New item added'))
     }
 
     reader.addEventListener('load', () => {
@@ -38,7 +38,7 @@ const AddNewItem = ({ currentUser }) => {
         .then(res => {
             body.image_link = res.data
           axios.post(`/items/${currentUser._id}`, body)
-            .then(res => console.log(res))
+            .then(res => console.log('New item added'))
         })
         .catch(err => console.log(err.message))
     })
