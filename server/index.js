@@ -129,12 +129,13 @@ app.get('/getUser', isLoggedIn, (req, res) => {
 app.get('/successfulSignup', isLoggedIn, (req, res) => res.redirect('/marketplace'));
 
 app.get('/logout', (req, res) => {
-  req.session = null;
+  req.session.destroy();
   req.logout();
   res.redirect('/');
 })
 
 // This needs to be last route!
 app.get("*", isLoggedIn, (req, res) => {
+  console.log('in get all', req.user)
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
