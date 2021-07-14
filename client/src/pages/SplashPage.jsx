@@ -15,7 +15,6 @@ const SplashPage = () => {
           <div className='add-item-btn'><a href="/google">LOGIN</a></div>
           <div className='add-item-btn'><a href="/google">SIGN UP</a></div>
         </div>
-
       </div>
     </div>
   )
