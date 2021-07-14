@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const passport = require('passport');
-var session = require('express-session');
+const session = require('express-session');
 require('./passport.js');
 const { Users, Items, Transactions } = require("../database");
 const {
@@ -83,6 +83,9 @@ app
   .route("/transactions/:transaction_id/cancel")
   .put(transactions.cancelTransaction);
 
+app.route('/transactions/user')
+  .get(transactions.getUserTransactions)
+
 app.route("/reviews/:user_id")
   .get(ratingsReviews.getReviews)
   .post(ratingsReviews.addReview);
@@ -109,7 +112,6 @@ app.get('/google', passport.authenticate('google', { scope: ['profile', 'email']
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
   function (req, res) {
     req.user.isUser ? res.redirect('/marketplace') : res.redirect('/signup')
-
   }
 );
 

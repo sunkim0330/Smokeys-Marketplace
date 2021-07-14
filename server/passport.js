@@ -25,7 +25,12 @@ passport.use(new GoogleStrategy({
     if (userAccount.length) {
       userData = {
         isUser: true,
-        ...userAccount
+        firstName: userAccount.firstName,
+        lastName: userAccount.lastName,
+        email: userAccount.email,
+        location: userAccount.location,
+        createdAt: userAccount.createdAt,
+        updatedAt: userAccount.updatedAt
       }
     } else {
       let newUser = await new Users({
@@ -33,15 +38,16 @@ passport.use(new GoogleStrategy({
         lastName: profile.name.familyName,
         email: profile.emails[0].value
       }).save()
-      console.log(newUser)
+
       userData = {
         isUser: false,
         userId: newUser._id,
         firstName: profile.name.givenName,
-        lastName: profile.name.familyName
+        lastName: profile.name.familyName,
+        email: profile.emails[0].value
       }
     }
-    console.log(userData)
+
     return done(null, userData);
   }
 
