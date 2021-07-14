@@ -268,6 +268,7 @@
 
 .marketplace-title {
   margin-top: 30px;
+  margin-bottom: 15px;
 }
 
 
@@ -295,13 +296,20 @@
 }
 
 .marketplace-card {
-  border: 1px solid black;
   border-radius: 12px;
   margin: 0 auto;
   width: 175px;
   height: 225px;
-
+  transition: box-shadow 1s;
+  box-shadow: 0;
+  transition: box-shadow 1s;
+  border: 1px solid rgb(46, 45, 45);
 }
+
+.marketplace-card:hover {
+  box-shadow: 10px 10px 14px -1px #595a5a;
+}
+
 
 .marketplace-card img {
   width: 90%;
