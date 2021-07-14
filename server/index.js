@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const passport = require('passport');
-const cookieSession = require('cookie-session')
+const session = require('express-session');
 require('./passport.js');
 const { Users, Item, Transaction } = require("../database");
 const {
@@ -22,13 +22,20 @@ mongoose.connect("mongodb://localhost/smokeys", {
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err.message));
 db.on("open", () => console.log(`Connected to Smokey's DB`));
+app.use(
+  session({
+    secret: 'password',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 // Auth middleware that checks if the user is logged in
 const isLoggedIn = (req, res, next) => {
   if (req.user) {
     next();
   } else {
-    res.sendStatus(401);
+    res.redirect('/');
   }
 }
 
@@ -37,16 +44,10 @@ let port = process.env.PORT || 4000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(__dirname + "/../dist"));
-app.use(cors());
 
 // Initializes passport and passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(cookieSession({
-  name: 'smokeys-session',
-  keys: ['key1', 'key2']
-}))
 
 app.listen(port, function () {
   console.log(`listening on port ${port}`);
@@ -91,6 +92,12 @@ app.get('/google/callback', passport.authenticate('google', { failureRedirect: '
   }
 );
 
+app.get('/getUser', isLoggedIn, (req, res) => {
+  res.send(req.user)
+})
+
+app.get('/successfulSignup', isLoggedIn, (req, res) => res.redirect('/marketplace'));
+
 app.get('/logout', (req, res) => {
   req.session = null;
   req.logout();
@@ -98,6 +105,6 @@ app.get('/logout', (req, res) => {
 })
 
 // This needs to be last route!
-app.get("*", (req, res) => {
+app.get("*", isLoggedIn, (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });

@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
 
-const MarketplacePage = () => {
+const MarketplacePage = ( { getLoggedInUser }) => {
+
+  useEffect(() => {
+    getLoggedInUser();
+  }, []);
+
+
   return <div>Market</div>;
 };
 
