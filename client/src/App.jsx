@@ -36,6 +36,7 @@ const App = () => {
     <Router>
       <NavBar />
       <Switch>
+
         <Route exact path="/">
           <SplashPage/>
         </Route>
@@ -48,8 +49,9 @@ const App = () => {
         <Route path="/marketplace">
           <MarketplacePage getLoggedInUser={getLoggedInUser}/>
         </Route>
+
       </Switch>
-    </Router>
+    </Router >
   );
 };
 
