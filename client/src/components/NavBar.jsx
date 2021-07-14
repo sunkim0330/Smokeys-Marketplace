@@ -12,7 +12,7 @@ const NavBar = ( {logout, isLoggedIn} ) => {
       <div className="navigation">
         <Link to="/user">User Page</Link>
         <Link to="/marketplace">Marketplace</Link>
-        <div onClick={logout}><a href="/logout">LOGOUT</a></div>
+        <div onClick={logout}><a href="/logout">Logout</a></div>
       </div>
     </div>
   );
