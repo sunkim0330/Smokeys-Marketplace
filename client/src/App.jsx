@@ -50,7 +50,7 @@ const App = () => {
           <SignUp currentUser={currentUser} getUser={getUser}/>
         </Route>
         <Route path="/user">
-          <UserPage />
+          <UserPage currentUser={currentUser} />
         </Route>
         <Route path="/marketplace">
           <MarketplacePage currentUser={currentUser} getLoggedInUser={getLoggedInUser} getUser={getUser} setIsLoggedIn={setIsLoggedIn}/>

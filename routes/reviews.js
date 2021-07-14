@@ -1,5 +1,16 @@
+/**
+ * @dev Importing database schemas from ./database/index.js
+ */
 const { Users, Items, Transactions, RatingsReviews } = require('../database');
 const { Types } = require('mongoose');
+
+/**
+ @dev This function will GET and return all ratings and reviews in a paginated format.
+ @param { page } req.query Selects the page of results to return. default 0.
+ @param { count } req.query specifies how many results per page to return. default 5.
+ @param { user_id } req.params specifies the currently logged in user
+ @param {*} res On successful GET a 200 status code will be sent
+ */
 
 const getReviews = async (req, res) => {
   let user = req.params.user_id;
@@ -20,13 +31,22 @@ const getReviews = async (req, res) => {
     res.status(200).send(response);
 }
 
+/**
+ @dev This function will POST a new rating and review for a specific transaction
+ @param { reviewer_id } req  reviewer_id is the ID for the user initiating the review
+ @param { reviewed_id } req reviewed_id is the ID for the user the review is being left for
+ @param { transaction_id } req transaction_id is the ID for the transaction between the reviewer and the reviewed
+ @param { rating } req rating is the value (1-5) the reviewer left for a reviewed user
+ @param { review } req review is the text the reviewer left for a reviewed user
+ */
+
 const addReview = async (req, res) => {
   const newReview = new RatingsReviews({
     reviewed_id : req.body.reviewer,
     reviewer_id : req.body.reviewed,
     transaction_id : req.body.transaction,
-    ratings: req.body.rating,
-    reviews: req.body.review
+    rating: req.body.rating,
+    review: req.body.review
   })
 
   newReview.save()
