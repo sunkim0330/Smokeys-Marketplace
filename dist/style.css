@@ -201,7 +201,7 @@
 .decline:hover {
   cursor: pointer;
 }
-
+/* TRADE CARDS */
 .current-trades-container {
   height: 650px;
   overflow-y: auto;
@@ -239,6 +239,8 @@
 .trade-card-description {
   margin: 5px 20px 10px;
 }
+
+/* END */
 
 .past-trades-list-container,
 .ratings-reviews-list-container {
@@ -283,16 +285,18 @@
   border: 1px solid black;
   border-radius: 12px;
   margin: 10px auto;
+  background-color: rgb(252, 246, 238);
 
 }
 
 .marketplace-card-row {
-  width: 95%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  justify-content: space-around;
 }
 
 .marketplace-card {
@@ -304,6 +308,7 @@
   box-shadow: 0;
   transition: box-shadow 1s;
   border: 1px solid rgb(46, 45, 45);
+  background-color: white;
 }
 
 .marketplace-card:hover {
@@ -314,6 +319,31 @@
 .marketplace-card img {
   width: 90%;
   padding-left: 20px;
+  align-self: center;
+  padding-top: 6px;
+}
+
+.cardItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  height: 140px;
+}
+
+.marketplace-input-search {
+  border-bottom: 1px solid black;
+  margin-left: 10px;
+  outline: none;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+
+.fa-search {
+  color: orange;
+  margin-right: 5px;
 }
 
 .search-container {
