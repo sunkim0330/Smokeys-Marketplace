@@ -23,7 +23,7 @@ const getItems = async (req, res) => {
   let email = req.body.email;
   let location = req.body.location;
   let sort = { updatedAt : -1 };
-    
+
   await function getZipcodes(location, memo) {
     memo = memo || {}
     if (memo[location]) return memo[location];
@@ -65,12 +65,12 @@ const getUserItems = async (req, res) => {
 /**
  * @dev This function will POST a new item to a given user
  * @param { user_object_id } req.params email: Selects the user onto which the item will be added.
- * @param { name, type, description, image_link } req.body required: name; relevant item details. 
+ * @param { name, type, description, image_link } req.body required: name; relevant item details.
  * @param {*} res On successful GET a 201 status code will be sent. On error, 422.
  */
 const addItem = async (req, res) => {
   response = fetchUserItems;
-  
+
   // let { name, type, description, image_link } = req.body;
 
   const newItem = new Items({
@@ -94,7 +94,7 @@ const addItem = async (req, res) => {
  * @param {*} res On successful POST a 204 status code will be sent. On error, 422.
  */
 const updateAvailability = async (req, res) => {
-  
+
   let availability = req.body.availability;
 
   Items.updateOne({ _id: new Types.ObjectId(req.params.item_object_id) },

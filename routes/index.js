@@ -14,6 +14,12 @@ const {
   createNewUser,
   updateUserInfo } = require("./users.js");
 
+const {
+  getItems,
+  getUserItems,
+  addItem,
+  updateAvailability } = require("./items.js")
+
 module.exports = {
   transactions: {
     getTransactions,
@@ -29,5 +35,11 @@ module.exports = {
     getUserInfo,
     createNewUser,
     updateUserInfo
-  }
+  },
+  items: {
+    getItems,
+    getUserItems,
+    addItem,
+    updateAvailability
+}
 }
