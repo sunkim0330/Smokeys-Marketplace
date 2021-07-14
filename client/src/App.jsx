@@ -32,7 +32,7 @@ const App = () => {
       console.log(err);
     })
   }
-
+console.log(isLoggedIn)
   const logout = () => {
     setCurrentUser(null);
     setIsLoggedIn(false);

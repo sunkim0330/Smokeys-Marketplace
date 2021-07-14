@@ -9,7 +9,7 @@ const SignUp = ( {currentUser, getUser} ) => {
 
   const putNewUser = (e) => {
     e.preventDefault();
-    axios.put(`/user/${currentUser.userId}`, {
+    axios.put(`/user/${currentUser._id}`, {
       phone: phone,
       location: location,
       email: currentUser.email,
@@ -37,7 +37,7 @@ const SignUp = ( {currentUser, getUser} ) => {
         </label>
         <label>
           Zip Code:
-          <input type='number' placeholder='ex: 33713' required onChange={(e) => {setLocation(e.target.value)}}/>
+          <input type='text' placeholder='ex: 33713' pattern='[0-9]*' minLength='5' maxLength='5' required onChange={(e) => {setLocation(e.target.value)}}/>
         </label>
         <input type='submit' value='Submit' />
       </form>
