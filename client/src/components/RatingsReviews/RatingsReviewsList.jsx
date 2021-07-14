@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import RatingReviewsItem from "./RatingsReviewsItem.jsx";
 import axios from 'axios';
 
-const RatingReviewsList = () => {
+const RatingReviewsList = ({ currentUser }) => {
   const [reviews, setReviews] = useState(null);
 
-  const id = '60eac1d6a0e0293f05e414cf';
+  const id = currentUser.id;
   const getReviews = (id) => {
     axios.get(`/reviews/${id}`)
       .then(({data}) => {
@@ -19,7 +19,7 @@ const RatingReviewsList = () => {
 
   return (
     <div>
-      { reviews && reviews.results.map((review) => {
+      { reviews ? reviews.results.map((review) => {
           return <RatingReviewsItem
           key={review.transaction_id}
           date={review.createdAt}
@@ -27,8 +27,9 @@ const RatingReviewsList = () => {
           rating={review.ratings}
           review={review.reviews}
           />
-        })
+        }) : <div className="reviews-no-reviews"> You have no reviews 😔</div>
       }
+      </div>
   );
 };
 
