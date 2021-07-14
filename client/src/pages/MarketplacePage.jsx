@@ -10,7 +10,7 @@ const MarketplacePage = ( { currentUser, getLoggedInUser, getUser, setIsLoggedIn
 
   return (
     <div className="marketplace-page-container">
-      <h1 className="marketplace-title">MarketPlace</h1>
+      <h1 className="marketplace-title">The Marketplace</h1>
       <Marketplace />
     </div>
   )
