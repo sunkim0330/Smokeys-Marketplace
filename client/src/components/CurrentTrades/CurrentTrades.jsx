@@ -6,6 +6,9 @@ import axios from 'axios';
 const CurrentTrades = () => {
   const [userItems, setUserItems] = useState([]);
 
+  /**
+   * REMOVE THIS FUNCTION ONCE ITEMS ROUTE IS FINALIZED
+   */
   const getItems = () => {
     axios.get('/allItems')
       .then(data => {
@@ -14,16 +17,11 @@ const CurrentTrades = () => {
   }
 
   useEffect(() => {
-    // axios.get('/getUser', { withCredentials: true })
-    //   .then(data => {
-    //     console.log(data)
-    //   });
     getItems();
   }, [])
 
   return (
     <div className="current-trades-container">
-      {console.log(userItems)}
       {userItems.map(item => {
         return <ItemCard key={item._id} item={item} />
       })}
