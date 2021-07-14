@@ -28,7 +28,7 @@ const RatingReviewsList = () => {
           review={review.reviews} />
       })
       }
-    </div>
+      </div>
   );
 };
 
