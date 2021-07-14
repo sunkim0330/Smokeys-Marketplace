@@ -5,12 +5,10 @@ require('dotenv').config();
 
 
 passport.serializeUser(function (user, done) {
-
   done(null, user);
 });
 
 passport.deserializeUser(function (user, done) {
-
   done(null, user);
 });
 
@@ -26,14 +24,14 @@ passport.use(new GoogleStrategy({
     let userData;
     if (userAccount.length) {
       userData = {
-        _id: userAccount._id,
+        _id: userAccount[0]._id,
         isUser: true,
-        firstName: userAccount.firstName,
-        lastName: userAccount.lastName,
-        email: userAccount.email,
-        location: userAccount.location,
-        createdAt: userAccount.createdAt,
-        updatedAt: userAccount.updatedAt
+        firstName: userAccount[0].firstName,
+        lastName: userAccount[0].lastName,
+        email: userAccount[0].email,
+        location: userAccount[0].location,
+        createdAt: userAccount[0].createdAt,
+        updatedAt: userAccount[0].updatedAt
       }
     } else {
       let newUser = await new Users({
@@ -50,6 +48,7 @@ passport.use(new GoogleStrategy({
         email: profile.emails[0].value
       }
     }
+
     return done(null, userData);
   }
 
