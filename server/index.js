@@ -10,7 +10,7 @@ const { Users, Items, Transactions } = require("../database");
 const {
   transactions,
   items,
-  users } = require("../routes");
+  users, ratingsReviews } = require("../routes");
 
 mongoose.connect("mongodb://localhost/smokeys", {
   useNewUrlParser: true,
@@ -136,6 +136,5 @@ app.get('/logout', (req, res) => {
 
 // This needs to be last route!
 app.get("*", isLoggedIn, (req, res) => {
-  console.log('in get all', req.user)
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
