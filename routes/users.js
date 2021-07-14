@@ -20,9 +20,7 @@ const createNewUser = async (req, res) => {
     lastName: req.body.lastName,
     email: req.body.email,
     phone: req.body.phone,
-    location: req.body.location,
-    ratings_reviews: [],
-    transactions: []
+    location: req.body.location
   })
 
   newUser.save()
