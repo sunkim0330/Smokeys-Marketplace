@@ -14,7 +14,7 @@ const getTransactions = async (req, res) => {
   let user = req.query.user_id;
   let count = Number(req.query.count) || 5;
   let page = Number(req.query.page) || 0;
-  let sort = req.query.sort ? req.query.sort === 'created_at_asc' ? { createdAt : 1 } : req.query.sort === 'created_at_desc' ? { createdAt : -1 } : null : { updatedAt: -1 };
+  let sort = req.query.sort ? req.query.sort === 'created_at_asc' ? { createdAt : 1 } : req.query.sort === 'created_at_desc' ? { createdAt : -1 } : { updatedAt: -1 } : { updatedAt: -1 };
 
   const response = {
     user: user,
