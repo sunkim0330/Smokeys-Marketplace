@@ -6,7 +6,8 @@ import axios from 'axios';
 const RatingReviewsList = ({ currentUser }) => {
   const [reviews, setReviews] = useState(null);
 
-  const id = '60edd8afb06574b61c2fcb21';
+  const id = currentUser._id;
+
   const getReviews = (id) => {
     axios.get(`/reviews/${id}`)
       .then(({ data }) => {
@@ -19,16 +20,17 @@ const RatingReviewsList = ({ currentUser }) => {
 
   return (
     <div>
-      { reviews ? reviews.results.map((review) => {
+      { (reviews && reviews.results.length < 0) ?
+        reviews.results.map((review) => {
           return <RatingReviewsItem
-
           key={review.transaction_id}
           date={review.createdAt}
           transaction_id={review.transaction_id}
           rating={review.ratings}
           review={review.reviews}
           />
-        }) : <div className="reviews-no-reviews"> You have no reviews 😔</div>
+        }) :
+        <div className="reviews-no-reviews"> You have no reviews 😔</div>
       }
     </div>
   );
