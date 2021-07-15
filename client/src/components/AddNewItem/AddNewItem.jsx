@@ -11,11 +11,22 @@ const AddNewItem = ({ currentUser }) => {
 
   const submitItem = async () => {
 
+    let body = {
+      owner: `${currentUser._id}`,
+      name: name,
+      type: type,
+      description: description,
+      image_link: ''
+    }
+
     const reader = new FileReader();
 
     if (photos) {
       const file = document.querySelector('input[type=file]').files[0];
       reader.readAsDataURL(file);
+    } else {
+      axios.post(`/items/${currentUser._id}`, body)
+      .then(res => console.log('New item added'))
     }
 
     reader.addEventListener('load', () => {
@@ -25,15 +36,9 @@ const AddNewItem = ({ currentUser }) => {
       }
       axios.post('/imageupload', data)
         .then(res => {
-          let body = ({
-            owner: `${currentUser._id}`,
-            name: name,
-            type: type,
-            description: description,
-            image_link: res.data
-          })
+            body.image_link = res.data
           axios.post(`/items/${currentUser._id}`, body)
-            .then(res => console.log(res))
+            .then(res => console.log('New item added'))
         })
         .catch(err => console.log(err.message))
     })
