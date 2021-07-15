@@ -2,7 +2,12 @@ const faker = require('faker');
 const { Users, Items, Transactions } = require('../database');
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/smokeys", {
+/**
+ * @dev sets mongodb data to a test DB when npm test is run to preserve production/dev DB
+ */
+ const dbLocation = process.env.NODE_ENV === 'test' ? 'mongodb://localhost/test_smokeys' : 'mongodb://localhost/smokeys';
+
+mongoose.connect(dbLocation, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
@@ -66,3 +71,5 @@ db.on("open", async () => {
 
   console.log(`Finished adding 20 fake items to Smokey's DB`);
 });
+
+module.exports = newTrx;

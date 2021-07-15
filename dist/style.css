@@ -108,6 +108,7 @@
   border-top: 1px solid black;
   border-right: 1px solid black;
   transform: skew(45deg);
+  box-shadow: 5px 0 5px -5px #333;
 }
 
 .tab-text {
@@ -123,9 +124,9 @@
 }
 
 .start {
-  background-color: orange;
-  border: 1px solid orange;
-  color: white;
+  background-color: papayawhip;
+  border: 0px solid papayawhip;
+  color: black;
   font-weight: bold;
 }
 
@@ -138,10 +139,15 @@
 .past-trades-container,
 .ratings-reviews-container,
 .add-new-item-container {
-  border: 2px solid black;
+  /* border: 2px solid black;*/
   border-radius: 12px;
-  margin: 0px auto;
+  margin: 0px 0;
+  background-color: papayawhip;
   padding: 35px 25px;
+  box-shadow: 5px 5px 8px -5px #333;
+  height: 500px;
+  overflow-y: auto;
+
 }
 
 .overview-container-top-row {
@@ -154,10 +160,12 @@
   height: 235px;
   border: 1px solid black;
   border-radius: 12px;
+  background-color: rgb(250, 245, 239);
   padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  text-align: center;
 }
 
 .overview-edit-user-btn,
@@ -168,6 +176,11 @@
   border: none;
   padding: 5px 15px;
   border-radius: 50px;
+  width: max-content;
+}
+
+.overview-edit-user-btn {
+  margin-left: 30px;
 }
 
 .add-item-btn:hover {
@@ -188,6 +201,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  background-color: rgb(250, 245, 239);
 }
 
 .overview-name,
@@ -200,25 +214,24 @@
   font-size: 18px;
 }
 
-.overview-cur-trade-offer-container {
-  border: 1px solid black;
-  border-radius: 12px;
-}
-
 .overview-cur-trade-offer-header,
 .ratings-reviews-list-container-header,
 .past-trades-list-container-header {
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
-  border-bottom: 1px solid black;
+  border: 1px solid black;
+  border-radius: 12px;
+  background-color: rgb(250, 245, 239);
 }
+
 
 .overview-current-trade-item,
 .past-trade-item-container {
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
+  background-color: papayawhip;
 }
 
 .accept,
@@ -233,11 +246,12 @@
 }
 /* TRADE CARDS */
 .current-trades-container {
-  height: 650px;
+  height: 500px;
   overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: papayawhip;
 }
 
 .current-trade-card {
@@ -249,6 +263,7 @@
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
+  background-color: rgb(250, 245, 239);
 }
 
 .current-trade-card img {
@@ -274,9 +289,7 @@
 
 .past-trades-list-container,
 .ratings-reviews-list-container {
-  padding: 25px 0;
   margin: 10px;
-  border: 1px solid black;
   border-radius: 12px;
 }
 
@@ -304,7 +317,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 12px;
   margin: 10px auto;
   background-color: rgb(250, 245, 239);
@@ -373,19 +386,27 @@
 }
 /* End of Marketplace */
 
+.add-new-item-form {
+  position: relative;
+
+}
+
+
 .add-new-item-container > * {
   padding-left: 45px;
+
 }
 
 .add-new-item-form {
-  border-top: 1px solid black;
+  /* border-top: 1px solid black; */
 }
 
 .new-item-photo {
+  background-color: white;
   border: 1px solid black;
   border-radius: 12px;
   width: 125px;
-  height: 175px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -394,17 +415,52 @@
 .new-item-photo-add {
   font-size: 75px;
   margin-top: 25px;
+  z-index: 5;
 }
 
-.add-item-btn {
-  padding: 5px 15px;
-  margin: 20px 45px;
+.add-photo-container .add-item-btn {
+  /* margin: 20px 45px; */
+  width: 175px;
+  margin-top: 150px;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: '+';
+  margin-left: 16px;
+  background: white;
+  border: none;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 100pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: white;
 }
 
 .add-new-item-container h3,
 .add-new-item-container h4 {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.add-photo-container {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* TRANSACTION MODAL CSS */
@@ -508,7 +564,7 @@
     url("./images/initial.jpg");
   background-position: center;
   background-size: 100%;
-  height: 500px;
+  height: 550px;
   object-fit: scale-down;
   opacity: 0.8;
   position: relative;
@@ -523,6 +579,11 @@
   text-decoration: none;
   text-align: center;
   align-items: center;
+  margin: 20px 45px;
+}
+
+.splashButtons .add-item-btn {
+  margin: 20px 45px;
 }
 .splashButtons div:hover {
   cursor: pointer;
@@ -533,7 +594,7 @@
   text-transform: uppercase;
   font-size: 100pt;
   position: absolute;
-  top: 30%;
+  top: 300px;
   z-index: 99;
   left: 50%;
   width: fit-content;
@@ -547,7 +608,7 @@
   font-size: 25pt;
   position: absolute;
   z-index: 99;
-  top: 50%;
+  top: 450px;
   text-align: center;
   left: 50%;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
@@ -559,7 +620,7 @@
   width: 800px;
   height: 100px;
   display: flex;
-  top: 63%;
+  top: 560px;
   left: 50%;
   border: 1px solid black;
   border-radius: 12px;

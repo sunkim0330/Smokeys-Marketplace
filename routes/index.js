@@ -3,7 +3,8 @@ const {
   addTransaction,
   completeTransaction,
   cancelTransaction,
-  getUserTransactions } = require("./transactions.js");
+  getUserTransactions,
+  reviewTransaction } = require("./transactions.js");
 
   const {
     getReviews,
@@ -29,7 +30,8 @@ module.exports = {
     addTransaction,
     completeTransaction,
     cancelTransaction,
-    getUserTransactions
+    getUserTransactions,
+    reviewTransaction
   },
   ratingsReviews: {
     getReviews,
