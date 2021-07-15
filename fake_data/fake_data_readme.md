@@ -11,7 +11,7 @@ cd into ./fake_data
 In terminal run the following in order:
   node fake_user.js
   node fake_item.js
-  node fake_transactions.js
+  node fake_transactionshow ds.js
   node fake_review.js
 
 Once console.log indicates it has finished Control C to stop each node process and continue to the next

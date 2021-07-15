@@ -19,11 +19,11 @@ const _memo = {}; // used to memoize zipcode API call for efficiency of requests
  */
 const getItems = async (req, res) => {
 
-  let page = Number(req.body.page) || 0;
-  let count = Number(req.body.count) || 10;
-  let owner = req.body.user_object_id;
-  let location = req.body.location;
-  let radius = req.body.radius || 5;
+  let page = Number(req.query.page) || 0;
+  let count = Number(req.query.count) || 10;
+  let owner = req.query.user_object_id;
+  let location = req.query.location;
+  let radius = req.query.radius || 5;
   let sort = { updatedAt : -1 };
 
 
