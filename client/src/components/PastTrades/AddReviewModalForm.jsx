@@ -58,7 +58,7 @@ const AddReviewModalForm = ({transaction, setSubmittedReview, setShowModal}) => 
         </select>
         <label className="add-review-modal-review-label" name="reivew">Review</label>
         <textarea className="add-review-modal-review-input" onChange={handleReviewChange} required placeholder="write your review here"/>
-         <button className="add-review-modal-submit-button"
+         <button className="add-review-modal-btn"
           type="submit" value="submit"
         >Submit</button>
     </form>
