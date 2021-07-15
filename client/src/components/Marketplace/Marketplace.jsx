@@ -13,13 +13,14 @@ const Marketplace = () => {
   const [selectedItemModal, setSelectedItemModal] = useState({
     name: 'error',
     image: 'error',
-    description: 'error'
+    description: 'error',
+    firstName: 'error'
   })
 
   const getAllMarketItems = () => {
     axios.get('/items?user_object_id=60ef1cb062fe173ce7af8805&location=08724')
     .then((response) => {
-      console.log('response:   ', response.data)
+      // console.log('response:   ', response.data)
       setMarketItems(response.data)
       setFilteredItems(response.data)
     })
@@ -33,7 +34,7 @@ const Marketplace = () => {
   }, [])
 
   useEffect(() => {
-    console.log('items', marketItems)
+    // console.log('items', marketItems)
   }, [marketItems])
 
   return (
