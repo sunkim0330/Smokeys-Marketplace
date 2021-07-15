@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const EditUserModal = ({ getUser, currentUser }) => {
+const EditUserModal = ({ getLoggedInUser, currentUser }) => {
   const [phone, setPhone] = useState("");
   const [zip, setZip] = useState("");
 
@@ -33,7 +33,7 @@ const EditUserModal = ({ getUser, currentUser }) => {
       .catch((err) => console.log(`Error: ${err}`));
     document.querySelectorAll(".edit-user-modal-container")[0].style.display =
       "none";
-    getUser();
+    getLoggedInUser();
 
     setPhone("");
     setZip("");

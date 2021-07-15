@@ -3,7 +3,7 @@ import axios from "axios";
 import OverviewCurrentTrades from "./OverviewCurrentTrades.jsx";
 import EditUserModal from "./EditUserModal.jsx";
 
-const Overview = ({ currentUser, getUser }) => {
+const Overview = ({ currentUser, getLoggedInUser }) => {
   const [currentUserTransactionData, setCurrentUserTransactionData] =
     useState(0);
   const [overviewCurrentTrades, setoverviewCurrentTrades] = useState([]);
@@ -44,7 +44,7 @@ const Overview = ({ currentUser, getUser }) => {
   };
 
   useEffect(() => {
-    getUser(); //change
+    getLoggedInUser(); //change
     getAllTxns();
     getAllItems();
     getAllCompletedTxns();
@@ -60,7 +60,7 @@ const Overview = ({ currentUser, getUser }) => {
     <div className="overview-container">
       <EditUserModal
         currentUser={currentUser}
-        getUser={getUser} //change
+        getLoggedInUser={getLoggedInUser} //change
       />
       <div className="overview-container-top-row">
         <div className="basic-info">

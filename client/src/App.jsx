@@ -49,7 +49,10 @@ const App = () => {
           <SignUp currentUser={currentUser} getUser={getUser} />
         </Route>
         <Route path="/user">
-          <UserPage currentUser={currentUser} getUser={getUser} />
+          <UserPage
+            currentUser={currentUser}
+            getLoggedInUser={getLoggedInUser}
+          />
         </Route>
         <Route path="/marketplace">
           <MarketplacePage
