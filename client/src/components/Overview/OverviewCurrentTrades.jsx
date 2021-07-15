@@ -1,7 +1,11 @@
 import React from "react";
 import OverviewCurrentTradeItem from "./OverviewCurrentTradeItem.jsx";
 
-const OverviewCurrentTrades = ({ overviewCurrentTrades, getAllTxns }) => {
+const OverviewCurrentTrades = ({
+  overviewCurrentTrades,
+  getAllTxns,
+  getAllCompletedTxns,
+}) => {
   return (
     <div>
       {overviewCurrentTrades
@@ -11,6 +15,7 @@ const OverviewCurrentTrades = ({ overviewCurrentTrades, getAllTxns }) => {
             key={item.transactionId}
             item={item}
             getAllTxns={getAllTxns}
+            getAllCompletedTxns={getAllCompletedTxns}
           />
         ))}
     </div>

@@ -1,10 +1,15 @@
 import React from "react";
 import axios from "axios";
 
-const OverviewCurrentTradeItem = ({ item, getAllTxns }) => {
+const OverviewCurrentTradeItem = ({
+  item,
+  getAllTxns,
+  getAllCompletedTxns,
+}) => {
   const handleAccept = (e) => {
     axios.put(`/transactions/${item.transactionId}/complete`);
     getAllTxns();
+    getAllCompletedTxns();
   };
 
   const handleDecline = (e) => {
