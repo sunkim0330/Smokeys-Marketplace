@@ -20,7 +20,11 @@ const Overview = ({ currentUser, getLoggedInUser }) => {
   const getAllItems = () => {
     axios
       .get(`/items/${currentUser._id}`)
-      .then((response) => setTotalItemsToTrade(response.data.length))
+      .then((response) =>
+        setTotalItemsToTrade(
+          response.data.filter((item) => item.availability === true).length
+        )
+      )
       .catch((err) => console.log(err));
   };
 

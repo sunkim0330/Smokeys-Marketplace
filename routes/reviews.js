@@ -41,7 +41,6 @@ const getReviewSize = async (req, res) => {
   const response = {size : length}
 
   res.send(response)
-  // .catch(sendStatus(422));
 }
 
 /**
