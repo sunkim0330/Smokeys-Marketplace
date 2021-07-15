@@ -5,9 +5,8 @@ import EditUserModal from "./EditUserModal.jsx";
 
 const Overview = () => {
   const [currentUserData, setCurrentUserData] = useState("");
-  const [currentUserTransactionData, setCurrentUserTransactionData] = useState(
-    []
-  );
+  const [currentUserTransactionData, setCurrentUserTransactionData] =
+    useState(0);
   const [overviewCurrentTrades, setoverviewCurrentTrades] = useState([]);
   const [totalItemsToTrade, setTotalItemsToTrade] = useState("");
 
@@ -35,21 +34,23 @@ const Overview = () => {
       .catch((err) => console.log(err));
   };
 
+  const getAllCompletedTxns = () => {
+    axios
+      .get("/transactions/?user_id=60ef401cdb302e3e61951709&count=10")
+      .then((response) => {
+        setCurrentUserTransactionData(
+          response.data.results.filter((item) => item.status === "completed")
+            .length
+        );
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getCurUser();
     getAllTxns();
     getAllItems();
-    axios
-      .get("/transactions/?user_id=60ef401cdb302e3e61951709&count=10")
-      .then((response) => setCurrentUserTransactionData(response.data))
-      .then(() => {
-        currentUserTransactionData.map((item) => {
-          if (item.status === "completed") {
-            completedTxn++;
-          }
-        });
-      })
-      .catch((err) => console.log(err));
+    getAllCompletedTxns();
   }, []);
 
   const openEditModal = (e) => {
@@ -80,7 +81,7 @@ const Overview = () => {
         </div>
         <div className="overview-metadata">
           <p>Items Available for Trade: {totalItemsToTrade}</p>
-          <p>Completed Transactions: {completedTxn}</p>
+          <p>Completed Transactions: {currentUserTransactionData}</p>
           <p>Total # of Reviews/Ratings: </p>
         </div>
       </div>
@@ -96,6 +97,7 @@ const Overview = () => {
         <OverviewCurrentTrades
           overviewCurrentTrades={overviewCurrentTrades}
           getAllTxns={getAllTxns}
+          getAllCompletedTxns={getAllCompletedTxns}
         />
       </div>
     </div>

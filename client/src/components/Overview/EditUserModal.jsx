@@ -42,24 +42,33 @@ const EditUserModal = ({ currentUserData, getCurUser }) => {
   return (
     <div className="edit-user-modal-container" style={{ display: "none" }}>
       <div className="edit-user-modal">
-        <p>Phone</p>
-        <input
-          type="tel"
-          pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
-          value={phone}
-          onChange={handlePhoneChange}
-        />
-        <p>Zip</p>
-        <input
-          type="number"
-          pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/"
-          value={zip}
-          onChange={handleZipChange}
-        />
-        <div className="btn-container">
+        <form className="edit-user-modal-form" onSubmit={handleSubmit}>
+          <label>
+            Phone
+            <input
+              type="tel"
+              pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+              value={phone}
+              onChange={handlePhoneChange}
+            />
+          </label>
+          <label>
+            Zip
+            <input
+              type="text"
+              pattern="[0-9]*"
+              minLength="5"
+              maxLength="5"
+              value={zip}
+              onChange={handleZipChange}
+            />
+          </label>
           <div onClick={handleCancel}>Cancel</div>
-          <div onClick={handleSubmit}>Submit</div>
-        </div>
+          <input type="submit" value="Submit" />
+        </form>
+        {/* <p>Zip</p>
+        <div className="btn-container">
+        </div> */}
       </div>
     </div>
   );
