@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 
 
-const MarketplaceCard = ( {item} ) => {
+const MarketplaceCard = ( {item, displayModal, setDisplayModal, selectedItemModal, setSelectedItemModal} ) => {
 
   const [show, setShow] = useState(false);
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false)
   const modalClick = (e) => {
-    console.log('click')
+    setDisplayModal(true)
+    setSelectedItemModal({name: item.name, image: item.image_link, description: item.description})
   }
 
   return (
