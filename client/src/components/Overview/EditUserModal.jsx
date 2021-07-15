@@ -28,7 +28,7 @@ const EditUserModal = ({ currentUserData, getCurUser }) => {
       location: zip === "" ? currentUserData.results[0].location : zip,
     };
     axios
-      .put("/user/60ef401cdb302e3e61951709", data)
+      .put("/user/60ee54c3690bea0083c633c6", data)
       .then((response) => console.log(response.data))
       .catch((err) => console.log(`Error: ${err}`));
     document.querySelectorAll(".edit-user-modal-container")[0].style.display =

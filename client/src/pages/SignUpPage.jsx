@@ -34,15 +34,22 @@ const SignUp = ( {currentUser, getUser} ) => {
     <div id='loadImage'></div>
     <div className='signUpForm'>
       <form className='newUserForm' onSubmit={putNewUser}>
-          <label>
+        <div>
+            <label>
             Phone Number:
-            <input type='tel' placeholder='ex: 123-456-7890' pattern='[0-9]{3}[0-9]{3}[0-9]{4}' required onChange={(e) => {setPhone(e.target.value)}}/>
+            <input className='marketplace-input-search' type='tel' placeholder='ex: 123-456-7890' pattern='[0-9]{3}[0-9]{3}[0-9]{4}' required onChange={(e) => {setPhone(e.target.value)}}/>
           </label>
+        </div>
+        <div>
           <label>
             Zip Code:
-            <input type='text' placeholder='ex: 33713' pattern='[0-9]*' minLength='5' maxLength='5' required onChange={(e) => {setLocation(e.target.value)}}/>
+            <input className='marketplace-input-search' type='text' placeholder='ex: 33713' pattern='[0-9]*' minLength='5' maxLength='5' required onChange={(e) => {setLocation(e.target.value)}}/>
           </label>
+        </div>
+        <div>
           <input type='submit' value='Submit' className='add-item-btn'/>
+        </div>
+
         </form>
     </div>
       {success && (<Redirect to="/marketplace" />)}
