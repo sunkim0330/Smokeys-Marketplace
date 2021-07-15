@@ -28,9 +28,18 @@ const getReviews = async (req, res) => {
 
     response.results = fetchRatingsReviews;
 
-    res.status(200).send(response);
+    res.sendStatus(200)
+      .send(response)
+      .catch(sendStatus(422));
 }
 
+const getReviewSize = async (req, res) => {
+  let user = req.params.user_id;
+  let length = await RatingsReviews.find({reviewed_id : new Types.ObjectId(user)}).countDocuments()
+  const response = {size : length}
+
+  res.send(response);
+}
 /**
  @dev This function will POST a new rating and review for a specific transaction
  @param { reviewer_id } req  reviewer_id is the ID for the user initiating the review
@@ -50,14 +59,17 @@ const addReview = async (req, res) => {
   })
 
   newReview.save()
-    .then(() => res.sendStatus(201))
+    .then(() => {
+      res.send(newReview)
+    })
     .catch(() => res.sendStatus(422))
 
 }
 
 module.exports = {
   getReviews,
-  addReview
+  addReview,
+  getReviewSize
 }
 
 // example ratingreview:
