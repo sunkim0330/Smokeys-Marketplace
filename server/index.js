@@ -90,6 +90,9 @@ app.route("/reviews/:user_id")
   .get(ratingsReviews.getReviews)
   .post(ratingsReviews.addReview);
 
+app.route("/reviewSize/:user_id")
+  .get(ratingsReviews.getReviewSize);
+
 // Auth Routes
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 

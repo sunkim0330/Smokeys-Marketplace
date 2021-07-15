@@ -29,7 +29,7 @@ const RatingReviewsList = ({ currentUser }) => {
           />
         }) : <div className="reviews-no-reviews"> You have no reviews 😔</div>
       }
-      </div>
+    </div>
   );
 };
 
