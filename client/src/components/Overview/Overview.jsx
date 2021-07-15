@@ -3,41 +3,30 @@ import axios from "axios";
 import OverviewCurrentTrades from "./OverviewCurrentTrades.jsx";
 import EditUserModal from "./EditUserModal.jsx";
 
-const Overview = () => {
-  const [currentUserData, setCurrentUserData] = useState("");
+const Overview = ({ currentUser, getUser }) => {
   const [currentUserTransactionData, setCurrentUserTransactionData] =
     useState(0);
   const [overviewCurrentTrades, setoverviewCurrentTrades] = useState([]);
   const [totalItemsToTrade, setTotalItemsToTrade] = useState("");
   const [totalRatingsAndReviews, setTotalRatingsAndReviews] = useState(0);
 
-  let completedTxn = 0;
-
-  const getCurUser = () => {
-    axios
-      .get("/user/60ef401cdb302e3e61951709")
-      .then((response) => setCurrentUserData(response.data))
-      .catch((err) => console.log(err));
-  };
-
   const getAllTxns = () => {
     axios
-      .get("/transactions/user?user_id=60ef401cdb302e3e61951709")
+      .get(`/transactions/user?user_id=${currentUser._id}`)
       .then((response) => setoverviewCurrentTrades(response.data))
       .catch((err) => console.log(err));
   };
 
   const getAllItems = () => {
     axios
-      .get("/items/60ef401cdb302e3e61951709")
-      // .then((response) => console.log(response.data.length))
+      .get(`/items/${currentUser._id}`)
       .then((response) => setTotalItemsToTrade(response.data.length))
       .catch((err) => console.log(err));
   };
 
   const getAllCompletedTxns = () => {
     axios
-      .get("/transactions/?user_id=60ef401cdb302e3e61951709&count=10")
+      .get(`/transactions/?user_id=${currentUser._id}&count=10`)
       .then((response) => {
         setCurrentUserTransactionData(
           response.data.results.filter((item) => item.status === "completed")
@@ -49,13 +38,13 @@ const Overview = () => {
 
   const getRatingandReviews = () => {
     axios
-      .get("/reviewSize/60ef401cdb302e3e61951709")
+      .get(`/reviewSize/${currentUser._id}`)
       .then((response) => setTotalRatingsAndReviews(response.data.size))
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    getCurUser();
+    getUser(); //change
     getAllTxns();
     getAllItems();
     getAllCompletedTxns();
@@ -70,19 +59,18 @@ const Overview = () => {
   return (
     <div className="overview-container">
       <EditUserModal
-        currentUserData={currentUserData}
-        getCurUser={getCurUser}
+        currentUser={currentUser}
+        getUser={getUser} //change
       />
       <div className="overview-container-top-row">
         <div className="basic-info">
           <div>
             <p className="overview-name">
-              {currentUserData && currentUserData.results[0].firstName}{" "}
-              {currentUserData && currentUserData.results[0].lastName}
+              {currentUser.firstName} {currentUser.lastName}
             </p>
           </div>
           <p className="overview-community-id">
-            Zip Code: {currentUserData && currentUserData.results[0].location}
+            Zip Code: {currentUser.location}
           </p>
           <button className="overview-edit-user-btn" onClick={openEditModal}>
             Edit User Info

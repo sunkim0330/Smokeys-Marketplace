@@ -5,7 +5,7 @@ import Overview from "../components/Overview/Overview.jsx";
 import PastTrades from "../components/PastTrades/PastTrades.jsx";
 import RatingsReviews from "../components/RatingsReviews/RatingsReviews.jsx";
 
-const UserPage = ({ currentUser }) => {
+const UserPage = ({ currentUser, getUser }) => {
   const [currentTab, setCurrentTab] = useState("overview");
 
   const handleTabClick = (event) => {
@@ -47,7 +47,9 @@ const UserPage = ({ currentUser }) => {
             </p>
           </li>
         </ul>
-        {currentTab === "overview" && <Overview />}
+        {currentTab === "overview" && (
+          <Overview currentUser={currentUser} getUser={getUser} />
+        )}
         {currentTab === "current-trades" && (
           <CurrentTrades currentUser={currentUser} />
         )}
