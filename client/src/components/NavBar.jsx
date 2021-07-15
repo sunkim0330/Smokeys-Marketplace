@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const NavBar = ( {logout, isLoggedIn} ) => {
+  console.log(useLocation().pathname)
 
   const navbar = !isLoggedIn ? (
     <></>
   ) : (
     <div className="navbar-container">
-      <div className="title">Smokey's Marketplace</div>
+      {useLocation().pathname === '/' ? '' : (
+        <Link to="/">
+          <div className="title">Smokey's Marketplace</div>
+        </Link>
+      )}
       <div className="navigation">
         <Link to="/user">
           <i className="fas fa-user"/><br/>
