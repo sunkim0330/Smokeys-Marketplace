@@ -5,11 +5,10 @@ import axios from 'axios';
 const PastTradesList = ({currentUser}) => {
   const [transactions, setTransactions] = useState([]);
 
-
-  //we are going to get user_id from high level component and passing down?60ede0c21d6313096619f490
   const getUserTransaction = () => {
     axios.get(`/transactions/user?user_id=60ede0c21d6313096619f490&status=completed`)
     .then((response) => {
+      console.log('user transaction',response.data)
       setTransactions(response.data);
     })
     .catch(err => console.log(err))

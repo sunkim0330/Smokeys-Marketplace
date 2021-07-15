@@ -1,18 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const AddReviewModal = ({showModal, onClose, transaction, setSubmittedReview, setShowModal}) => {
-  const [error, setError] = useState({});
-  const [isValid, setIsValid] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+const AddReviewModal = ({showModal, onClose, transaction, setSubmittedReview, setShowModal, getPastReviews, submittedReview}) => {
   const [formData, setFormData] = useState({
     reviewed_id: transaction.fromUser._id,
     reviewer_id : '60ede0c21d6313096619f490',
     transaction_id: transaction.transactionId,
-    rating: null,
-    review: ''
+    ratings: null,
+    reviews: ''
   })
-
 
   const sendRequest = (e) => {
     e.preventDefault()
@@ -48,6 +44,7 @@ const AddReviewModal = ({showModal, onClose, transaction, setSubmittedReview, se
   if (!showModal) {
     return null;
   }
+
 
   return (
     <div className="add-review-modal-wrapper">

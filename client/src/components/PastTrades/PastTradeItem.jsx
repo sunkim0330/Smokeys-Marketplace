@@ -1,15 +1,32 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import AddReviewModal from './AddReviewModal.jsx'
+import axios from 'axios';
 
 const PastTradeItem = ({transactions}) => {
-  const [showModal, setShowModal] = useState(false)
-  const [submittedReview, setSubmittedReview] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [submittedReview, setSubmittedReview] = useState(false);
+  const [getReviews, setGetReviews] = useState([]);
 
   const handleModalClose = () => {
     if (submittedReview) {
       setShowModal(false);
     }
   }
+
+  const getPastReviews = () => {
+    axios({
+      method: 'GET',
+      url: `/reviews/60ede0c21d6313096619f493?count=100`
+    })
+    .then(({data}) => {
+      console.log('get request after adding review', data);
+      setGetReviews(data);
+    })
+  }
+
+  useEffect (() => {
+    getPastReviews();
+  }, [])
 
   let renderPastTrades = transactions.map((trx) => {
     return (
@@ -23,7 +40,7 @@ const PastTradeItem = ({transactions}) => {
           onClick={() => setShowModal(true)}>
             Add Review
         </button>) : (<div>Submitted!</div>)}
-        <AddReviewModal setSubmittedReview={setSubmittedReview} transaction={trx} showModal={showModal} onClose={() => setShowModal(false)}/>
+        <AddReviewModal setSubmittedReview={setSubmittedReview} transaction={trx} showModal={showModal} onClose={() => setShowModal(false)} getPastReviews={getPastReviews} submittedReview={submittedReview}/>
       </div>
     )
   })

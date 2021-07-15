@@ -416,7 +416,8 @@
 /* TRANSACTION MODAL CSS */
 
 .transaction-modal-wrapper,
-.edit-user-modal-container {
+.edit-user-modal-container,
+.add-review-modal-wrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -427,7 +428,8 @@
 }
 
 .transaction-modal,
-.edit-user-modal {
+.edit-user-modal,
+.add-review-modal-container {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -636,6 +638,7 @@
     z-index: 10;
 }
  .add-review-modal-container {
+    width: 300px;
     display: flex;
     flex-direction: column;
  }
