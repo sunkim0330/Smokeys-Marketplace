@@ -60,14 +60,14 @@ const AddNewItem = ({ currentUser }) => {
         </select>
         <h4>Description</h4>
         <textarea onChange={e => setDescription(e.target.value)} cols="110" rows="15"></textarea>
-        <h4>Add Photos</h4>
-        <div className="new-item-photo">
-          <div className="new-item-photo-add">+</div>
-          <input type="file" name="filename" onChange={e => setPhotos(e.target.files[0])} />
-          <div>Upload Photo</div>
+        <div className="add-photo-container">
+          <h4>Add Photos</h4>
+          <div className="new-item-photo">
+          <input type="file" name="+" onChange={e => setPhotos(e.target.files[0])} className="custom-file-input"/>
+        </div>
+        <button onClick={submitItem} className="add-item-btn">Add Item</button>
         </div>
       </div>
-      <button onClick={submitItem} className="add-item-btn">Add Item</button>
     </div>
   );
 };
