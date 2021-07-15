@@ -45,6 +45,10 @@ const TransactionSchema = new mongoose.Schema({
     type: String,
     enum: ['pending', 'completed', 'cancelled'],
     default: 'pending'
+  },
+  reviewLeft: {
+    type: Boolean,
+    default: false
   }
 }, { timestamps: true })
 
