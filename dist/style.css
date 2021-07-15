@@ -409,7 +409,8 @@
 
 /* TRANSACTION MODAL CSS */
 
-.transaction-modal-wrapper {
+.transaction-modal-wrapper,
+.edit-user-modal-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -419,7 +420,8 @@
   z-index: 2;
 }
 
-.transaction-modal {
+.transaction-modal,
+.edit-user-modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -577,4 +579,40 @@
 .reviews-no-reviews {
   padding-top: 5px;
   text-align: center;
+}
+
+.edit-user-modal {
+  display: flex;
+  flex-direction: column;
+}
+.edit-user-modal h2 {
+  margin-bottom: 25px;
+}
+
+.edit-user-modal-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.edit-user-modal-form > * {
+  margin-bottom: 25px;
+}
+
+.edit-user-modal-form input {
+  display: block;
+}
+
+.edit-user-modal-btn {
+  font-size: 18px;
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 50px;
+  text-align: center;
+}
+
+.edit-user-modal-btn:hover {
+  cursor: pointer;
 }

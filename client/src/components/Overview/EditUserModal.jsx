@@ -28,7 +28,7 @@ const EditUserModal = ({ currentUserData, getCurUser }) => {
       location: zip === "" ? currentUserData.results[0].location : zip,
     };
     axios
-      .put("/user/60ee54c3690bea0083c633c6", data)
+      .put("/user/60ef401cdb302e3e61951709", data)
       .then((response) => console.log(response.data))
       .catch((err) => console.log(`Error: ${err}`));
     document.querySelectorAll(".edit-user-modal-container")[0].style.display =
@@ -42,6 +42,7 @@ const EditUserModal = ({ currentUserData, getCurUser }) => {
   return (
     <div className="edit-user-modal-container" style={{ display: "none" }}>
       <div className="edit-user-modal">
+        <h2>Edit Information</h2>
         <form className="edit-user-modal-form" onSubmit={handleSubmit}>
           <label>
             Phone
@@ -63,8 +64,10 @@ const EditUserModal = ({ currentUserData, getCurUser }) => {
               onChange={handleZipChange}
             />
           </label>
-          <div onClick={handleCancel}>Cancel</div>
-          <input type="submit" value="Submit" />
+          <input className="edit-user-modal-btn" type="submit" value="Submit" />
+          <div className="edit-user-modal-btn" onClick={handleCancel}>
+            Cancel
+          </div>
         </form>
         {/* <p>Zip</p>
         <div className="btn-container">

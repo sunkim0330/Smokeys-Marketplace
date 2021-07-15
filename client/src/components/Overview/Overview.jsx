@@ -14,21 +14,21 @@ const Overview = () => {
 
   const getCurUser = () => {
     axios
-      .get("/user/60ee54c3690bea0083c633c6")
+      .get("/user/60ef401cdb302e3e61951709")
       .then((response) => setCurrentUserData(response.data))
       .catch((err) => console.log(err));
   };
 
   const getAllTxns = () => {
     axios
-      .get("/transactions/user?user_id=60ee54c3690bea0083c633c6")
+      .get("/transactions/user?user_id=60ef401cdb302e3e61951709")
       .then((response) => setoverviewCurrentTrades(response.data))
       .catch((err) => console.log(err));
   };
 
   const getAllItems = () => {
     axios
-      .get("/items/60ee54c3690bea0083c633c6")
+      .get("/items/60ef401cdb302e3e61951709")
       // .then((response) => console.log(response.data.length))
       .then((response) => setTotalItemsToTrade(response.data.length))
       .catch((err) => console.log(err));
@@ -36,7 +36,7 @@ const Overview = () => {
 
   const getAllCompletedTxns = () => {
     axios
-      .get("/transactions/?user_id=60ee54c3690bea0083c633c6&count=10")
+      .get("/transactions/?user_id=60ef401cdb302e3e61951709&count=10")
       .then((response) => {
         setCurrentUserTransactionData(
           response.data.results.filter((item) => item.status === "completed")
