@@ -55,30 +55,15 @@ const getReviewSize = async (req, res) => {
 
 const addReview = async (req, res) => {
   const newReview = new RatingsReviews({
-<<<<<<< HEAD
-    reviewed_id : req.body.reviewed,
-    reviewer_id : req.body.reviewer,
-    transaction_id : req.body.transaction,
-    ratings: req.body.ratings,
-    reviews: req.body.reviews
-  })
-
-  newReview.save()
-    .then((response) => {
-      res.status(201).send(response);
-      return;
-    })
-=======
     reviewed_id : req.body.reviewer_id,
     reviewer_id : req.body.reviewed_id,
     transaction_id : req.body.transaction_id,
-    rating: req.body.rating,
-    review: req.body.review
+    ratings: req.body.rating,
+    reviews: req.body.review
   })
 
   newReview.save()
     .then(() => res.send(newReview))
->>>>>>> 24ffe4533f823aba2b4bcb1d6b3d5fcd88cdb707
     .catch(() => res.sendStatus(422))
 
 }

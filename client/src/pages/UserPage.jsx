@@ -47,13 +47,6 @@ const UserPage = ({ currentUser, getLoggedInUser }) => {
             </p>
           </li>
         </ul>
-<<<<<<< HEAD
-        {currentTab === "overview" && <Overview />}
-        {currentTab === "current-trades" && <CurrentTrades currentUser={currentUser} />}
-        {currentTab === "past-trades" && <PastTrades currentUser={currentUser}/>}
-        {currentTab === "add-new-item" && <AddNewItem currentUser={ currentUser } />}
-        {currentTab === "ratings-reviews" && <RatingsReviews currentUser={ currentUser }/>}
-=======
         {currentTab === "overview" && (
           <Overview
             currentUser={currentUser}
@@ -63,14 +56,15 @@ const UserPage = ({ currentUser, getLoggedInUser }) => {
         {currentTab === "current-trades" && (
           <CurrentTrades currentUser={currentUser} />
         )}
-        {currentTab === "past-trades" && <PastTrades />}
+        {currentTab === "past-trades" && (
+          <PastTrades currentUser={currentUser}/>
+        )}
         {currentTab === "add-new-item" && (
           <AddNewItem currentUser={currentUser} />
         )}
         {currentTab === "ratings-reviews" && (
           <RatingsReviews currentUser={currentUser} />
         )}
->>>>>>> 24ffe4533f823aba2b4bcb1d6b3d5fcd88cdb707
       </section>
     </div>
   );
