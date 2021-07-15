@@ -146,6 +146,7 @@
   padding: 35px 25px;
   box-shadow: 5px 5px 8px -5px #333;
   height: 500px;
+  overflow-y: auto;
 
 }
 
@@ -164,6 +165,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  text-align: center;
 }
 
 .overview-edit-user-btn,
@@ -174,6 +176,11 @@
   border: none;
   padding: 5px 15px;
   border-radius: 50px;
+  width: max-content;
+}
+
+.overview-edit-user-btn {
+  margin-left: 30px;
 }
 
 .add-item-btn:hover {
@@ -218,12 +225,13 @@
   background-color: rgb(250, 245, 239);
 }
 
+
 .overview-current-trade-item,
 .past-trade-item-container {
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
-  background-color: white;
+  background-color: papayawhip;
 }
 
 .accept,
@@ -255,6 +263,7 @@
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
+  background-color: rgb(250, 245, 239);
 }
 
 .current-trade-card img {
@@ -280,11 +289,8 @@
 
 .past-trades-list-container,
 .ratings-reviews-list-container {
-  padding: 25px 0;
   margin: 10px;
-  border: 1px solid black;
   border-radius: 12px;
-  background-color: white;
 }
 
 /******************* MARKETPLACE STYLES *******************/
@@ -412,10 +418,10 @@
   z-index: 5;
 }
 
-.add-item-btn {
-  margin: 20px 45px;
-  width: max-content;
-  top: auto;
+.add-photo-container .add-item-btn {
+  /* margin: 20px 45px; */
+  width: 175px;
+  margin-top: 150px;
 }
 
 .custom-file-input::-webkit-file-upload-button {
@@ -567,6 +573,11 @@
   text-decoration: none;
   text-align: center;
   align-items: center;
+  margin: 20px 45px;
+}
+
+.splashButtons .add-item-btn {
+  margin: 20px 45px;
 }
 .splashButtons div:hover {
   cursor: pointer;

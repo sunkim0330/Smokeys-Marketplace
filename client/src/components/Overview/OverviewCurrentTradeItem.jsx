@@ -24,10 +24,10 @@ const OverviewCurrentTradeItem = ({
       <div className="overview-trade-item">{item.toItem.name}</div>
       <div className="overview-trade-item">{item.fromItem.name}</div>
       <div className="accept-decline">
-        <button className="accept" onClick={handleAccept}>
+        <button className="accept add-item-btn" onClick={handleAccept} >
           Accept
         </button>
-        <button className="decline" onClick={handleDecline}>
+        <button className="decline add-item-btn" onClick={handleDecline}>
           Decline
         </button>
       </div>
