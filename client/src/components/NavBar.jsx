@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const NavBar = ( {logout, isLoggedIn} ) => {
-  console.log(useLocation().pathname)
 
   const navbar = !isLoggedIn ? (
     <></>
