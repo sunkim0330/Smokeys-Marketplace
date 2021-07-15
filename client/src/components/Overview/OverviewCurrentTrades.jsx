@@ -1,12 +1,23 @@
 import React from "react";
 import OverviewCurrentTradeItem from "./OverviewCurrentTradeItem.jsx";
 
-const OverviewCurrentTrades = () => {
+const OverviewCurrentTrades = ({
+  overviewCurrentTrades,
+  getAllTxns,
+  getAllCompletedTxns,
+}) => {
   return (
     <div>
-      <OverviewCurrentTradeItem />
-      <OverviewCurrentTradeItem />
-      <OverviewCurrentTradeItem />
+      {overviewCurrentTrades
+        .filter((item) => (item.status = "pending"))
+        .map((item) => (
+          <OverviewCurrentTradeItem
+            key={item.transactionId}
+            item={item}
+            getAllTxns={getAllTxns}
+            getAllCompletedTxns={getAllCompletedTxns}
+          />
+        ))}
     </div>
   );
 };

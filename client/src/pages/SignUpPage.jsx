@@ -7,11 +7,9 @@ const SignUp = ( {currentUser, getUser} ) => {
   const [location, setLocation] = useState('');
   const [success, setSuccess] = useState(false);
 
-  console.log(currentUser)
-
   const putNewUser = (e) => {
     e.preventDefault();
-    axios.put(`/user/${currentUser.userId}`, {
+    axios.put(`/user/${currentUser._id}`, {
       phone: phone,
       location: location,
       email: currentUser.email,
@@ -30,19 +28,30 @@ const SignUp = ( {currentUser, getUser} ) => {
 
 
   return (
-  <div>SignUp
-    <div>We just need a little bit more info before you can start trading...</div>
-    <form onSubmit={putNewUser}>
-        <label>
-          Phone Number:
-          <input type='tel' placeholder='ex: 123-456-7890' pattern='[0-9]{3}[0-9]{3}[0-9]{4}' required onChange={(e) => {setPhone(e.target.value)}}/>
-        </label>
-        <label>
-          Zip Code:
-          <input type='number' placeholder='ex: 33713' required onChange={(e) => {setLocation(e.target.value)}}/>
-        </label>
-        <input type='submit' value='Submit' />
-      </form>
+  <div className='splash'>
+    <h1>Thanks for signing up!</h1>
+    <h2>We just need a little bit more info before you can start trading...</h2>
+    <div id='loadImage'></div>
+    <div className='signUpForm'>
+      <form className='newUserForm' onSubmit={putNewUser}>
+        <div>
+            <label>
+            Phone Number:
+            <input className='marketplace-input-search' type='tel' placeholder='ex: 123-456-7890' pattern='[0-9]{3}[0-9]{3}[0-9]{4}' required onChange={(e) => {setPhone(e.target.value)}}/>
+          </label>
+        </div>
+        <div>
+          <label>
+            Zip Code:
+            <input className='marketplace-input-search' type='text' placeholder='ex: 33713' pattern='[0-9]*' minLength='5' maxLength='5' required onChange={(e) => {setLocation(e.target.value)}}/>
+          </label>
+        </div>
+        <div>
+          <input type='submit' value='Submit' className='add-item-btn'/>
+        </div>
+
+        </form>
+    </div>
       {success && (<Redirect to="/marketplace" />)}
   </div>
   );
