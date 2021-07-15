@@ -23,15 +23,18 @@ const getReviews = async (req, res) => {
 const addReview = async (req, res) => {
   console.log(req.body);
   const newReview = new RatingsReviews({
-    reviewed_id : req.body.reviewer,
-    reviewer_id : req.body.reviewed,
+    reviewed_id : req.body.reviewed,
+    reviewer_id : req.body.reviewer,
     transaction_id : req.body.transaction,
     ratings: req.body.rating,
     reviews: req.body.review
   })
 
   newReview.save()
-    .then(() => res.sendStatus(201))
+    .then((response) => {
+      res.status(201).send(response);
+      return;
+    })
     .catch(() => res.sendStatus(422))
 
 }

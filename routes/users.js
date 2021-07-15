@@ -24,7 +24,10 @@ const createNewUser = async (req, res) => {
   })
 
   newUser.save()
-  .then((result) => res.status(201).send(result))
+  .then((result) => {
+    res.status(201).send(result)
+    return;
+  })
   .catch(() => res.sendStatus(400))
 }
 
