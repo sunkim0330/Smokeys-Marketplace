@@ -9,6 +9,7 @@ const Overview = () => {
     useState(0);
   const [overviewCurrentTrades, setoverviewCurrentTrades] = useState([]);
   const [totalItemsToTrade, setTotalItemsToTrade] = useState("");
+  const [totalRatingsAndReviews, setTotalRatingsAndReviews] = useState(0);
 
   let completedTxn = 0;
 
@@ -46,11 +47,19 @@ const Overview = () => {
       .catch((err) => console.log(err));
   };
 
+  const getRatingandReviews = () => {
+    axios
+      .get("/reviewSize/60ef401cdb302e3e61951709")
+      .then((response) => setTotalRatingsAndReviews(response.data.size))
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getCurUser();
     getAllTxns();
     getAllItems();
     getAllCompletedTxns();
+    getRatingandReviews();
   }, []);
 
   const openEditModal = (e) => {
@@ -82,7 +91,7 @@ const Overview = () => {
         <div className="overview-metadata">
           <p>Items Available for Trade: {totalItemsToTrade}</p>
           <p>Completed Transactions: {currentUserTransactionData}</p>
-          <p>Total # of Reviews/Ratings: </p>
+          <p>Total # of Reviews/Ratings: {totalRatingsAndReviews}</p>
         </div>
       </div>
       <div className="overview-cur-trade-title">Current Trade Offers</div>
