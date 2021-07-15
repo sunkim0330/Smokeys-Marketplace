@@ -6,19 +6,15 @@ import axios from 'axios';
 const Marketplace = () => {
   let currentUser = "60ef1cb062fe173ce7af8805"
 
-  const [marketItems, getMarketItems] = useState([]);
+  const [marketItems, setMarketItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([])
 
   const getAllMarketItems = () => {
-    // let body = {  params: {
-    //   user_object_id: "60ef1cb062fe173ce7af8805",
-    //   location: "08724"
-    //   }
-    // }
-    // console.log('running')
     axios.get('/items?user_object_id=60ef1cb062fe173ce7af8805&location=08724')
     .then((response) => {
       console.log('response:   ', response.data)
-      // getMarketItems(data.data)
+      setMarketItems(response.data)
+      setFilteredItems(response.data)
     })
     .catch(err => {
       console.log('error', err)
@@ -29,15 +25,23 @@ const Marketplace = () => {
     getAllMarketItems()
   }, [])
 
-  // useEffect(() => {
-  //   console.log('items', marketItems)
-  // }, [marketItems])
+  useEffect(() => {
+    console.log('items', marketItems)
+  }, [marketItems])
 
   return (
     <div className="marketplace-container">
-    <MarketplaceSearch />
+    <MarketplaceSearch
+      marketItems={marketItems}
+      setMarketItems={setMarketItems}
+      filteredItems={filteredItems}
+      setFilteredItems={setFilteredItems}
+      />
      <div className="marketplace-list-container">
-      <MarketplaceList />
+      <MarketplaceList
+        marketItems={marketItems}
+        setMarketItems={setMarketItems}
+        filteredItems={filteredItems} />
      </div>
     </div>
   )

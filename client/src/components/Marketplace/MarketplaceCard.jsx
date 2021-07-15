@@ -1,15 +1,23 @@
 import React, {useState, useEffect} from 'react';
 
 
-const MarketplaceCard = () => {
+const MarketplaceCard = ( {item} ) => {
+
+  const [show, setShow] = useState(false);
+  const openModal = () => setShow(true);
+  const closeModal = () => setShow(false)
+  const modalClick = (e) => {
+    console.log('click')
+  }
+
   return (
     <div className="marketplace-card">
-      <img src="https://placekitten.com/640/360" alt="img placeholder"/>
+      <img onClick={modalClick} src={item.image_link} alt="img placeholder"/>
       <div>
-        <div>Image</div>
-        <div>Item Name</div>
-        <div>Description</div>
-        <div>User Name</div>
+        <div>{item.name}</div>
+        <div>{item.type}</div>
+        <div>{item.description}</div>
+
       </div>
     </div>
   );
