@@ -145,6 +145,7 @@
   background-color: papayawhip;
   padding: 35px 25px;
   box-shadow: 5px 5px 8px -5px #333;
+  height: 500px;
 
 }
 
@@ -237,7 +238,7 @@
 }
 /* TRADE CARDS */
 .current-trades-container {
-  height: 650px;
+  height: 500px;
   overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
@@ -379,19 +380,27 @@
 }
 /* End of Marketplace */
 
+.add-new-item-form {
+  position: relative;
+
+}
+
+
 .add-new-item-container > * {
   padding-left: 45px;
+
 }
 
 .add-new-item-form {
-  border-top: 1px solid black;
+  /* border-top: 1px solid black; */
 }
 
 .new-item-photo {
+  background-color: white;
   border: 1px solid black;
   border-radius: 12px;
   width: 125px;
-  height: 175px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -400,17 +409,52 @@
 .new-item-photo-add {
   font-size: 75px;
   margin-top: 25px;
+  z-index: 5;
 }
 
 .add-item-btn {
-  padding: 5px 15px;
   margin: 20px 45px;
+  width: max-content;
+  top: auto;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: '+';
+  margin-left: 16px;
+  background: white;
+  border: none;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 100pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: white;
 }
 
 .add-new-item-container h3,
 .add-new-item-container h4 {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.add-photo-container {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* TRANSACTION MODAL CSS */
