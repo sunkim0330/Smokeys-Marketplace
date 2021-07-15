@@ -29,7 +29,7 @@ const uploadImage = async (req, res) => {
     ContentEncoding: 'base64',
     ContentType: `image/${type}`
   }
-
+console.log(AWS.config)
   /**
    * @dev Upload method - Should return a data object with property of .Location of where file is stored
    */

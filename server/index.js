@@ -89,6 +89,10 @@ app
   .route("/transactions/:transaction_id/cancel")
   .put(transactions.cancelTransaction);
 
+app
+  .route("/transactions/:transaction_id/review-left")
+  .put(transactions.reviewTransaction);
+
 app.route('/transactions/user')
   .get(transactions.getUserTransactions)
 
