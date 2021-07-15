@@ -14,8 +14,10 @@ const MarketplaceCard = ( {item, displayModal, setDisplayModal, selectedItemModa
       <div>
         <div>{item.name}</div>
         <div>{item.type}</div>
-        <div>{item.description}</div>
 
+        {item.description.length > item.description.slice(0, 40).length ? (
+          <div>{item.description.slice(0, 40) + "..."}</div>) :
+          (<div>{item.description}</div>)}
       </div>
     </div>
   );
