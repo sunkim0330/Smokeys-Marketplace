@@ -3,53 +3,52 @@ import axios from "axios";
 import OverviewCurrentTrades from "./OverviewCurrentTrades.jsx";
 import EditUserModal from "./EditUserModal.jsx";
 
-const Overview = () => {
-  const [currentUserData, setCurrentUserData] = useState("");
-  const [currentUserTransactionData, setCurrentUserTransactionData] = useState(
-    []
-  );
+const Overview = ({ currentUser, getLoggedInUser }) => {
+  const [currentUserTransactionData, setCurrentUserTransactionData] =
+    useState(0);
   const [overviewCurrentTrades, setoverviewCurrentTrades] = useState([]);
   const [totalItemsToTrade, setTotalItemsToTrade] = useState("");
-
-  let completedTxn = 0;
-
-  const getCurUser = () => {
-    axios
-      .get("/user/60ee54c3690bea0083c633c6")
-      .then((response) => setCurrentUserData(response.data))
-      .catch((err) => console.log(err));
-  };
+  const [totalRatingsAndReviews, setTotalRatingsAndReviews] = useState(0);
 
   const getAllTxns = () => {
     axios
-      .get("/transactions/user?user_id=60ee54c3690bea0083c633c6")
+      .get(`/transactions/user?user_id=${currentUser._id}`)
       .then((response) => setoverviewCurrentTrades(response.data))
       .catch((err) => console.log(err));
   };
 
   const getAllItems = () => {
     axios
-      .get("/items/60ee54c3690bea0083c633c6")
-      // .then((response) => console.log(response.data.length))
+      .get(`/items/${currentUser._id}`)
       .then((response) => setTotalItemsToTrade(response.data.length))
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    getCurUser();
-    getAllTxns();
-    getAllItems();
+  const getAllCompletedTxns = () => {
     axios
-      .get("/transactions/?user_id=60ee54c3690bea0083c633c6&count=10")
-      .then((response) => setCurrentUserTransactionData(response.data))
-      .then(() => {
-        currentUserTransactionData.map((item) => {
-          if (item.status === "completed") {
-            completedTxn++;
-          }
-        });
+      .get(`/transactions/?user_id=${currentUser._id}&count=10`)
+      .then((response) => {
+        setCurrentUserTransactionData(
+          response.data.results.filter((item) => item.status === "completed")
+            .length
+        );
       })
       .catch((err) => console.log(err));
+  };
+
+  const getRatingandReviews = () => {
+    axios
+      .get(`/reviewSize/${currentUser._id}`)
+      .then((response) => setTotalRatingsAndReviews(response.data.size))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getLoggedInUser(); //change
+    getAllTxns();
+    getAllItems();
+    getAllCompletedTxns();
+    getRatingandReviews();
   }, []);
 
   const openEditModal = (e) => {
@@ -60,19 +59,18 @@ const Overview = () => {
   return (
     <div className="overview-container">
       <EditUserModal
-        currentUserData={currentUserData}
-        getCurUser={getCurUser}
+        currentUser={currentUser}
+        getLoggedInUser={getLoggedInUser} //change
       />
       <div className="overview-container-top-row">
         <div className="basic-info">
           <div>
             <p className="overview-name">
-              {currentUserData && currentUserData.results[0].firstName}{" "}
-              {currentUserData && currentUserData.results[0].lastName}
+              {currentUser.firstName} {currentUser.lastName}
             </p>
           </div>
           <p className="overview-community-id">
-            Zip Code: {currentUserData && currentUserData.results[0].location}
+            Zip Code: {currentUser.location}
           </p>
           <button className="overview-edit-user-btn" onClick={openEditModal}>
             Edit User Info
@@ -80,8 +78,8 @@ const Overview = () => {
         </div>
         <div className="overview-metadata">
           <p>Items Available for Trade: {totalItemsToTrade}</p>
-          <p>Completed Transactions: {completedTxn}</p>
-          <p>Total # of Reviews/Ratings: </p>
+          <p>Completed Transactions: {currentUserTransactionData}</p>
+          <p>Total # of Reviews/Ratings: {totalRatingsAndReviews}</p>
         </div>
       </div>
       <div className="overview-cur-trade-title">Current Trade Offers</div>
@@ -96,6 +94,7 @@ const Overview = () => {
         <OverviewCurrentTrades
           overviewCurrentTrades={overviewCurrentTrades}
           getAllTxns={getAllTxns}
+          getAllCompletedTxns={getAllCompletedTxns}
         />
       </div>
     </div>

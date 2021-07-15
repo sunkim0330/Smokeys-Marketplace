@@ -91,6 +91,9 @@ app.route("/reviews/:user_id")
   .get(ratingsReviews.getReviews)
   .post(ratingsReviews.addReview);
 
+app.route("/reviewSize/:user_id")
+  .get(ratingsReviews.getReviewSize);
+
 app.route('/imageupload')
   .post(uploadImage)
 

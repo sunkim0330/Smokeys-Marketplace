@@ -6,11 +6,11 @@ const AddReviewModalForm = ({transaction, setSubmittedReview, setShowModal}) => 
   const [isValid, setIsValid] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    reviewed : transaction.fromUser._id,
-    reviewer : '60ede0c21d6313096619f490',
-    transaction: transaction.transactionId,
-    ratings: null,
-    reviews: ''
+    reviewed_id: transaction.fromUser._id,
+    reviewer_id : '60ede0c21d6313096619f490',
+    transaction_id: transaction.transactionId,
+    rating: null,
+    review: ''
   })
 
 

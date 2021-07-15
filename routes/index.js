@@ -7,7 +7,8 @@ const {
 
   const {
     getReviews,
-    addReview
+    addReview,
+    getReviewSize
   } = require("./reviews.js")
 
 const {
@@ -32,7 +33,8 @@ module.exports = {
   },
   ratingsReviews: {
     getReviews,
-    addReview
+    addReview,
+    getReviewSize
   },
   users: {
     getUserInfo,
