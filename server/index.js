@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 const passport = require('passport');
 const session = require('express-session');
+const { uploadImage } = require('../routes/aws_s3.js');
 require('./passport.js');
-const { Users, Items, Transactions } = require("../database");
 const {
   transactions,
   items,
@@ -22,13 +22,6 @@ mongoose.connect("mongodb://localhost/smokeys", {
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err.message));
 db.on("open", () => console.log(`Connected to Smokey's DB`));
-app.use(
-  session({
-    secret: 'password',
-    resave: true,
-    saveUninitialized: true,
-  })
-);
 
 app.use(
   session({
@@ -49,8 +42,8 @@ const isLoggedIn = (req, res, next) => {
 
 let port = process.env.PORT || 4000;
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.urlencoded({ limit: "5mb", extended: false }));
+app.use(express.json({ limit: "5mb" }));
 app.use(express.static(__dirname + "/../dist"));
 
 // Initializes passport and passport sessions
@@ -98,21 +91,8 @@ app.route("/reviews/:user_id")
   .get(ratingsReviews.getReviews)
   .post(ratingsReviews.addReview);
 
-
-/**
- * DELETE ONCE ITEM ROUTE IS BACK UP
- */
-const getAllItems = async (req, res) => {
-  let allItems = await Items.find({/*owner : '60edd8afb06574b61c2fcb22'*/})
-  res.send(allItems);
-}
-
-app
-  .route('/allItems')
-  .get(getAllItems)
-
-//Route to send client when user is found in the DB
-// app.get('http://localhost:4000/good', isLoggedIn, (req, res) => res.redirect('http://localhost:4000/user'))
+app.route('/imageupload')
+  .post(uploadImage)
 
 // Auth Routes
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -137,6 +117,5 @@ app.get('/logout', (req, res) => {
 
 // This needs to be last route!
 app.get("*", isLoggedIn, (req, res) => {
-  console.log('in get all', req.user)
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });

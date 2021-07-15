@@ -10,10 +10,11 @@ import NavBar from "./components/NavBar.jsx";
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const getLoggedInUser = () => {
 
-    axios.get(`/user/${currentUser.userId}`)
+    axios.get(`/user/${currentUser._id}`)
     .then(data => {
       setCurrentUser(data.data.results[0]);
     })
@@ -24,18 +25,22 @@ const App = () => {
 
   const getUser = () => {
     axios.get('/getUser')
-    .then(data => { console.log(data)
+    .then(data => {
       setCurrentUser(data.data);
     })
     .catch(err => {
       console.log(err);
     })
   }
-
+console.log(currentUser)
+  const logout = () => {
+    setCurrentUser(null);
+    setIsLoggedIn(false);
+  }
 
   return (
     <Router>
-      <NavBar />
+      <NavBar logout={logout} isLoggedIn={isLoggedIn}/>
       <Switch>
 
         <Route exact path="/">
@@ -45,10 +50,10 @@ const App = () => {
           <SignUp currentUser={currentUser} getUser={getUser}/>
         </Route>
         <Route path="/user">
-          <UserPage />
+          <UserPage currentUser={currentUser} />
         </Route>
         <Route path="/marketplace">
-          <MarketplacePage currentUser={currentUser} getLoggedInUser={getLoggedInUser} getUser={getUser}/>
+          <MarketplacePage currentUser={currentUser} getLoggedInUser={getLoggedInUser} getUser={getUser} setIsLoggedIn={setIsLoggedIn}/>
         </Route>
 
       </Switch>

@@ -23,26 +23,25 @@ const getItems = async (req, res) => {
   let count = Number(req.body.count) || 10;
   let owner = req.body.user_object_id;
   let location = req.body.location;
-  let radius = req.body.radius;
+  let radius = req.body.radius || 5;
   let sort = { updatedAt : -1 };
 
-  function getZipcodes(location) {
-    if (_memo[location]) return _memo[location]
-    return _memo[location] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/radius.json/${location}/${radius}/miles?minimal`);
+
+  function getZipcodes(location, page, count, radius) {
+    if (_memo[location, page, count, radius]) return _memo[location, page, count, radius]
+    return _memo[location, page, count, radius] = axios.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/radius.json/${location}/${radius}/miles?minimal`);
   }
 
-  let zipcodes = await getZipcodes(location)
+  let zipcodes = await getZipcodes(location, page, count, radius)
 
-  let data_objects = await Items.aggregate( [ { $lookup: { from: "users", localField: "owner", foreignField: "_id", as: "user_docs" } } ] )
-    .limit(count)
-    .skip(page * count)
+  let data_objects = await Items.aggregate( [
+    { $lookup: { from: "users", localField: "owner", foreignField: "_id", as: "user_docs" } },
+    { $match: {$and: [ {availability: true }, {owner: {$ne: owner}}, {"user_docs.0.location": {$in: zipcodes.data.zip_codes }}]}},
+    { $skip: page * count },
+    { $limit: count }] )
     .sort(sort);
 
-  let response = data_objects.filter(datums => {
-    return (datums.owner !== owner) && (datums.availability === true) && (zipcodes.data.zip_codes.includes(datums.user_docs[0].location))
-  })
-
-  res.status(200).send(response);
+  res.status(200).send(data_objects);
 }
 
 /**

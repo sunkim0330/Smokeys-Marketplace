@@ -12,20 +12,21 @@ const uploadImage = async (req, res) => {
   /**
    * @dev Create variable to hold buffer of image upload
    */
-  let imageBuffer = new Buffer.from(/* IMAGE DATA GOES HERE */);
+   let imageBuffer = new Buffer.from(req.body.data.replace(/^data:image\/\w+;base64,/,""), 'base64')
 
   /**
    * @dev Create variable to store the type of the uploaded image
    */
-  let type = /* Parse the type from the end of the image file name */;
+   let type = req.body.data.split(';')[0].split('/')[1];
 
   /**
    * @dev PARAMS object that will be sent to S3 via upload method
    */
   const params = {
     Bucket: process.env.BUCKET_NAME,
-    Key: /* CREATE CUSTOM NAME FOR KEY */,
+    Key: `${req.body.name}.${type}`,
     Body: imageBuffer,
+    ContentEncoding: 'base64',
     ContentType: `image/${type}`
   }
 

@@ -9,11 +9,13 @@
 
 .header {
   background-color: orange;
-  height: 75px;
+  height: 90px;
+  border-bottom: 15px solid papayawhip;
+  box-shadow: 15px 15px 14px rgba(224, 198, 140, 0.5);
 }
 
 .navbar-container {
-  width: 85%;
+  width: 95%;
   color: white;
   display: flex;
   justify-content: space-around;
@@ -21,8 +23,19 @@
   padding-top: 15px;
 }
 
+.navbar-container a {
+  text-decoration: none;
+}
+
 .title {
-  font-size: 35px;
+  font-size: 40pt;
+  width: 600px;
+  font-family: 'Zen Loop', cursive;
+  text-transform: uppercase;
+  font-weight:bolder;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color:white;
+  letter-spacing: 3px;
 }
 
 .navigation {
@@ -32,11 +45,47 @@
   justify-content: space-around;
   align-items: center;
   font-size: 25px;
+
 }
 
 .navigation a {
   text-decoration: none;
   color: white;
+}
+
+.navigation a:hover {
+  padding-bottom: 4px;
+  border-bottom: 5px solid papayawhip;
+}
+
+.navigation .tooltiptext {
+  visibility: hidden;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 10pt;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  margin-top: 20px;
+  box-shadow: 10px 10px 14px rgba(19, 19, 19, 0.342);
+}
+
+.navigation a:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 12%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent whitesmoke transparent;
+
 }
 
 .user-page-container {
@@ -101,6 +150,12 @@
   border-radius: 50px;
 }
 
+.add-item-btn:hover {
+  transform: scale(0.95);
+  box-shadow: 3px 2px 18px 1px rgba(0, 0, 0, 0.3);
+  cursor:pointer;
+}
+
 .overview-edit-user-btn:hover {
   cursor: pointer;
 }
@@ -156,7 +211,7 @@
 .decline:hover {
   cursor: pointer;
 }
-
+/* TRADE CARDS */
 .current-trades-container {
   height: 650px;
   overflow-y: auto;
@@ -195,6 +250,8 @@
   margin: 5px 20px 10px;
 }
 
+/* END */
+
 .past-trades-list-container,
 .ratings-reviews-list-container {
   padding: 25px 0;
@@ -221,6 +278,11 @@
   margin: auto;
 }
 
+.marketplace-title {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
 
 .marketplace-list-container {
   width: 100%;
@@ -233,30 +295,65 @@
   border: 1px solid black;
   border-radius: 12px;
   margin: 10px auto;
+  background-color: rgb(250, 245, 239);
 
 }
 
 .marketplace-card-row {
-  width: 95%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  justify-content: space-around;
 }
 
 .marketplace-card {
-  border: 1px solid black;
   border-radius: 12px;
   margin: 0 auto;
   width: 175px;
   height: 225px;
-
+  transition: box-shadow 1s;
+  box-shadow: 0;
+  transition: box-shadow 1s;
+  border: 1px solid rgb(46, 45, 45);
+  background-color: white;
 }
+
+.marketplace-card:hover {
+  box-shadow: 10px 10px 14px -1px #595a5a;
+}
+
 
 .marketplace-card img {
   width: 90%;
   padding-left: 20px;
+  align-self: center;
+  padding-top: 6px;
+}
+
+.cardItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  height: 140px;
+}
+
+.marketplace-input-search {
+  border-bottom: 1px solid black;
+  margin-left: 10px;
+  outline: none;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+
+.fa-search {
+  color: orange;
+  margin-right: 5px;
 }
 
 .search-container {
@@ -386,6 +483,7 @@
 .splash {
   text-align: center;
   align-items: center;
+  background-color: papayawhip;
 }
 
 #loadImage {
@@ -437,6 +535,39 @@
   left: 50%;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   color:papayawhip
+}
+
+.splash .signUpForm {
+  transform: translate(-50% , -50%);
+  width: 800px;
+  height: 100px;
+  display: flex;
+  top: 63%;
+  left: 50%;
+  border: 1px solid black;
+  border-radius: 12px;
+  margin: 10px auto;
+  background-color: rgb(250, 245, 239);
+  position: absolute;
+  align-content: stretch;
+}
+
+.splash .marketplace-input-search {
+  background-color: rgb(250, 245, 239);
+}
+
+.newUserForm {
+  display: flex;
+  flex-direction: row;
+  width:799px;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: center;
+}
+
+.reviews-no-reviews {
+  padding-top: 5px;
+  text-align: center;
 }
 
 /* ADD REVIEW MODAL STYLING*/
