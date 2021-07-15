@@ -20,7 +20,7 @@ const RatingReviewsList = ({ currentUser }) => {
 
   return (
     <div>
-      { (reviews && reviews.results.length < 0) ?
+      { (reviews && reviews.results.length > 0) ?
         reviews.results.map((review) => {
           return <RatingReviewsItem
           key={review.transaction_id}
