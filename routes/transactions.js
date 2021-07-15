@@ -14,7 +14,7 @@ const getTransactions = async (req, res) => {
   let user = req.query.user_id;
   let count = Number(req.query.count) || 5;
   let page = Number(req.query.page) || 0;
-  let sort = req.query.sort ? req.query.sort === 'created_at_asc' ? { createdAt : 1 } : req.query.sort === 'created_at_desc' ? { createdAt : -1 } : null : { updatedAt: -1 };
+  let sort = req.query.sort ? req.query.sort === 'created_at_asc' ? { createdAt : 1 } : req.query.sort === 'created_at_desc' ? { createdAt : -1 } : { updatedAt: -1 } : { updatedAt: -1 };
 
   const response = {
     user: user,
@@ -66,7 +66,7 @@ const addTransaction = async (req, res) => {
 }
 
 /**
- * @dev This function will mark the given transactiion_id a "complete"
+ * @dev This function will mark the given transaction_id a "complete"
  * @param {transaction_id} req this is the ID for the transaction that will be marked "complete"
  * @param {*} res on successful update a status code of 204 will be returned. On error code 422 will be sent
  */
@@ -83,7 +83,7 @@ const completeTransaction = async (req, res) => {
 }
 
 /**
- * @dev This function will mark the given transactiion_id a "cancelled"
+ * @dev This function will mark the given transaction_id a "cancelled"
  * @param {transaction_id} req this is the ID for the transaction that will be marked "cancelled"
  * @param {*} res on successful update a status code of 204 will be returned. On error code 422 will be sent
  */
@@ -93,6 +93,22 @@ const cancelTransaction = async (req, res) => {
     {
       $set:
         { status: "cancelled" }
+    })
+    .then(() => res.sendStatus(204))
+    .catch(() => res.sendStatus(422))
+}
+
+/**
+ * @dev This function will mark the given transaction_id as reviewed
+ * @param {transaction_id} req this is the ID for the transaction that will be marked as reviewed
+ * @param {*} res on successful update a status code of 204 will be returned. On error code 422 will be sent
+ */
+const reviewTransaction = async (req, res) => {
+
+  Transactions.updateOne({ _id: new Types.ObjectId(req.params.transaction_id) },
+    {
+      $set:
+        { reviewLeft: true }
     })
     .then(() => res.sendStatus(204))
     .catch(() => res.sendStatus(422))
@@ -121,6 +137,7 @@ const getUserTransactions = async (req, res) => {
 
       let response = {
         transactionId: '',
+        reviewLeft: '',
         fromUser: '',
         fromItem: '',
         toItem: '',
@@ -156,6 +173,7 @@ const getUserTransactions = async (req, res) => {
         })
 
       response.transactionId = trx._id;
+      response.reviewLeft = trx.reviewLeft;
       response.date = trx.createdAt;
       response.status = trx.status;
       response.fromUser = fromUser[0];
@@ -168,7 +186,10 @@ const getUserTransactions = async (req, res) => {
     })
   })
     .then(() => {
-      res.send(responseArray)
+      res.status(200).send(responseArray)
+    })
+    .catch(() => {
+      res.sendStatus(400)
     })
 }
 
@@ -177,5 +198,6 @@ module.exports = {
   addTransaction,
   completeTransaction,
   cancelTransaction,
-  getUserTransactions
+  getUserTransactions,
+  reviewTransaction
 }
