@@ -37,7 +37,7 @@ const UserPage = ({ currentUser }) => {
         </ul>
         {currentTab === "overview" && <Overview />}
         {currentTab === "current-trades" && <CurrentTrades currentUser={currentUser} />}
-        {currentTab === "past-trades" && <PastTrades />}
+        {currentTab === "past-trades" && <PastTrades currentUser={currentUser}/>}
         {currentTab === "add-new-item" && <AddNewItem currentUser={ currentUser } />}
         {currentTab === "ratings-reviews" && <RatingsReviews currentUser={ currentUser }/>}
       </section>

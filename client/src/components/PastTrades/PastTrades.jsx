@@ -1,7 +1,7 @@
 import React from "react";
 import PastTradesList from "./PastTradesList.jsx";
 
-const PastTrades = () => {
+const PastTrades = ({currentUser}) => {
   return (
     <div className="past-trades-container">
       <h3>Past Trades</h3>
@@ -14,7 +14,7 @@ const PastTrades = () => {
           <div>Contact Info</div>
           <div>Rating</div>
         </div>
-        <PastTradesList />
+        <PastTradesList currentUser={currentUser}/>
       </div>
     </div>
   );

@@ -3,6 +3,13 @@ import AddReviewModal from './AddReviewModal.jsx'
 
 const PastTradeItem = ({transactions}) => {
   const [showModal, setShowModal] = useState(false)
+  const [submittedReview, setSubmittedReview] = useState(false)
+
+  const handleModalClose = () => {
+    if (submittedReview) {
+      setShowModal(false);
+    }
+  }
 
   let renderPastTrades = transactions.map((trx) => {
     return (
@@ -12,11 +19,11 @@ const PastTradeItem = ({transactions}) => {
         <div className="past-trade-item">{trx.fromItem.name}</div>
         <div className="past-trade-item">{trx.toItem.name}</div>
         <div className="past-trade-contact">{trx.fromUser.email}</div>
-        <button type="button" className="past-trade-rating"
+        {!submittedReview ? (<button type="button" className="past-trade-rating"
           onClick={() => setShowModal(true)}>
             Add Review
-        </button>
-        <AddReviewModal transaction={trx} showModal={showModal} onClose={() => setShowModal(false)}/>
+        </button>) : (<div>Submitted!</div>)}
+        <AddReviewModal setSubmittedReview={setSubmittedReview} transaction={trx} showModal={showModal} onClose={() => setShowModal(false)}/>
       </div>
     )
   })

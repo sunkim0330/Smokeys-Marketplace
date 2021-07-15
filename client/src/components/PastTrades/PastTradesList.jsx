@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PastTradeItem from "./PastTradeItem.jsx";
 import axios from 'axios';
 
-const PastTradesList = () => {
+const PastTradesList = ({currentUser}) => {
   const [transactions, setTransactions] = useState([]);
 
 
@@ -22,7 +22,7 @@ const PastTradesList = () => {
 
   return (
     <div>
-      <PastTradeItem transactions={transactions}/>
+      <PastTradeItem transactions={transactions} currentUser={currentUser}/>
     </div>
   );
 };

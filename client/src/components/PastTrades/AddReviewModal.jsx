@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import AddReviewModalForm from './AddReviewModalForm.jsx'
 
-const AddReviewModal = ({showModal, onClose, transaction}) => {
+const AddReviewModal = ({showModal, onClose, transaction, setSubmittedReview, setShowModal}) => {
 
   if (!showModal) {
     return null;
@@ -10,9 +10,9 @@ const AddReviewModal = ({showModal, onClose, transaction}) => {
 
   return (
     <div className="add-review-modal-div">
-      <div>{transaction.fromUser.fromItem}</div>
-      <div>{transaction.fromUser.firstName}</div>
-      <AddReviewModalForm transaction={transaction}/>
+      <h3>{transaction.fromUser.fromItem}</h3>
+      <h3>{transaction.fromUser.firstName}</h3>
+      <AddReviewModalForm transaction={transaction} setSubmittedReview={setSubmittedReview} setShowModal={setShowModal}/>
       <button className="add-review-modal-close-button" type="button" onClick={onClose}>Close</button>
     </div>
   )

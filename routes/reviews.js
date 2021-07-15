@@ -45,8 +45,8 @@ const addReview = async (req, res) => {
     reviewed_id : req.body.reviewed,
     reviewer_id : req.body.reviewer,
     transaction_id : req.body.transaction,
-    rating: req.body.rating,
-    review: req.body.review
+    ratings: req.body.ratings,
+    reviews: req.body.reviews
   })
 
   newReview.save()
