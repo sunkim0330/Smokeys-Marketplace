@@ -6,10 +6,10 @@ import axios from 'axios';
 const RatingReviewsList = ({ currentUser }) => {
   const [reviews, setReviews] = useState(null);
 
-  const id = currentUser.id;
+  const id = '60edd8afb06574b61c2fcb21';
   const getReviews = (id) => {
     axios.get(`/reviews/${id}`)
-      .then(({data}) => {
+      .then(({ data }) => {
         setReviews(data);
       })
   }
@@ -21,6 +21,7 @@ const RatingReviewsList = ({ currentUser }) => {
     <div>
       { reviews ? reviews.results.map((review) => {
           return <RatingReviewsItem
+
           key={review.transaction_id}
           date={review.createdAt}
           transaction_id={review.transaction_id}
