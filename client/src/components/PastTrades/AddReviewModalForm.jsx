@@ -48,7 +48,7 @@ const AddReviewModalForm = ({transaction, setSubmittedReview, setShowModal}) => 
   return (
     <form className="add-review-modal-form" onSubmit={e => sendRequest(e)}>
         <label className="add-review-modal-rating-label">Rating</label>
-        <select required onChange={handleRatingChange}>
+        <select className="add-review-modal-select" required onChange={handleRatingChange}>
           <option defaultValue="0">Select</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -68,15 +68,18 @@ const AddReviewModalForm = ({transaction, setSubmittedReview, setShowModal}) => 
 export default AddReviewModalForm;
 
 
-  // const submitButton = () => {
-  //   if (submitted === true) {
-  //     return <div>Submitted!</div>
-  //   } else {
-  //     return (
-  //       <button className="add-review-modal-submit-button"
-  //       type="submit" value="submit"
-  //     >Submit</button>
-  //     )
-  //   }
-  // }
-
+//   .add-review-modal-div {
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   display: flex;
+//   align-content: center;
+//   justify-content: center;
+//   background: rgb(255, 255, 255);
+//   height: 70%;
+//   width: 30%;
+//   flex-wrap: wrap;
+//   flex-direction: row;
+//   align-items: center;
+// }

@@ -9,11 +9,13 @@ const AddReviewModal = ({showModal, onClose, transaction, setSubmittedReview, se
   }
 
   return (
-    <div className="add-review-modal-div">
-      <h3>{transaction.fromUser.fromItem}</h3>
-      <h3>{transaction.fromUser.firstName}</h3>
-      <AddReviewModalForm transaction={transaction} setSubmittedReview={setSubmittedReview} setShowModal={setShowModal}/>
-      <button className="add-review-modal-close-button" type="button" onClick={onClose}>Close</button>
+    <div className="add-review-modal-wrapper">
+      <div className="add-review-modal-container">
+        <h3>{transaction.fromItem.name}</h3>
+        <h3>{transaction.fromUser.firstName}</h3>
+        <AddReviewModalForm transaction={transaction} setSubmittedReview={setSubmittedReview} setShowModal={setShowModal}/>
+        <button className="add-review-modal-close-button" type="button" onClick={onClose}>Close</button>
+      </div>
     </div>
   )
 }
@@ -21,7 +23,7 @@ const AddReviewModal = ({showModal, onClose, transaction, setSubmittedReview, se
 export default AddReviewModal;
 
 // /* ADD REVIEW MODAL STYLING*/
-// .add-review-modal-div {
+// .add-review-modal-wrapper {
 //   z-index: 5;
 //   position: fixed;
 //   left: 0;
@@ -34,4 +36,34 @@ export default AddReviewModal;
 //   font-family:'Roboto', sans-serif;
 //   background-color: #D3D9D9;
 //   background-color: rgba(0,0,0,0.5);
+//   display: flex;
+//   flex-direction: column;
 // }
+// .add-review-modal-container {
+//   width: 500px;
+//   height: 250px;
+//   background-color: #3A5A40;
+//   display: flex;
+//   flex-direction: column;
+//   padding: 10px;
+//   border-top: 1px solid #eee;
+//   border-bottom: 1px solid #eee;
+// }
+
+// .add-review-modal-form {
+//   padding: 10px;
+//   border-top: 1px solid #eee;
+//   border-bottom: 1px solid #eee;
+//   background-color: #D3D9D9;
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// .add-review-modal-submit-button,
+// .add-review-modal-close-button {
+//   border: transparent;
+//   margin: 5px;
+//   background-color: transparent;
+//   cursor: pointer;
+// }
+
