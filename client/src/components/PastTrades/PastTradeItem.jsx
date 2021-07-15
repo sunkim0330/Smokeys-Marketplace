@@ -4,29 +4,22 @@ import axios from 'axios';
 
 const PastTradeItem = ({transactions}) => {
   const [showModal, setShowModal] = useState(false);
-  const [submittedReview, setSubmittedReview] = useState(false);
   const [getReviews, setGetReviews] = useState([]);
 
-  const handleModalClose = () => {
-    if (submittedReview) {
-      setShowModal(false);
-    }
-  }
+  // const getPastReviews = () => {
+  //   axios({
+  //     method: 'GET',
+  //     url: `/reviews/60ede0c21d6313096619f493?count=100`
+  //   })
+  //   .then(({data}) => {
+  //     console.log('get request after adding review', data);
+  //     setGetReviews(data);
+  //   })
+  // }
 
-  const getPastReviews = () => {
-    axios({
-      method: 'GET',
-      url: `/reviews/60ede0c21d6313096619f493?count=100`
-    })
-    .then(({data}) => {
-      console.log('get request after adding review', data);
-      setGetReviews(data);
-    })
-  }
-
-  useEffect (() => {
-    getPastReviews();
-  }, [])
+  // useEffect (() => {
+  //   getPastReviews();
+  // }, [])
 
   let renderPastTrades = transactions.map((trx) => {
     return (
@@ -36,11 +29,15 @@ const PastTradeItem = ({transactions}) => {
         <div className="past-trade-item">{trx.fromItem.name}</div>
         <div className="past-trade-item">{trx.toItem.name}</div>
         <div className="past-trade-contact">{trx.fromUser.email}</div>
-        {!submittedReview ? (<button type="button" className="past-trade-rating"
+        {/* {!submittedReview ? (<button type="button" className="past-trade-rating"
           onClick={() => setShowModal(true)}>
             Add Review
-        </button>) : (<div>Submitted!</div>)}
-        <AddReviewModal setSubmittedReview={setSubmittedReview} transaction={trx} showModal={showModal} onClose={() => setShowModal(false)} getPastReviews={getPastReviews} submittedReview={submittedReview}/>
+        </button>) : (<div>Submitted!</div>)} */}
+        {(trx.reviewLeft === false) ? (<button type="button" className="past-trade-rating"
+          onClick={() => setShowModal(true)}>
+            Add Review
+        </button>) : (<div>Submitted</div>)}
+        <AddReviewModal transaction={trx} showModal={showModal} onClose={() => setShowModal(false)}/>
       </div>
     )
   })

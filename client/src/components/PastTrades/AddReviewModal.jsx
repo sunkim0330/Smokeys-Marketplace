@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const AddReviewModal = ({showModal, onClose, transaction, setSubmittedReview, setShowModal, getPastReviews, submittedReview}) => {
+const AddReviewModal = ({showModal, onClose, transaction, setShowModal}) => {
+  const [submittedReview, setSubmittedReview] = useState(false);
   const [formData, setFormData] = useState({
     reviewed_id: transaction.fromUser._id,
     reviewer_id : '60ede0c21d6313096619f490',
@@ -21,6 +22,12 @@ const AddReviewModal = ({showModal, onClose, transaction, setSubmittedReview, se
       alert('thank you for submitting your review!')
       setSubmittedReview(true)
       console.log('submitted', response)
+    })
+    .then(() => {
+      axios.put(`/transactions/${transaction.transactionId}/review-left`)
+      .then(() => {
+        console.log('updated review status in transaction')
+      })
     })
     .catch(() => {
       console.log('There was an error. Couldn\'t your add reivew')
@@ -63,9 +70,13 @@ const AddReviewModal = ({showModal, onClose, transaction, setSubmittedReview, se
         </select>
         <label className="add-review-modal-review-label" name="reivew">Review</label>
         <textarea className="add-review-modal-review-input" onChange={handleReviewChange} required placeholder="write your review here"/>
-         <button className="add-review-modal-btn"
+         {/* <button className="add-review-modal-btn"
           type="submit" value="submit"
-        >Submit</button>
+        >Submit</button> */}
+        {!submittedReview ? (<button className="add-review-modal-btn"
+          type="submit" value="submit">
+            Submit
+        </button>) : (<div>Submitted!</div>)}
     </form>
         <button className="add-review-modal-btn" type="button" onClick={onClose}>Close</button>
       </div>

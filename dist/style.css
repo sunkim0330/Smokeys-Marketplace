@@ -627,7 +627,7 @@
 
  /* ADD REVIEW MODAL STYLING*/
 
- .add-review-modal-wrapper {
+ /* .add-review-modal-wrapper {
    display: block;
     position: fixed;
     top: 0;
@@ -641,7 +641,7 @@
     width: 300px;
     display: flex;
     flex-direction: column;
- }
+ } */
 
  .add-review-modal-container h3 {
    margin-bottom: 25px;

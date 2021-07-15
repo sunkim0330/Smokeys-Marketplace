@@ -6,7 +6,7 @@ const PastTradesList = ({currentUser}) => {
   const [transactions, setTransactions] = useState([]);
 
   const getUserTransaction = () => {
-    axios.get(`/transactions/user?user_id=60ede0c21d6313096619f490&status=completed`)
+    axios.get(`/transactions/user?user_id=60ec7f5530509e56fa050fe7&status=completed`)
     .then((response) => {
       console.log('user transaction',response.data)
       setTransactions(response.data);
