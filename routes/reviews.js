@@ -16,6 +16,7 @@ const getReviews = async (req, res) => {
   let user = req.params.user_id;
   let count = Number(req.query.count) || 5;
   let page = Number(req.query.page) || 0;
+
   const response = {
     user: user,
     results: []
@@ -24,6 +25,7 @@ const getReviews = async (req, res) => {
   let fetchRatingsReviews = await RatingsReviews.find({reviewed_id : new Types.ObjectId(user)})
     .limit(count)
     .skip(page * count)
+    .sort({ createdAt : -1 })
     response.results = fetchRatingsReviews;
 
     res.send(response)
@@ -41,7 +43,6 @@ const getReviewSize = async (req, res) => {
   const response = {size : length}
 
   res.send(response)
-  .catch(sendStatus(422));;
 }
 
 /**
@@ -58,8 +59,8 @@ const addReview = async (req, res) => {
     reviewed_id : req.body.reviewer_id,
     reviewer_id : req.body.reviewed_id,
     transaction_id : req.body.transaction_id,
-    rating: req.body.rating,
-    review: req.body.review
+    ratings: req.body.ratings,
+    reviews: req.body.reviews
   })
 
   newReview.save()

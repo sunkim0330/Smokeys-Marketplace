@@ -215,10 +215,16 @@
 }
 
 .overview-current-trade-item,
-.past-trade-item-container {
+.past-trade-item-container,
+.ratings-reviews-item-container {
+  padding: 10px;
   display: flex;
   justify-content: space-evenly;
-  padding: 10px;
+  align-items: stretch;
+}
+
+.review {
+  max-width: 250px;
 }
 
 .accept,
