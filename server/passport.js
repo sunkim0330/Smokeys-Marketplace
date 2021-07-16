@@ -42,6 +42,7 @@ passport.use(new GoogleStrategy({
 
       userData = {
         isUser: false,
+        _id: newUser._id,
         userId: newUser._id,
         firstName: profile.name.givenName,
         lastName: profile.name.familyName,
