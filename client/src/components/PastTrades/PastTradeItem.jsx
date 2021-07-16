@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import AddReviewModal from './AddReviewModal.jsx'
 import axios from 'axios';
 
-const PastTradeItem = ({transactions}) => {
+const PastTradeItem = ({transactions, currentUser}) => {
   const [showModal, setShowModal] = useState(false);
 
   let renderPastTrades = transactions.map((trx) => {
@@ -17,7 +17,7 @@ const PastTradeItem = ({transactions}) => {
           onClick={() => setShowModal(true)}>
             Add Review
         </button>) : (<div>Submitted</div>)}
-        <AddReviewModal  transaction={trx} showModal={showModal} onClose={() => setShowModal(false)}/>
+        <AddReviewModal  currentUser={currentUser} transaction={trx} showModal={showModal} onClose={() => setShowModal(false)}/>
       </div>
     )
   })

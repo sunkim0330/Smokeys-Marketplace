@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const AddReviewModal = ({showModal, transaction, setShowModal, onClose}) => {
+const AddReviewModal = ({showModal, transaction, setShowModal, currentUser, onClose}) => {
   const [submittedReview, setSubmittedReview] = useState(false);
   const [formData, setFormData] = useState({
     reviewed_id: transaction.fromUser._id,
-    reviewer_id : '60edae743ae6bb807e825822',
+    reviewer_id : currentUser._id,
     transaction_id: transaction.transactionId,
     ratings: null,
     reviews: ''
@@ -15,7 +15,7 @@ const AddReviewModal = ({showModal, transaction, setShowModal, onClose}) => {
     e.preventDefault()
     axios({
       method: 'POST',
-      url: `/reviews/60edae743ae6bb807e825822`,
+      url: `/reviews/${currentUser._id}`,
       data: formData
     })
     .then((response) => {
