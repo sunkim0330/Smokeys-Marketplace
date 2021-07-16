@@ -14,40 +14,30 @@ const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, se
       })
       .catch(err => console.log(err))
   }
-
+// console.log('currentuser', currentUser._id)
+// console.log("modalowner", selectedItemModal)
   // console.log('selecteditem------:', selectedItemModal)
   // console.log('at least it got here')
   const makeTrade = () => {
     setDisplayModal(!displayModal)
-    axios.post('/transactions/', {
-      from_user_id: currentUser._id,
-      from_item_id: tradeItem,
-      to_user_id: selectedItemModal.owner,
-      to_item_id: selectedItemModal._id
-      // from_user_id: "60ef1cb062fe173ce7af8800",
-      // from_item_id: "60ef1cbcf5827c3cebf660bf",
-      // to_user_id: currentUser._id,
-      // to_item_id: tradeItem
-    })
+    axios.post(`/transactions/?from_user_id=${currentUser._id}&from_item_id=${tradeItem}&to_user_id=${selectedItemModal.user_id}&to_item_id=${selectedItemModal.item_id}`)
+    // axios.post(`/transactions/?from_user_id=${selectedItemModal.user_id}&from_item_id=${selectedItemModal.item_id}&to_user_id=${currentUser._id}&to_item_id=${tradeItem}`)
+
     .then((res) => {
       console.log(res)
     })
     .catch((err) => {
       console.log(err)
     })
-    // from_user_id
-    // from_item_id
-    // to_user_id
-    // to_item_id
   }
 
   useEffect(()=> {
     getItems()
   }, [])
 
-  useEffect(()=> {
-    console.log('tradeItem', tradeItem)
-  }, [tradeItem])
+  // useEffect(()=> {
+  //   console.log('tradeItem', tradeItem)
+  // }, [tradeItem])
 
 
   return (
