@@ -58,7 +58,7 @@ const addTransaction = async (req, res) => {
       item_id: new Types.ObjectId(req.query.to_item_id),
     }
   })
-
+  console.log(newTransaction)
   newTransaction.save()
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(422))

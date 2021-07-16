@@ -15,7 +15,8 @@ const Marketplace = ({ currentUser }) => {
     name: 'error',
     image: 'error',
     description: 'error',
-    firstName: 'error'
+    firstName: 'error',
+    user_id: 'error'
   })
   // console.log('currentUSERRR:', currentUser.firstName)
   const getAllMarketItems = () => {

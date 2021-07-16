@@ -6,24 +6,31 @@ const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, se
   const [userItems, setUserItems] = useState([])
   const [tradeItem, setTradeItem] = useState('')
 
+
   const getItems = () => {
        axios.get(`/items/${currentUser._id}`)
-    // axios.get('/items/${currentUser._id}')
       .then(data => {
         setUserItems(data.data)
       })
       .catch(err => console.log(err))
   }
 
+  // console.log('selecteditem------:', selectedItemModal)
+  // console.log('at least it got here')
   const makeTrade = () => {
+    setDisplayModal(!displayModal)
     axios.post('/transactions/', {
-      from_user_id: "60ef1cb062fe173ce7af8805",
+      from_user_id: currentUser._id,
       from_item_id: tradeItem,
       to_user_id: selectedItemModal.owner,
       to_item_id: selectedItemModal._id
+      // from_user_id: "60ef1cb062fe173ce7af8800",
+      // from_item_id: "60ef1cbcf5827c3cebf660bf",
+      // to_user_id: currentUser._id,
+      // to_item_id: tradeItem
     })
     .then((res) => {
-      // console.log(res)
+      console.log(res)
     })
     .catch((err) => {
       console.log(err)
@@ -38,9 +45,9 @@ const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, se
     getItems()
   }, [])
 
-  // useEffect(()=> {
-  //   console.log('tradeItem', tradeItem)
-  // }, [tradeItem])
+  useEffect(()=> {
+    console.log('tradeItem', tradeItem)
+  }, [tradeItem])
 
 
   return (
@@ -55,8 +62,9 @@ const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, se
         <h4 className="transaction-item-desc">{selectedItemModal.description}</h4>
         <h4 className="transaction-proposed-title">Proposed Trade Items</h4>
         <div className="proposed-item-wrapper">
-          {userItems.map(item => (
+          {userItems.map((item, key) => (
                  <TransactionTradeItem
+                  className={item._id === tradeItem ? "transaction-proposed-item-active" : "transaction-proposed-item"}
                   key={item._id}
                   item={item}
                   setTradeItem={setTradeItem}
