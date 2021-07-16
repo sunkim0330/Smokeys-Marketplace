@@ -482,7 +482,8 @@
 /* TRANSACTION MODAL CSS */
 
 .transaction-modal-wrapper,
-.edit-user-modal-container {
+.edit-user-modal-container,
+.add-review-modal-wrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -731,3 +732,84 @@ background:rgb(54, 56, 58);
 .edit-user-modal-btn:hover {
   cursor: pointer;
 }
+
+ /* ADD REVIEW MODAL STYLING*/
+
+ /* .add-review-modal-wrapper {
+   display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}*/
+
+ .add-review-modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background: rgb(255, 255, 255);
+    height: 70%;
+    width: 30%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+ }
+
+ .add-review-modal-container h3 {
+   margin-bottom: 20px;
+   margin-right: 40px;
+ }
+
+ .add-review-modal-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+ }
+
+ .add-review-modal-form > * {
+  margin-bottom: 10px;
+ }
+
+ .add-review-modal-form textarea {
+  display: block;
+ }
+
+ .add-review-modal-form select {
+  display: block;
+ }
+ .add-review-modal-btn-flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ }
+
+ .add-review-modal-btn {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 18px;
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 50px;
+    text-align: center;
+ }
+
+ .add-review-modal-btn:hover {
+  cursor: pointer;
+ }
+
+ .add-review-modal-headers {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+ }
