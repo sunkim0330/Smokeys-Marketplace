@@ -540,6 +540,11 @@ body::-webkit-scrollbar {
   border-radius: 5px;
   border-style: solid;
   border-color: orange;
+  overflow-y: scroll;
+}
+
+.transaction-modal::-webkit-scrollbar {
+  display: none;
 }
 
 .transaction-item-title {
