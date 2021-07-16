@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
 
 
-const TransactionTradeItem = ( { item, displayModal, setDisplayModal, selectedItemModal, setSelectedItemModal} ) => {
+const TransactionTradeItem = ( { item, setTradeItem} ) => {
 
-  console.log('iiittttemmmm', item)
   return (
     <div>
-      <div>{item.name}</div>
+      <div onClick={() => setTradeItem(item._id)}>{item.name}</div>
     </div>
   )
 }
