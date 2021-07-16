@@ -56,7 +56,9 @@ const UserPage = ({ currentUser, getLoggedInUser }) => {
         {currentTab === "current-trades" && (
           <CurrentTrades currentUser={currentUser} />
         )}
-        {currentTab === "past-trades" && <PastTrades />}
+        {currentTab === "past-trades" && (
+          <PastTrades currentUser={currentUser}/>
+        )}
         {currentTab === "add-new-item" && (
           <AddNewItem currentUser={currentUser} />
         )}
