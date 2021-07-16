@@ -625,6 +625,14 @@ background:rgb(54, 56, 58);
   width: 100%;
 }
 
+.transaction-proposed-item-active {
+  background: blue;
+}
+
+.transaction-proposed-item:hover {
+  cursor: pointer;
+}
+
 .transaction-button {
   display: block;
   margin-top: 1%;

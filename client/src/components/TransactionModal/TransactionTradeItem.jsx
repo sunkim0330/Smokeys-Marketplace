@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
 
 
-const TransactionTradeItem = ( { item, setTradeItem} ) => {
+const TransactionTradeItem = ( { item, setTradeItem } ) => {
 
+  const selectItem = () => {
+
+    setTradeItem(item._id)
+    // console.log(e.target.getAttribute("id"))
+  }
   return (
-    <div>
-      <div onClick={() => setTradeItem(item._id)}>{item.name}</div>
-    </div>
+      <div onClick={() => selectItem()}>{item.name}</div>
   )
 }
 export default TransactionTradeItem;
