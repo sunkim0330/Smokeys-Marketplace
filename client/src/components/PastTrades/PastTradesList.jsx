@@ -3,12 +3,13 @@ import PastTradeItem from "./PastTradeItem.jsx";
 import axios from 'axios';
 
 const PastTradesList = ({currentUser}) => {
+  console.log('current user', currentUser)
   const [transactions, setTransactions] = useState([]);
 
+  //working user_id 60edae743ae6bb807e825822 ${currentUser._id} currentUser={currentUser}
   const getUserTransaction = () => {
-    axios.get(`/transactions/user?user_id=60ec7f5530509e56fa050fe7&status=completed`)
+    axios.get(`/transactions/user?user_id=60edae743ae6bb807e825822&status=completed`)
     .then((response) => {
-      console.log('user transaction',response.data)
       setTransactions(response.data);
     })
     .catch(err => console.log(err))
@@ -21,7 +22,7 @@ const PastTradesList = ({currentUser}) => {
 
   return (
     <div>
-      <PastTradeItem transactions={transactions} currentUser={currentUser}/>
+      {(transactions && transactions.length > 0) ? (<PastTradeItem transactions={transactions} />) : (<div className="reviews-no-reviews"> You have no past trades 😔</div>) }
     </div>
   );
 };
