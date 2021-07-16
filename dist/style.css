@@ -263,9 +263,8 @@ body::-webkit-scrollbar {
   flex-wrap: wrap;
   align-items: center;
   padding-top: 20px;
-  padding-right: 0;
   padding-bottom: 20px;
-  justify-content: flex-start;
+  justify-content: center;
   background-color: papayawhip;
 }
 
@@ -317,15 +316,17 @@ body::-webkit-scrollbar {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  /* display: flex; */
-  /* flex-direction: row;
-  flex-wrap: wrap; */
-  /* justify-content: flex-start; */
   border: 2px solid black;
   border-radius: 12px;
   margin: 10px auto;
   background-color: rgb(250, 245, 239);
   align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.marketplace-list-container::-webkit-scrollbar {
+  display: none;
 }
 
 .marketplace-card-row {
@@ -334,9 +335,7 @@ body::-webkit-scrollbar {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .marketplace-card {
@@ -352,8 +351,7 @@ body::-webkit-scrollbar {
   background-color: white;
   margin-bottom: 20px;
   font-size: 14px;
-  /* margin-left: 10px;
-  margin-right: 10px; */
+  position:relative;
 
 }
 
@@ -386,6 +384,11 @@ body::-webkit-scrollbar {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  font-size: medium;
+  position: absolute;
+  left: 40%;
+  bottom: 0;
+  margin-bottom: 10px;
 }
 
 .marketplace-input-search {
@@ -743,7 +746,7 @@ background:rgb(54, 56, 58);
 
  /* ADD REVIEW MODAL STYLING*/
 
- /* .add-review-modal-wrapper {
+ .add-review-modal-wrapper {
    display: block;
     position: fixed;
     top: 0;
@@ -752,7 +755,7 @@ background:rgb(54, 56, 58);
     width: 100%;
     height: 100%;
     z-index: 10;
-}*/
+}
 
  .add-review-modal-container {
     position: fixed;
@@ -763,8 +766,8 @@ background:rgb(54, 56, 58);
     align-content: center;
     justify-content: center;
     background: rgb(255, 255, 255);
-    height: 70%;
-    width: 30%;
+    height: 700px;
+    width: 500px;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
@@ -787,17 +790,36 @@ background:rgb(54, 56, 58);
   margin-bottom: 10px;
  }
 
+ .add-review-modal-headers {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
  .add-review-modal-form textarea {
   display: block;
+  height: 300px;
+  width: 400px;
  }
 
  .add-review-modal-form select {
   display: block;
  }
+ .past-trade-item-container .add-item-btn {
+   font-size: medium;
+   cursor: pointer;
+ }
+
  .add-review-modal-btn-flexbox {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+   display: flex;
+   height: max-content;
+   justify-content: space-around;
+   width: 100%;
+ }
+
+ .add-review-modal-btn-flexbox .add-item-btn {
+  margin-bottom: 10px;
+
  }
 
  .add-review-modal-btn {
@@ -814,10 +836,4 @@ background:rgb(54, 56, 58);
 
  .add-review-modal-btn:hover {
   cursor: pointer;
- }
-
- .add-review-modal-headers {
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
  }

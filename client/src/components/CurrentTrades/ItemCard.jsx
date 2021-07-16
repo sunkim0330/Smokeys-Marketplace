@@ -3,9 +3,6 @@ import React from "react";
 const ItemCard = ({ item, setItemAvailability }) => {
   return (
     <div className="marketplace-card">
-      <button
-        className="add-item-btn"
-        onClick={() => setItemAvailability(item._id)} >Remove</button>
       <img
         src={item.image_link ? item.image_link : 'https://smokeys.s3.amazonaws.com/No-Image-Placeholder.svg'}
         alt={item.name} />
@@ -14,6 +11,9 @@ const ItemCard = ({ item, setItemAvailability }) => {
         {item.description.length > item.description.slice(0, 40).length ? (
           <div className="marketplace-card-text">{item.description.slice(0, 40) + "..."}</div>) :
           (<div className="marketplace-card-text">{item.description}</div>)}
+      <button
+        className="add-item-btn"
+        onClick={() => setItemAvailability(item._id)} >X</button>
     </div>
   );
 };
