@@ -244,8 +244,24 @@ body::-webkit-scrollbar {
   align-items: stretch;
 }
 
-.review {
+.review-date {
+  margin-left: 20px;
+}
+.review-date,
+.review-trx,
+.review-rating,
+.review-review,
+.review-date-item,
+.review-trx-item,
+.review-rating-item,
+.review-review-item {
   width: 250px;
+}
+
+.review-date-item,
+.review-trx-item,
+.review-rating-item,
+.review-review-item {
   padding: 10px;
   background-color: papayawhip;
 }
