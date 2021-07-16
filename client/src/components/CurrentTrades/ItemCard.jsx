@@ -2,18 +2,18 @@ import React from "react";
 
 const ItemCard = ({ item, setItemAvailability }) => {
   return (
-    <div className="current-trade-card">
+    <div className="marketplace-card">
       <button
-        className="current-trade-availablility"
+        className="add-item-btn"
         onClick={() => setItemAvailability(item._id)} >Remove</button>
       <img
         src={item.image_link}
         alt={item.name} />
-      <div className="trade-card-details">
-        <div className="trade-card-name">{item.name}</div>
-        <div className="trade-card-type">{item.type.toLocaleUpperCase()}</div>
-        <div className="trade-card-description">{item.description}</div>
-      </div>
+        <h4 className="marketplace-card-text">{item.name || "Untitled Item"}</h4>
+        <div className="marketplace-card-text">{item.type.toLocaleUpperCase()}</div>
+        {item.description.length > item.description.slice(0, 40).length ? (
+          <div className="marketplace-card-text">{item.description.slice(0, 40) + "..."}</div>) :
+          (<div className="marketplace-card-text">{item.description}</div>)}
     </div>
   );
 };
