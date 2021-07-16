@@ -1,4 +1,3 @@
-const cors = require("cors");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -16,9 +15,9 @@ const {
 /**
  * @dev sets mongodb data to a test DB when npm test is run to preserve production/dev DB
  */
-const dbLocation = process.env.NODE_ENV === 'test' ? 'mongodb://localhost/test_smokeys' : 'mongodb://localhost/smokeys';
+//const dbLocation = process.env.NODE_ENV === 'test' ? 'mongodb://localhost/test_smokeys' : 'mongodb://christian:frisbee11@18.206.85.61/smokeys';
 
-mongoose.connect(dbLocation, {
+mongoose.connect('mongodb://christian:frisbee11@3.85.211.220:27017/smokeys', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false

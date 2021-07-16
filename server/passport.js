@@ -15,7 +15,7 @@ passport.deserializeUser(function (user, done) {
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ACCESS_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: `/google/callback`
+  callbackURL: `https://www.rfe3isthebest.com/google/callback`
 },
   async function (accessToken, refreshToken, profile, done) {
 
@@ -42,6 +42,7 @@ passport.use(new GoogleStrategy({
 
       userData = {
         isUser: false,
+	_id: newUser._id,
         userId: newUser._id,
         firstName: profile.name.givenName,
         lastName: profile.name.familyName,
