@@ -56,8 +56,8 @@ const getReviewSize = async (req, res) => {
 
 const addReview = async (req, res) => {
   const newReview = new RatingsReviews({
-    reviewed_id : req.body.reviewer_id,
-    reviewer_id : req.body.reviewed_id,
+    reviewer_id : req.body.reviewer_id,
+    reviewed_id : req.body.reviewed_id,
     transaction_id : req.body.transaction_id,
     ratings: req.body.ratings,
     reviews: req.body.reviews
