@@ -21,7 +21,7 @@ const Marketplace = ({ currentUser }) => {
   const getAllMarketItems = () => {
     axios.get(`/items?user_object_id=${currentUser._id}&location=${currentUser.location}`)
     .then((response) => {
-      console.log('response:   ', response.data)
+      // console.log('response:   ', response.data)
       setMarketItems(response.data)
       setFilteredItems(response.data)
     })

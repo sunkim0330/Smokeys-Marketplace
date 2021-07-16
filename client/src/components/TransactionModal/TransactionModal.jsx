@@ -23,7 +23,7 @@ const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, se
       to_item_id: selectedItemModal._id
     })
     .then((res) => {
-      console.log(res)
+      // console.log(res)
     })
     .catch((err) => {
       console.log(err)
@@ -38,9 +38,9 @@ const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, se
     getItems()
   }, [])
 
-  useEffect(()=> {
-    console.log('tradeItem', tradeItem)
-  }, [tradeItem])
+  // useEffect(()=> {
+  //   console.log('tradeItem', tradeItem)
+  // }, [tradeItem])
 
 
   return (
