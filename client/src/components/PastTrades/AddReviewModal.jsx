@@ -55,8 +55,8 @@ const AddReviewModal = ({showModal, transaction, setShowModal, currentUser, onCl
     <div className="add-review-modal-wrapper">
       <div className="add-review-modal-container">
         <div className="add-review-modal-headers">
-        <h3>{transaction.fromItem.name}</h3>
-        <h3>{transaction.fromUser.firstName}</h3>
+          <h2>Add a review for {transaction.fromUser.firstName}!</h2>
+          <h3>{transaction.fromItem.name}</h3>
         </div>
         <form className="add-review-modal-form" onSubmit={e => sendRequest(e)}>
           <label className="add-review-modal-rating-label">Rating</label>
@@ -68,14 +68,14 @@ const AddReviewModal = ({showModal, transaction, setShowModal, currentUser, onCl
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <label className="add-review-modal-review-label" name="reivew">Review</label>
-          <textarea className="add-review-modal-review-input" onChange={handleReviewChange} required placeholder="write your review here"/>
+          <label className="add-review-modal-review-label" name="reivew">How was your experience? What did you love/not love?</label>
+          <textarea className="add-review-modal-review-input" onChange={handleReviewChange} required placeholder="Write your review here"/>
           <div className="add-review-modal-btn-flexbox">
-          {!submittedReview ? (<button className="add-review-modal-btn"
+          {!submittedReview ? (<button className="add-item-btn one"
             type="submit" value="submit">
               Submit
           </button>) : (<div>Submitted!</div>)}
-          <button className="add-review-modal-btn" type="button" onClick={onClose}>Close</button>
+          <button className="add-item-btn two" type="button" onClick={onClose}>Close</button>
           </div>
         </form>
 

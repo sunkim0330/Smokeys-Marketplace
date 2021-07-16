@@ -4,7 +4,7 @@ const RatingsReviewsItem = (props) => {
   const {date, transaction_id, review, rating} = props;
   return (
     // null
-    <div className="past-trade-item-container">
+    <div className="ratings-reviews-item-container">
       <div>{date.slice(0,10)}</div>
       <div>{transaction_id}</div>
       <div className="rating">

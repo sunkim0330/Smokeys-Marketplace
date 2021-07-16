@@ -13,7 +13,7 @@ const PastTradeItem = ({transactions, currentUser}) => {
         <div className="past-trade-item">{trx.fromItem.name}</div>
         <div className="past-trade-item">{trx.toItem.name}</div>
         <div className="past-trade-contact">{trx.fromUser.email}</div>
-        {(trx.reviewLeft === false) ? (<button type="button" className="past-trade-rating"
+        {(trx.reviewLeft === false) ? (<button type="button" className="add-item-btn"
           onClick={() => setShowModal(true)}>
             Add Review
         </button>) : (<div>Submitted</div>)}

@@ -16,9 +16,9 @@ const MarketplaceCard = ( { item, setDisplayModal, setSelectedItemModal } ) => {
 
   return (
     <div onClick={modalClick} className="marketplace-card">
-      <img  src={item.image_link} alt="img placeholder"/>
+      <img  src={item.image_link ? item.image_link : 'https://smokeys.s3.amazonaws.com/No-Image-Placeholder.svg'} alt="img placeholder"/>
       <div>
-        <h4 className="marketplace-card-text">{item.name}</h4>
+        <h4 className="marketplace-card-text">{item.name || "Untitled Item"}</h4>
         <div className="marketplace-card-text">Type: {item.type}</div>
 
         {item.description.length > item.description.slice(0, 40).length ? (
