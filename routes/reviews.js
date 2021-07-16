@@ -16,6 +16,7 @@ const getReviews = async (req, res) => {
   let user = req.params.user_id;
   let count = Number(req.query.count) || 5;
   let page = Number(req.query.page) || 0;
+
   const response = {
     user: user,
     results: []
@@ -24,6 +25,7 @@ const getReviews = async (req, res) => {
   let fetchRatingsReviews = await RatingsReviews.find({reviewed_id : new Types.ObjectId(user)})
     .limit(count)
     .skip(page * count)
+    .sort({ createdAt : -1 })
     response.results = fetchRatingsReviews;
 
     res.send(response)
