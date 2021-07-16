@@ -4,8 +4,9 @@ import MarketplaceSearch from './MarketplaceSearch.jsx';
 import TransactionModal from '../TransactionModal/TransactionModal.jsx';
 import axios from 'axios';
 
-const Marketplace = () => {
-  let currentUser = "60ef1cb062fe173ce7af8805"
+const Marketplace = ({ currentUser }) => {
+  // let currentUser = "60ef1cb062fe173ce7af8805"
+  if (!currentUser) return 'still loading';
 
   const [marketItems, setMarketItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
@@ -16,11 +17,11 @@ const Marketplace = () => {
     description: 'error',
     firstName: 'error'
   })
-
+  // console.log('currentUSERRR:', currentUser.firstName)
   const getAllMarketItems = () => {
-    axios.get('/items?user_object_id=60ef1cb062fe173ce7af8805&location=08724')
+    axios.get(`/items?user_object_id=${currentUser._id}&location=${currentUser.location}`)
     .then((response) => {
-      // console.log('response:   ', response.data)
+      console.log('response:   ', response.data)
       setMarketItems(response.data)
       setFilteredItems(response.data)
     })
@@ -60,7 +61,8 @@ const Marketplace = () => {
      displayModal={displayModal}
      setDisplayModal={setDisplayModal}
      selectedItemModal={selectedItemModal}
-     setSelectedItemModal={setSelectedItemModal} />
+     setSelectedItemModal={setSelectedItemModal}
+     currentUser={currentUser} />
      }
     </div>
   )

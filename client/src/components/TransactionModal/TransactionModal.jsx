@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react';
 import TransactionTradeItem from './TransactionTradeItem.jsx';
 import axios from 'axios';
 
-const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, setSelectedItemModal} ) => {
+const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, setSelectedItemModal, currentUser} ) => {
   const [userItems, setUserItems] = useState([])
   const [tradeItem, setTradeItem] = useState('')
 
   const getItems = () => {
-       axios.get('/items/60ef1cb062fe173ce7af8800')
+       axios.get(`/items/${currentUser._id}`)
     // axios.get('/items/${currentUser._id}')
       .then(data => {
         setUserItems(data.data)
@@ -46,9 +46,9 @@ const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, se
   return (
     <div className="transaction-modal-wrapper">
       <div className="transaction-modal">
-      <button className="Close" onClick={() => setDisplayModal(!displayModal)}>X</button>
+      <button className="close" onClick={() => setDisplayModal(!displayModal)}>X</button>
         <h4 className="transaction-item-title">{selectedItemModal.name}</h4>
-        <h4 className="transaction-user-rating">{selectedItemModal.firstName}</h4>
+        <div className="transaction-user-rating">User: {selectedItemModal.firstName}</div>
         <div className="image-wrapper">
           <img className="transaction-image" src={selectedItemModal.image}></img>
         </div>

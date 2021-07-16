@@ -315,18 +315,22 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  /* display: flex; */
+  /* flex-direction: row;
+  flex-wrap: wrap; */
+  /* justify-content: flex-start; */
   border: 2px solid black;
   border-radius: 12px;
   margin: 10px auto;
   background-color: rgb(250, 245, 239);
+  align-items: center;
 }
 
 .marketplace-card-row {
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -335,31 +339,43 @@
 
 .marketplace-card {
   border-radius: 12px;
-  margin: 0 auto;
-  width: 175px;
-  height: 225px;
+
+  width: 220px;
+  height: 279px;
   transition: box-shadow 1s;
   box-shadow: 0;
   transition: box-shadow 1s;
   border: 1px solid rgb(46, 45, 45);
   background-color: white;
+  margin-bottom: 20px;
+  font-size: 14px;
+  /* margin-left: 10px;
+  margin-right: 10px; */
+
 }
 
 .marketplace-card:hover {
   box-shadow: 10px 10px 14px -1px #595a5a;
+
 }
 
 .marketplace-card img {
   width: 90%;
   padding-left: 20px;
   align-self: center;
-  padding-top: 6px;
+  padding-top: 20px;
 }
 
+.marketplace-card-text {
+
+  margin-left: 10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .cardItems {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  /* flex-direction: column; */
+  /* justify-content: space-around; */
   text-align: center;
   height: 140px;
 }
@@ -483,25 +499,30 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  align-content: center;
   justify-content: center;
   background: rgb(255, 255, 255);
-  height: 70%;
-  width: 50%;
+  height: 80%;
+  width: 40%;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  border-radius: 12px;
 }
 
 .transaction-item-title {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 65%;
   text-align: center;
 }
 
 .transaction-user-rating {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 65%;
   text-align: center;
 }
+
 
 .image-wrapper {
   width: 100%;
@@ -514,36 +535,62 @@
 }
 
 .transaction-item-desc {
-  width: 100%;
+  width: 60%;
   height: 50px;
-  text-align: center;
+  text-align: left;
+  font-weight: normal;
+  margin-top: 5%;
+  margin-bottom: 5%;
+
 }
 
 .transaction-proposed-title {
-  width: 100%;
+  width: 60%;
   height: 30px;
-  text-align: center;
+  text-align: left;
+
 }
 
 .proposed-item-wrapper {
-  display: flex;
-  flex-direction: column;
+  display: block;
+
   align-content: flex-start;
   align-items: left;
-  padding-left: 10%;
-  width: 65%;
+  padding-left: 5%;
+  height: 100px;
+  width: 60%;
   border: 1px solid black;
   border-radius: 12px;
-  margin: 10px auto;
+  margin: 5px auto;
   overflow-y: scroll;
 
 }
 
+::-webkit-scrollbar {
+  width: 20px;
+  }
+
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px grey;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background:rgba(148, 146, 146, 0.637);
+border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background:rgb(54, 56, 58);
+
 .transaction-proposed-item {
+  display: block;
   width: 100%;
 }
 
 .transaction-button {
+  display: block;
+  margin-top: 5%;
   width: 40%;
 }
 .add-new-item-container {
