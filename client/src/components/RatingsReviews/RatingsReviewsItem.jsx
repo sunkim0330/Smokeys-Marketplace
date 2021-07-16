@@ -5,12 +5,12 @@ const RatingsReviewsItem = (props) => {
   return (
     // null
     <div className="ratings-reviews-item-container">
-      <div>{date.slice(0,10)}</div>
-      <div>{transaction_id}</div>
-      <div className="rating">
+      <div className="review-date-item">{date.slice(0,10)}</div>
+      <div className="review-trx-item">{transaction_id}</div>
+      <div className="review-rating-item">
         {'★★★★★'.slice(0,rating)}
       </div>
-      <div className="review">{review}</div>
+      <div className="review-review-item">{review}</div>
     </div>
   );
 };
