@@ -46,7 +46,7 @@ const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, se
   return (
     <div className="transaction-modal-wrapper">
       <div className="transaction-modal">
-      <button className="close" onClick={() => setDisplayModal(!displayModal)}>X</button>
+      <button className="add-item-btn" onClick={() => setDisplayModal(!displayModal)}>X</button>
         <h4 className="transaction-item-title">{selectedItemModal.name}</h4>
         <div className="transaction-user-rating">User: {selectedItemModal.firstName}</div>
         <div className="image-wrapper">
@@ -65,7 +65,7 @@ const TransactionModal = ( {displayModal, setDisplayModal, selectedItemModal, se
           {/*<h4 className="transaction-proposed-item">Hammer</h4>*/}
 
         </div>
-        <button onClick={makeTrade} className="transaction-button">Make Trade!</button>
+        <button onClick={makeTrade} className="add-item-btn">Make Trade!</button>
       </div>
     </div>
   )
