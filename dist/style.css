@@ -244,8 +244,24 @@ body::-webkit-scrollbar {
   align-items: stretch;
 }
 
-.review {
-  max-width: 250px;
+.review-date {
+  margin-left: 20px;
+}
+.review-date,
+.review-trx,
+.review-rating,
+.review-review,
+.review-date-item,
+.review-trx-item,
+.review-rating-item,
+.review-review-item {
+  width: 250px;
+}
+
+.review-date-item,
+.review-trx-item,
+.review-rating-item,
+.review-review-item {
   padding: 10px;
   background-color: papayawhip;
 }
@@ -431,10 +447,6 @@ body::-webkit-scrollbar {
 
 }
 
-.add-new-item-form {
-  /* border-top: 1px solid black; */
-}
-
 .new-item-photo {
   background-color: white;
   border: 1px solid black;
@@ -520,12 +532,14 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: center;
   background: rgb(255, 255, 255);
-  height: 80%;
-  width: 40%;
+  height: 750px;
+  width: 600px;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  border-radius: 12px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: orange;
 }
 
 .transaction-item-title {
@@ -533,6 +547,8 @@ body::-webkit-scrollbar {
   flex-direction: column;
   width: 65%;
   text-align: center;
+  font-size: 22pt;
+  padding: 15px
 }
 
 .transaction-user-rating {
@@ -540,6 +556,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   width: 65%;
   text-align: center;
+  font-size: 18pt;
 }
 
 
@@ -606,6 +623,14 @@ background:rgb(54, 56, 58);
 .transaction-proposed-item {
   display: block;
   width: 100%;
+}
+
+.transaction-proposed-item-active {
+  background: blue;
+}
+
+.transaction-proposed-item:hover {
+  cursor: pointer;
 }
 
 .transaction-button {
@@ -708,6 +733,11 @@ background:rgb(54, 56, 58);
   justify-content: space-around;
   justify-items: center;
   align-items: center;
+}
+
+.itemTest:checked {
+  background-color: yellow;
+  cursor: pointer;
 }
 
 .reviews-no-reviews {

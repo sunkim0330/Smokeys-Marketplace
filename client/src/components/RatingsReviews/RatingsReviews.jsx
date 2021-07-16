@@ -9,10 +9,10 @@ const RatingsReviews = ({ currentUser }) => {
       <h3>Past Reviews</h3>
       <div className="ratings-reviews-list-container">
         <div className="ratings-reviews-list-container-header">
-          <div>Date</div>
-          <div>Transaction ID</div>
-          <div>Rating</div>
-          <div>Review</div>
+          <div className="review-date">Date</div>
+          <div className="review-trx">Transaction ID</div>
+          <div className="review-rating">Rating</div>
+          <div className="review-review">Review</div>
         </div>
         <RatingsReviewsList currentUser={ currentUser }/>
       </div>

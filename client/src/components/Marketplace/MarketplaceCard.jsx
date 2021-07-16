@@ -3,13 +3,16 @@ import React, {useState, useEffect} from 'react';
 
 const MarketplaceCard = ( { item, setDisplayModal, setSelectedItemModal } ) => {
 
+  // console.log(item)
   const modalClick = (e) => {
     setDisplayModal(true)
     setSelectedItemModal({
       name: item.name,
       image: item.image_link,
       description: item.description,
-      firstName: item.user_docs[0].firstName})
+      firstName: item.user_docs[0].firstName,
+      user_id: item.owner,
+      item_id: item._id})
   }
 
   return (
