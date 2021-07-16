@@ -34,9 +34,9 @@ const MarketplaceSearch = ( {
     filterResults()
   }, [searchEntry])
 
-  useEffect(() => {
-     console.log('filteredItems :', filteredItems)
-  }, [filteredItems])
+  // useEffect(() => {
+  //    console.log('filteredItems :', filteredItems)
+  // }, [filteredItems])
 
 
 

@@ -20,13 +20,14 @@ const createNewUser = async (req, res) => {
     lastName: req.body.lastName,
     email: req.body.email,
     phone: req.body.phone,
-    location: req.body.location,
-    ratings_reviews: [],
-    transactions: []
+    location: req.body.location
   })
 
   newUser.save()
-  .then((result) => res.status(201).send(result))
+  .then((result) => {
+    res.status(201).send(result)
+    return;
+  })
   .catch(() => res.sendStatus(400))
 }
 

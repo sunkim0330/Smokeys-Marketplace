@@ -7,7 +7,7 @@ const ItemCard = ({ item, setItemAvailability }) => {
         className="current-trade-availablility"
         onClick={() => setItemAvailability(item._id)} >Remove</button>
       <img
-        src={item.image_link}
+        src={item.image_link ? item.image_link : 'https://smokeys.s3.amazonaws.com/No-Image-Placeholder.svg'}
         alt={item.name} />
       <div className="trade-card-details">
         <div className="trade-card-name">{item.name}</div>

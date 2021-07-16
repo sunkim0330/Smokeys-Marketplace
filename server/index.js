@@ -1,4 +1,3 @@
-const cors = require("cors");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -13,7 +12,12 @@ const {
   users,
   ratingsReviews } = require("../routes");
 
-mongoose.connect("mongodb://localhost/smokeys", {
+/**
+ * @dev sets mongodb data to a test DB when npm test is run to preserve production/dev DB
+ */
+const dbLocation = process.env.NODE_ENV === 'test' ? 'mongodb://localhost/test_smokeys' : 'mongodb://localhost/smokeys';
+
+mongoose.connect(dbLocation, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
@@ -84,6 +88,10 @@ app
   .route("/transactions/:transaction_id/cancel")
   .put(transactions.cancelTransaction);
 
+app
+  .route("/transactions/:transaction_id/review-left")
+  .put(transactions.reviewTransaction);
+
 app.route('/transactions/user')
   .get(transactions.getUserTransactions)
 
@@ -122,3 +130,5 @@ app.get('/logout', (req, res) => {
 app.get("*", isLoggedIn, (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
+
+module.exports = app;

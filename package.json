@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx webpack -w",
     "start": "nodemon server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --timeout 10000"
   },
   "repository": {
     "type": "git",
@@ -19,11 +19,10 @@
   },
   "homepage": "https://github.com/GreatWhite-BlueOcean/smokeys#readme",
   "dependencies": {
-    "@babel/plugin-transform-runtime": "^7.14.5",
     "aws-sdk": "^2.943.0",
     "axios": "^0.21.1",
     "chai": "^4.3.4",
-    "cors": "^2.8.5",
+    "chai-http": "^4.3.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
@@ -35,12 +34,14 @@
     "passport-google-oauth20": "^2.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.11.0",
     "react-router-dom": "^5.2.0",
     "session": "^0.1.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",

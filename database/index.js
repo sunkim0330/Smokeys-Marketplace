@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
   lastName: String,
   email: String,
   location: String,
-  phone: String,
+  phone: String
   // ratings_reviews: [mongoose.Schema.Types.Mixed],
   // transactions: [mongoose.Schema.ObjectId]
 }, { timestamps: true })
@@ -45,6 +45,10 @@ const TransactionSchema = new mongoose.Schema({
     type: String,
     enum: ['pending', 'completed', 'cancelled'],
     default: 'pending'
+  },
+  reviewLeft: {
+    type: Boolean,
+    default: false
   }
 }, { timestamps: true })
 
