@@ -4,12 +4,13 @@ const mongoose = require('mongoose');
  * Schema for each user - Should be called each time we add a new user
  */
 const UserSchema = new mongoose.Schema({
-  username: String,
+  firstName: String,
+  lastName: String,
   email: String,
   location: String,
-  phone: Number,
-  ratings_reviews: [mongoose.Schema.Types.Mixed],
-  transactions: [mongoose.Schema.ObjectId]
+  phone: String
+  // ratings_reviews: [mongoose.Schema.Types.Mixed],
+  // transactions: [mongoose.Schema.ObjectId]
 }, { timestamps: true })
 
 const Users = mongoose.model('Users', UserSchema);
@@ -26,7 +27,7 @@ const ItemSchema = new mongoose.Schema({
   image_link: String
 }, { timestamps: true })
 
-const Item = mongoose.model('Item', ItemSchema)
+const Items = mongoose.model('Items', ItemSchema)
 
 /**
  * Schema for transactions - Should be called each time a new transaction is triggered
@@ -34,23 +35,41 @@ const Item = mongoose.model('Item', ItemSchema)
 const TransactionSchema = new mongoose.Schema({
   from: {
     user_id: mongoose.Schema.ObjectId,
-    item: mongoose.Schema.ObjectId
+    item_id: mongoose.Schema.ObjectId
   },
   to: {
     user_id: mongoose.Schema.ObjectId,
-    item: mongoose.Schema.ObjectId
+    item_id: mongoose.Schema.ObjectId
   },
-  isApproved: Boolean
+  status: {
+    type: String,
+    enum: ['pending', 'completed', 'cancelled'],
+    default: 'pending'
+  },
+  reviewLeft: {
+    type: Boolean,
+    default: false
+  }
 }, { timestamps: true })
 
-const Transaction = mongoose.model('Transaction', TransactionSchema);
+const Transactions = mongoose.model('Transactions', TransactionSchema);
+
+const RatingsReviewsSchema = new mongoose.Schema({
+  reviewer_id: mongoose.Schema.ObjectId,
+  reviewed_id: mongoose.Schema.ObjectId,
+  transaction_id: mongoose.Schema.ObjectId,
+  ratings: Number,
+  reviews: String
+}, { timestamps: true })
+
+const RatingsReviews = mongoose.model('RatingsReviews', RatingsReviewsSchema);
 
 module.exports = {
   Users,
-  Item,
-  Transaction
+  Items,
+  Transactions,
+  RatingsReviews
 }
-
 
 /**
  * @dev The code below will create two new users and add to a local mongoDB upon server start
@@ -85,8 +104,8 @@ module.exports = {
  *
  * @dev NOTE : THE OBJECTID HASHES WILL NOT PROPERLY LINE UP WITH YOUR LOCAL DB
  */
-// let christianItem = new Item({
-//   owner: '60ea018e6a00f038edf9cab4',
+// let christianItem = new Items({
+//   owner: '60eac1d6a0e0293f05e414cf',
 //   name: 'Hammer',
 //   type: 'goods',
 //   availability: true,
@@ -96,8 +115,8 @@ module.exports = {
 
 // christianItem.save();
 
-// let mattItem = new Item({
-//   owner: '60ea018e6a00f038edf9cab3',
+// let mattItem = new Items({
+//   owner: '60eac1d6a0e0293f05e414d0',
 //   name: 'Drill',
 //   type: 'goods',
 //   availability: true,
@@ -112,16 +131,15 @@ module.exports = {
  *
  * @dev NOTE : THE OBJECTID HASHES WILL NOT PROPERLY LINE UP WITH YOUR LOCAL DB
  */
-// let testTransaction = new Transaction({
+// let testTransaction = new Transactions({
 //   from: {
-//     user_id: '60ea018e6a00f038edf9cab4',
-//     item: '60ea024abe629c3947ff89b7'
+//     user_id: '60eac1d6a0e0293f05e414cf',
+//     item: '60eac203c6fabc3f28f8d831'
 //   },
 //   to: {
-//     user_id: '60ea018e6a00f038edf9cab3',
-//     item: '60ea024abe629c3947ff89b8'
-//   },
-//   isApproved: false
+//     user_id: '60eac1d6a0e0293f05e414d0',
+//     item: '60eac203c6fabc3f28f8d832'
+//   }
 // })
 
 // testTransaction.save();
@@ -132,7 +150,7 @@ module.exports = {
  * & add a rating/review object to the ratings_reviews field
  */
 // db.users.update({
-//   username: "Christian"
+//   user: "Christian"
 // },
 //   {
 //     $push :
@@ -140,7 +158,8 @@ module.exports = {
 //       ratings_reviews :
 //       {
 //         rating : 4,
-//         review : "testing"
+//         review : "testing",
+//         left_by : "60eac1d6a0e0293f05e414d0"
 //       }
 //     }
 //   });
