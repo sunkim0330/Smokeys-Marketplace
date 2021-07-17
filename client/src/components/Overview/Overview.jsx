@@ -48,7 +48,7 @@ const Overview = ({ currentUser, getLoggedInUser }) => {
   };
 
   useEffect(() => {
-    getLoggedInUser(); //change
+    getLoggedInUser();
     getAllTxns();
     getAllItems();
     getAllCompletedTxns();
@@ -64,7 +64,7 @@ const Overview = ({ currentUser, getLoggedInUser }) => {
     <div className="overview-container">
       <EditUserModal
         currentUser={currentUser}
-        getLoggedInUser={getLoggedInUser} //change
+        getLoggedInUser={getLoggedInUser}
       />
       <div className="overview-container-top-row">
         <div className="basic-info">
