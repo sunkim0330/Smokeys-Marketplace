@@ -59,10 +59,11 @@ To run tests, run the following command
 
 ## Screenshots
 
-![Splash Screen]()
-![Marketplace](https://github.com/cjohansen11/Smokeys-Marketplace/blob/main/readme_files/marketplace.png)
-![User Overview](https://github.com/cjohansen11/Smokeys-Marketplace/blob/main/readme_files/user_overview.png)
-![Current Items](https://github.com/cjohansen11/Smokeys-Marketplace/blob/main/readme_files/current_items.png)
+![Splash Screen](https://github.com/sunkim0330/Smokeys-Marketplace/blob/main/readme_file/main_page.png)
+![SignUp Page](https://github.com/sunkim0330/Smokeys-Marketplace/blob/main/readme_file/signup_page.png)
+![Marketplace](https://github.com/sunkim0330/Smokeys-Marketplace/blob/main/readme_file/marketplace.png)
+![User Overview](https://github.com/sunkim0330/Smokeys-Marketplace/blob/main/readme_file/overview.png)
+![Current Items](https://github.com/sunkim0330/Smokeys-Marketplace/blob/main/readme_file/current_item.png)
 ![Add New Item](https://github.com/sunkim0330/Smokeys-Marketplace/blob/main/readme_file/additem.png)
 ## API Reference - Transactions
 
