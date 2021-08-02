@@ -56,16 +56,14 @@ To run tests, run the following command
   npm run test
 ```
 
-<!-- 
+
 ## Screenshots
 
-![Splash Screen](https://github.com/cjohansen11/Smokeys-Marketplace/blob/main/readme_files/splash.png)
+![Splash Screen]()
 ![Marketplace](https://github.com/cjohansen11/Smokeys-Marketplace/blob/main/readme_files/marketplace.png)
 ![User Overview](https://github.com/cjohansen11/Smokeys-Marketplace/blob/main/readme_files/user_overview.png)
 ![Current Items](https://github.com/cjohansen11/Smokeys-Marketplace/blob/main/readme_files/current_items.png)
-![Past Trades](https://github.com/cjohansen11/Smokeys-Marketplace/blob/main/readme_files/past_trades.png)
-![Ratings & Reviews](https://github.com/cjohansen11/Smokeys-Marketplace/blob/main/readme_files/ratings.png)
-![Add New Item](https://github.com/cjohansen11/Smokeys-Marketplace/blob/main/readme_files/add_new_item.png) -->
+![Add New Item](https://github.com/sunkim0330/Smokeys-Marketplace/blob/main/readme_file/additem.png)
 ## API Reference - Transactions
 
 ### List Transactions
