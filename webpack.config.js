@@ -18,6 +18,10 @@ module.exports = {
             presets: ['@babel/preset-react', '@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.(jpg|JPG|jpeg|png|gif|mp3|svg|ttf|woff2|woff|eot)$/gi,
+        type: 'asset/resource',
       }
     ]
   }
